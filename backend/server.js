@@ -19,10 +19,10 @@ connection.once("open", () => {
 });
 
 // Routes
-const userRoutes = require("./routes/user");
+const patientRoutes = require("./routes/patient");
 
 // Server resource routes
-app.use("/user", userRoutes);
+app.use("/patient", patientRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
