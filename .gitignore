@@ -1,4 +1,8 @@
-/node_modules
-/dist
-/.idea
-/npm-debug.log
+dist
+.idea
+npm-debug.log
+node_modules
+node_modules
+.DS_Store
+.env
+.gitignore

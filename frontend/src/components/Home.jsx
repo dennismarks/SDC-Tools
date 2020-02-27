@@ -43,15 +43,14 @@ export default class Home extends Component {
     };
 
     console.log(user);
-    axios
-      .post("http://localhost:3001/user/add", user)
-      .then(res => console.log(res.data));
+    axios.post("http://localhost:3001/user/add", user).then(res => {
+      console.log(res.data);
+      this.getUsers();
+    });
 
     this.setState({
       username: ""
     });
-
-    this.getUsers();
   }
 
   render() {
