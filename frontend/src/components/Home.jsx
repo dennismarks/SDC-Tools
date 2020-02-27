@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Table, Form, Col, Button } from "react-bootstrap";
 import axios from "axios";
 
 export default class Home extends Component {
@@ -78,42 +79,74 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="">
+      <div>
         <div className="App-header">
           <h1>Add a New Patient:</h1>
-          <div>
-            <form onSubmit={this.onSubmit}>
-              <input
-                type="text"
-                placeholder="Name"
-                value={this.state.name}
-                onChange={this.onChangeName}
-              />
-              <input
-                type="text"
-                placeholder="Email"
-                value={this.state.email}
-                onChange={this.onChangeEmail}
-              />
-              <input
-                type="text"
-                placeholder="Phone Number"
-                value={this.state.phone}
-                onChange={this.onChangePhone}
-              />
-              <input type="submit" value="Add" />
-            </form>
-          </div>
+          <Form onSubmit={this.onSubmit}>
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  value={this.state.name}
+                  onChange={this.onChangeName}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col}>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  value={this.state.email}
+                  onChange={this.onChangeEmail}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col}>
+                <Form.Label>Phone</Form.Label>
+                <Form.Control
+                  value={this.state.phone}
+                  onChange={this.onChangePhone}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{ marginTop: "32px", marginLeft: "6px" }}
+                >
+                  Submit
+                </Button>
+              </Form.Group>
+            </Form.Row>
+          </Form>
           <br />
-          <h3>Current patients in a database:</h3>
-          <div>
-            {this.state.patients.map(p => (
-              <div key={p.patient_number}>
-                ID: {p.patient_number}, name: {p.name}, email: {p.email}, phone:{" "}
-                {p.phone}
-              </div>
-            ))}
-          </div>
+          <br />
+          <h1>Current patients in a database:</h1>
+          <Table
+            striped
+            bordered
+            hover
+            variant="dark"
+            style={{ maxWidth: "700px" }}
+          >
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.patients.map(p => (
+                <tr key={p.patient_number}>
+                  <td>{p.patient_number}</td>
+                  <td>{p.name}</td>
+                  <td>{p.email}</td>
+                  <td>{p.phone}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
       </div>
     );
