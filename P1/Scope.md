@@ -1,0 +1,11 @@
+## Scope
+
+### Team Interests
+After discussing our technical strengths and weaknesses, we've established that our team's skill set is somewhat split into two camps. That is, half of our team is more comfortable with frontend development, whilst the other half is more comfortable with backend.
+
+This division was not a hindrance, though; in fact, after establishing the team's learning goals, our diverse skillset proved to be an advantage. That is, we've concluded that as a team, we want to explore the dynamics and intricacies of software development, more so than just exploring a specific programming tool or stack. We therefore decided that developing a comprehensive application, similar to a minimum viable product, would be the best option for us, giving each and one of us an opportunity to apply and learn about all parts and aspects of software development. So, given our learning goals, our skillset aligned perfectly to allow us to develop both the frontend and the backend of an application.
+
+### Application Focus
+Looking over the ehealth app use cases, it appeared that Actor Form Filler was the best choice. This use case seemed to have the best balance between frontend and backend work, and appeared to be a prime candidate for a comprehensive app. That is, the other use cases seemed to be more backend-leaning, which wouldn't align with our team's interests as well. Moreover, Actor Form Filler seemed to be the most extensive use case, giving us more to work on and more to learn. Working on the Actor Form Filler use case, every one of us will get an opportunity to work within their comfort zone, but also learn and participate in the development of components that are less familiar. Additionally, the amount of work/tasks required to complete Actor Form Filler allows for a truly sizeable software development project, where careful planning, cooperation, and methodology is required - which is what we want.
+
+However, choosing to work solely on Actor Form Filler omits working on some other aspects of the ehealth app system. For example, for Actor Form Filler to work, we rely on SDCForm to exist, but we do not implement SDCForm creation in our app since that is handled by the Form Manager Actor. We will most likely "hard code" a dummy SDCForm for our app to work. Similarly, we will omit implementing Actor Form Receiver.
