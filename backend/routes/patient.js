@@ -27,7 +27,7 @@ router.route("/add").post((req, res) => {
 
 // takes in XML
 router.route("/xml").post((req, res) => {
-  res.status(200).send(JSON.stringify({ "1. What is your name" : <1>, "2. How are you feeling": <2>});
+  res.status(200).send(JSON.stringify({ "1. What is your name" : "<1>", "2. How are you feeling": "<2>"});
 });
 
 // Update
