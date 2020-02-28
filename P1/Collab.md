@@ -9,8 +9,8 @@
 | Dennis M    | React, JS, Express, Swift  | Mongo, Django  |
 | Runchao Mao | JS, Express, C, Django, MongoDB | React     |
 | Michael Katilevsky | React, Angular, Python, Flask, JS, C | Django, MongoDB |
-| Kevin Zheng | |
-| Allan Chang | |
+| Kevin Zheng | React, Node.js, Mongo, Express| Django |
+| Allan Chang | JavaScript, Node.js, React| Django|
 
 
 ### Weekly Meeting
