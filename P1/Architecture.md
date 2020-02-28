@@ -7,3 +7,5 @@ Interacts with MongoDB database and serves as an abstracted layer between the da
 
 **WebApp**: ReactJS
 ReactJS front end, allows forms to be served and filled by the user. Requests and sends in formation to the SDCToolsApi to be processed before storage.
+
+Note: Endpoints are specified in API.md
