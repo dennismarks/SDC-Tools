@@ -1,8 +1,10 @@
-# Test
+# Test.md
+
+We plan to run two types of tests. Unit testing will be ran for the backend APIs and functions. UI testing will be ran for the  front end.
 
 ## Unit Testing
 
-For each feature, we will implement a test that tests for a specific feature set and functionality. For each test, there will be an equivalent issue/task. We plan to implement tests incrementally as new features are introduced. Issues and tasks will drive development. Unit tests will be ran through Travis CI on Github and when a pull request is created, all the unit tests will be automatically ran to ensure that new changes do not break old ones.
+For each feature, we will implement a test that tests for a specific feature set and functionality. For each test, there will be an equivalent issue/task. We plan to implement tests incrementally as new features are introduced. Issues and tasks will drive development. Unit tests will be ran through Travis CI on Github and when a pull request is created, all the unit tests will be automatically ran to ensure that new changes do not break old ones. Although ideally all functions should be tested, depending on time, testing for internal private functions may take a back seat to testing for public facing APIs.
 
 Unit tests will be implemented to test the behaviour of the functions. Testing every function brings security when reusing previous functions. Through unit testing, we have a likely guarantee that the helper functions we are using work correctly. Some unit tests will be made that test specific regular use case values. Additionally, some unit tests will use edge cases as parameters to check correctness.
 
