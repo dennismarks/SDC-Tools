@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Table, Form, Col, Button } from "react-bootstrap";
 import axios from "axios";
 
-export default class Home extends Component {
+export default class HomePage extends Component {
   constructor(props) {
     super(props);
 
