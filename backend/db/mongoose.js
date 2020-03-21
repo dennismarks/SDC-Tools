@@ -3,11 +3,18 @@ const mongoose = require("mongoose");
 /* Connecting to database */
 /* Either URI or env variable on deployment. */
 const mongoURI =
-  process.env.MONGODB_URI ||
-  "mongodb://csc302:fakebirds123@cluster0-shard-00-00-29vno.mongodb.net:27017,cluster0-shard-00-01-29vno.mongodb.net:27017,cluster0-shard-00-02-29vno.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
+  "mongodb://user:csc302@cluster0-shard-00-00-29vno.mongodb.net:27017,cluster0-shard-00-01-29vno.mongodb.net:27017,cluster0-shard-00-02-29vno.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 mongoose
-  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(
+    mongoURI,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    function(error) {
+      if (error) console.log(error);
+
+      console.log("MongoConnection successful");
+    }
+  )
   .catch(error => console.log(error));
 
 //Get the default connection

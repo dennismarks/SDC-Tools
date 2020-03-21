@@ -6,7 +6,6 @@ const cors = require("cors");
 const path = require("path");
 const bodyParser = require("body-parser");
 
-
 const { mongoose } = require("./db/mongoose");
 
 const app = express();
@@ -22,7 +21,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 /* Routes from router */
 const patientRoutes = require("./routes/patient");
 const formRoutes = require("./routes/form");
@@ -35,9 +33,16 @@ app.use("/api/v1/patient", patientRoutes);
 app.use("/api/v1", formRoutes);
 /* Server Resource Routes End */
 
+// /* Frontend Resource Routes */
+// app.use(express.static(path.resolve(__dirname, "../frontend/build")));
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+// });
+// /* Frontend Resource Routes End */
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(
-    `Server is running on port: ${port}... \n For development use http://localhost:${port}/api/v1`
+    `Server is running on port: ${port}... \n For development use http://localhost:${port}`
   );
 });
