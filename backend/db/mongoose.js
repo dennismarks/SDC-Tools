@@ -8,7 +8,7 @@ const mongoURI =
 mongoose
   .connect(
     mongoURI,
-    { useNewUrlParser: true, useUnifiedTopology: true },
+    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
     function(error) {
       if (error) console.log(error);
 
