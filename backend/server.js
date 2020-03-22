@@ -24,13 +24,15 @@ app.use(function(req, res, next) {
 /* Routes from router */
 const patientRoutes = require("./routes/patient");
 const formRoutes = require("./routes/form");
+const accountRoutes = require("./routes/account");
 /* Routes from router end */
 
 app.use(bodyParser.json());
 
 /* Server Resource Routes */
 app.use("/api/v1/patient", patientRoutes);
-app.use("/api/v1", formRoutes);
+app.use("/api/v1/form", formRoutes);
+app.use("/api/v1/account", accountRoutes);
 /* Server Resource Routes End */
 
 // /* Frontend Resource Routes */

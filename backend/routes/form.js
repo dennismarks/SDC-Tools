@@ -2,7 +2,7 @@ const router = require("express").Router();
 let admin = require("../models/admin.model");
 
 // Post new XML to be processed
-router.route("/form").post((req, res) => {
+router.route("/xml").post((req, res) => {
   res.status(200).send(
     JSON.stringify({
       "1. What is your name": "<1>",
@@ -12,20 +12,7 @@ router.route("/form").post((req, res) => {
 });
 
 // Get all available fillout forms
-// router.route("/fillout").get((req, res) => {
-//   res.status(200).json({
-//     filloutForms: {
-//       "0": "Heart Form",
-//       "1": "Brain Form",
-//       "2": "Body Form",
-//       "3": "Final Form"
-//     },
-//     allForms: [0, 1, 2, 3, 4, 5]
-//   });
-// });
-
-// Get all available fillout forms
-router.route("/fillout").get((req, res) => {
+router.route("/").get((req, res) => {
   try {
     admin.findOne().then(data => {
       res.json({
@@ -38,25 +25,7 @@ router.route("/fillout").get((req, res) => {
 });
 
 // Get fillout form specifically @formID
-router.route("/fillout/:formID").post((req, res) => {
-  res.status(200).send(
-    JSON.stringify({
-      "1. What is your name": "<1>",
-      "2. How are you feeling": "<2>"
-    })
-  );
-});
-
-router.route("/account/:accountID").get((req, res) => {
-  res.status(200).send(
-    JSON.stringify({
-      "1. What is your name": "<1>",
-      "2. How are you feeling": "<2>"
-    })
-  );
-});
-
-router.route("/account/save").post((req, res) => {
+router.route("/:formID").get((req, res) => {
   res.status(200).send(
     JSON.stringify({
       "1. What is your name": "<1>",
