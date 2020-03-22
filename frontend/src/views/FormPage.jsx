@@ -81,9 +81,9 @@ export default class FormPage extends Component {
             <Form.Group controlId="allForm">
               <Form.Label>Available Forms</Form.Label>
               <Form.Control as="select">
-                <option selected>-</option>
+                <option>-</option>
                 {this.state.allForms.map(x => (
-                  <option value={x}>{x}</option>
+                  <option>{x}</option>
                 ))}
               </Form.Control>
             </Form.Group>
