@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Form, Col, Button } from "react-bootstrap";
+import { Button, Form, Col } from "react-bootstrap";
 import axios from "axios";
 
 export default class FormPage extends Component {
@@ -10,7 +10,8 @@ export default class FormPage extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      formId: ""
+      formId: "",
+      allForms: []
     };
   }
 
@@ -21,7 +22,44 @@ export default class FormPage extends Component {
   }
 
   onSubmit(e) {
-    console.log("Get Form: " + this.state.formId)
+    console.log("Get Form: " + this.state.formId);
+  }
+
+  componentDidMount() {
+    this.getFillouts();
+  }
+
+  getDedicatedFillout(formID) {
+    axios({
+      method: "get",
+      url: "http://localhost:3001/api/v1/fillout",
+      responseType: "application/json"
+    }).then(response => {
+      console.log(response.data);
+
+      // if (formID)
+      //   this.setState({
+      //     formId: ""
+      //     allForms: response.data.allForms
+      //   });
+      console.log(this.state.allForms);
+    });
+  }
+
+  getFillouts() {
+    axios({
+      method: "get",
+      url: "http://localhost:3001/api/v1/fillout",
+      responseType: "application/json"
+    }).then(response => {
+      console.log(response.data);
+
+      this.setState({
+        formId: "-",
+        allForms: response.data.allForms
+      });
+      console.log(this.state.allForms);
+    });
   }
 
   render() {
@@ -36,10 +74,27 @@ export default class FormPage extends Component {
                 <Form.Control
                   value={this.state.formId}
                   onChange={this.onChangeFormId}
+                  id="1"
                 />
               </Form.Group>
             </Form.Row>
+            <Form.Group controlId="allForm">
+              <Form.Label>Available Forms</Form.Label>
+              <Form.Control as="select">
+                <option selected>-</option>
+                {this.state.allForms.map(x => (
+                  <option value={x}>{x}</option>
+                ))}
+              </Form.Control>
+            </Form.Group>
           </Form>
+          <Button
+            variant="primary"
+            type="submit"
+            style={{ marginTop: "10px", marginLeft: "6px" }}
+          >
+            Grab form
+          </Button>
         </div>
       </div>
     );

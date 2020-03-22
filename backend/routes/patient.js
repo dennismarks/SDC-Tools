@@ -25,11 +25,6 @@ router.route("/add").post((req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-// takes in XML MOCK ENDPOINT !!
-router.route("/xml").post((req, res) => {
-  res.status(200).send(JSON.stringify({ "1. What is your name" : "<1>", "2. How are you feeling": "<2>"}));
-});
-
 // Update
 router.route("/update/:id").post((req, res) => {
   Patient.findById(req.params.id)
