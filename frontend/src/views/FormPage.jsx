@@ -32,7 +32,7 @@ export default class FormPage extends Component {
   getDedicatedFillout(formID) {
     axios({
       method: "get",
-      url: "http://localhost:3001/api/v1/fillout",
+      url: "http://localhost:3001/api/v1/form",
       responseType: "application/json"
     }).then(response => {
       console.log(response.data);
@@ -49,7 +49,7 @@ export default class FormPage extends Component {
   getFillouts() {
     axios({
       method: "get",
-      url: "http://localhost:3001/api/v1/fillout",
+      url: "http://localhost:3001/api/v1/form",
       responseType: "application/json"
     }).then(response => {
       console.log(response.data);
