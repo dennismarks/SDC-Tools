@@ -42,7 +42,7 @@ export default class HomePage extends Component {
   }
 
   getPatients() {
-    axios.get("http://localhost:3001/patient/").then(response => {
+    axios.get("http://localhost:3001/api/v1/patient/").then(response => {
       if (response.data.length > 0) {
         console.log(response.data);
 
@@ -65,10 +65,12 @@ export default class HomePage extends Component {
     };
 
     console.log(patient);
-    axios.post("http://localhost:3001/patient/add", patient).then(res => {
-      console.log(res.data);
-      this.getPatients();
-    });
+    axios
+      .post("http://localhost:3001/api/v1/patient/add", patient)
+      .then(res => {
+        console.log(res.data);
+        this.getPatients();
+      });
 
     this.setState({
       name: "",
