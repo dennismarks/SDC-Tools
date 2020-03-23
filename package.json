@@ -6,51 +6,10 @@
     "type": "git",
     "url": "git+https://github.com/csc302-spring-2020/proj-FakeBirds.git"
   },
-  "scripts": {
-    "test": "cd frontend && react-scripts test",
-    "dev": "nodemon ./backend/server.js",
-    "build": "cd frontend && react-scripts build"
-  },
   "author": "CSC302 Fake Birds",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/csc302-spring-2020/proj-FakeBirds/issues"
   },
-  "homepage": "https://github.com/csc302-spring-2020/proj-FakeBirds#readme",
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.0",
-    "bootstrap": "4.4.1",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "mongodb": "^3.5.2",
-    "mongoose": "^5.9.2",
-    "node-uuid": "^1.4.8",
-    "react": "^16.13.0",
-    "react-bootstrap": "^1.0.0-beta.16",
-    "react-dom": "^16.13.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.2"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "homepage": "https://github.com/csc302-spring-2020/proj-FakeBirds#readme"
 }
