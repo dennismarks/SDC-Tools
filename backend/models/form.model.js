@@ -22,7 +22,7 @@ const QuestionSchema = new Schema({
   answerType: {
     type: Number // 0 - Text (or Integer); 1 - MultipleChoice; 2 - T/F
   },
-  answer: AnswerSchema
+  answerObject: AnswerSchema
 });
 
 const SectionSchema = new Schema({
@@ -38,18 +38,21 @@ const SectionSchema = new Schema({
   questions: [QuestionSchema]
 });
 
-const FormSchema = new Schema({
-  formID: {
-    type: Number,
-    required: true,
-    unique: true
+const FormSchema = new Schema(
+  {
+    formID: {
+      type: Number,
+      required: true,
+      unique: true
+    },
+    diagnostic_id: {
+      type: Number,
+      required: true,
+      unique: true
+    },
+    sections: [SectionSchema]
   },
-  diagnostic_id: {
-    type: Number,
-    required: true,
-    unique: true
-  },
-  sections: [SectionSchema]
-});
+  { collection: "fillouts" }
+);
 
 module.exports = mongoose.model("form", FormSchema);

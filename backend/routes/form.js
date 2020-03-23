@@ -1,5 +1,6 @@
 const router = require("express").Router();
 let admin = require("../models/admin.model");
+let form = require("../models/form.model");
 
 // Post new XML to be processed
 router.route("/xml").post((req, res) => {
@@ -26,12 +27,13 @@ router.route("/").get((req, res) => {
 
 // Get fillout form specifically @formID
 router.route("/:formID").get((req, res) => {
-  res.status(200).send(
-    JSON.stringify({
-      "1. What is your name": "<1>",
-      "2. How are you feeling": "<2>"
-    })
-  );
+  try {
+    form.findOne({ formID: req.params.formID }).then(data => {
+      res.json(data);
+    });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 });
 
 module.exports = router;
