@@ -18,7 +18,7 @@ const QuestionSchema = new Schema({
   },
   questionTitle: String,
   enableState: Boolean,
-  dependentQuestions: [QuestionSchema],
+  dependentQuestions: [this],
   answerType: {
     type: Number // 0 - Text (or Integer); 1 - MultipleChoice; 2 - T/F
   },
