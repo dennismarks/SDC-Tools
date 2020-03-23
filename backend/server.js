@@ -35,12 +35,12 @@ app.use("/api/v1/form", formRoutes);
 app.use("/api/v1/account", accountRoutes);
 /* Server Resource Routes End */
 
-// /* Frontend Resource Routes */
-// app.use(express.static(path.resolve(__dirname, "../frontend/build")));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
-// });
-// /* Frontend Resource Routes End */
+/* Frontend Resource Routes */
+app.use(express.static(path.resolve(__dirname, "../frontend/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+});
+/* Frontend Resource Routes End */
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
