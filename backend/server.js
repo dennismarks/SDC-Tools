@@ -44,7 +44,7 @@ app.get("*", (req, res) => {
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
-  console.log(
-    `Server is running on port: ${port}... \n For development use http://localhost:${port}`
+  log(
+    `Server is running on port: ${port}... \n For development use http://localhost:${port}/ \n For API use http://localhost:${port}/api/v1/`
   );
 });

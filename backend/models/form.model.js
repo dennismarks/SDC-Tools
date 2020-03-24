@@ -1,31 +1,58 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const AnswerSchema = new Schema({
+  questionID: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  answer: String // All strings can be convert to option.
+});
+
+const QuestionSchema = new Schema({
+  questionID: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  questionTitle: String,
+  enableState: Boolean,
+  dependentQuestions: [this],
+  answerType: {
+    type: Number // 0 - Text (or Integer); 1 - MultipleChoice; 2 - T/F
+  },
+  answerObject: AnswerSchema
+});
+
+const SectionSchema = new Schema({
+  sectionID: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  sectionTitle: {
+    type: String,
+    required: true
+  },
+  questions: [QuestionSchema]
+});
+
 const FormSchema = new Schema(
   {
-    patient_number: {
+    formID: {
       type: Number,
       required: true,
       unique: true
     },
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-      minlength: 3
-    },
-    email: {
-      type: String,
-      required: true
-    },
-    phone: {
+    diagnostic_id: {
       type: Number,
-      required: true
-    }
+      required: true,
+      unique: true
+    },
+    sections: [SectionSchema]
   },
-  {
-    timestamps: true
-  }
+  { collection: "fillouts" }
 );
 
 module.exports = mongoose.model("form", FormSchema);

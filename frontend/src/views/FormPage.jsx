@@ -8,42 +8,41 @@ export default class FormPage extends Component {
 
     this.onChangeFormId = this.onChangeFormId.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.getDedicatedFillout = this.getDedicatedFillout.bind(this);
+    this.getFillouts = this.getFillouts.bind(this);
 
     this.state = {
-      formId: "",
+      formID: "",
       allForms: []
     };
   }
 
   onChangeFormId(e) {
     this.setState({
-      formId: e.target.value
+      formID: e.target.value
     });
   }
 
   onSubmit(e) {
-    console.log("Get Form: " + this.state.formId);
+    console.log("Get Form: " + this.state.formID);
   }
 
   componentDidMount() {
     this.getFillouts();
   }
 
-  getDedicatedFillout(formID) {
+  getDedicatedFillout(e) {
     axios({
       method: "get",
-      url: "http://localhost:3001/api/v1/form",
+      url: `http://localhost:3001/api/v1/form/${this.state.formID}`,
       responseType: "application/json"
-    }).then(response => {
-      console.log(response.data);
-
-      // if (formID)
-      //   this.setState({
-      //     formId: ""
-      //     allForms: response.data.allForms
-      //   });
-      console.log(this.state.allForms);
-    });
+    })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   getFillouts() {
@@ -55,8 +54,8 @@ export default class FormPage extends Component {
       console.log(response.data);
 
       this.setState({
-        formId: "-",
-        allForms: response.data.allForms
+        formID: 0,
+        allForms: response.data.allForms.map(x => x.formID)
       });
       console.log(this.state.allForms);
     });
@@ -72,7 +71,7 @@ export default class FormPage extends Component {
               <Form.Group as={Col}>
                 <Form.Label>Form ID</Form.Label>
                 <Form.Control
-                  value={this.state.formId}
+                  value={this.state.formID}
                   onChange={this.onChangeFormId}
                   id="1"
                 />
@@ -80,7 +79,7 @@ export default class FormPage extends Component {
             </Form.Row>
             <Form.Group controlId="allForm">
               <Form.Label>Available Forms</Form.Label>
-              <Form.Control as="select">
+              <Form.Control as="select" onChange={this.onChangeFormId}>
                 <option>-</option>
                 {this.state.allForms.map(x => (
                   <option>{x}</option>
@@ -92,6 +91,7 @@ export default class FormPage extends Component {
             variant="primary"
             type="submit"
             style={{ marginTop: "10px", marginLeft: "6px" }}
+            onClick={this.getDedicatedFillout}
           >
             Grab form
           </Button>
