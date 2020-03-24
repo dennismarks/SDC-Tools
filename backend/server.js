@@ -8,9 +8,9 @@ const bodyParser = require("body-parser");
 
 const { mongoose } = require("./db/mongoose");
 
-const app = express();
+const expressApp = express();
 
-app.use(function(req, res, next) {
+expressApp.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
 
   res.header(
@@ -27,24 +27,56 @@ const formRoutes = require("./routes/form");
 const accountRoutes = require("./routes/account");
 /* Routes from router end */
 
-app.use(bodyParser.json());
+expressApp.use(bodyParser.json());
 
 /* Server Resource Routes */
-app.use("/api/v1/patient", patientRoutes);
-app.use("/api/v1/form", formRoutes);
-app.use("/api/v1/account", accountRoutes);
+expressApp.use("/api/v1/patient", patientRoutes);
+expressApp.use("/api/v1/form", formRoutes);
+expressApp.use("/api/v1/account", accountRoutes);
 /* Server Resource Routes End */
 
 /* Frontend Resource Routes */
-app.use(express.static(path.resolve(__dirname, "../frontend/build")));
-app.get("*", (req, res) => {
+expressApp.use(express.static(path.resolve(__dirname, "../frontend/build")));
+expressApp.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
 });
-/* Frontend Resource Routes End */
 
 const port = process.env.PORT || 3001;
-app.listen(port, () => {
+expressApp.listen(port, () => {
   log(
     `Server is running on port: ${port}... \n For development use http://localhost:${port}/ \n For API use http://localhost:${port}/api/v1/`
   );
+});
+
+const electron = require("electron");
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+
+const url = require("url");
+const isDev = require("electron-is-dev");
+
+let mainWindow;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({ width: 1170, height: 884 });
+  mainWindow.loadURL(
+    isDev
+      ? "http://localhost:3001"
+      : `file://${path.join(__dirname, "../frontend/build/index.html")}`
+  );
+  mainWindow.on("closed", () => (mainWindow = null));
+}
+
+app.on("ready", createWindow);
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
+});
+
+app.on("activate", () => {
+  if (mainWindow === null) {
+    createWindow();
+  }
 });
