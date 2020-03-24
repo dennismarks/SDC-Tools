@@ -12,17 +12,21 @@ export default class TrueFalseQuestionBody extends Component {
 
   handleChange(event) {
     const text = event.target.value;
-    this.props.onChange(text);
+    let bool = false;
+    if (text == "true") {
+      bool = true;
+    }
+    this.props.onChange(bool);
   }
 
   render() {
     return (
       <div>
-        <input type="radio" id={this.props.question_id + "True"} name={this.props.question_id} value="True" onChange={this.handleChange} checked={this.props.answer == "True" && true || this.props.answer != "True" && false} />
-        <label for={this.props.question_id + "True"}>True</label>
+        <input type="radio" id={this.props.question_id + "true"} name={this.props.question_id} value="true" onChange={this.handleChange} checked={this.props.answer == true} />
+        <label style={{paddingLeft: "3px"}} for={this.props.question_id + "true"}>True</label>
         &emsp;
-        <input type="radio" id={this.props.question_id + "False"} name={this.props.question_id} value="False" onChange={this.handleChange} checked={this.props.answer == "False" && true || this.props.answer != "False" && false} />
-        <label for={this.props.question_id + "False"}>False</label>
+        <input type="radio" id={this.props.question_id + "false"} name={this.props.question_id} value="false" onChange={this.handleChange} checked={this.props.answer == false} />
+        <label style={{paddingLeft: "3px"}} for={this.props.question_id + "false"}>False</label>
         {this.props.children}
       </div>
     );
