@@ -7,7 +7,7 @@
     "url": "git+https://github.com/csc302-spring-2020/proj-FakeBirds.git"
   },
   "scripts": {
-    "test": "cd backend && mocha --timeout 10000 --inline-diffs",
+    "test": "cd backend && mocha --timeout 10s --exit --inline-diffs",
     "dev": "cd frontend && react-scripts build && cd .. && nodemon ./backend/server.js",
     "build": "cd frontend && react-scripts build"
   },
