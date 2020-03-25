@@ -10,7 +10,10 @@
     "test": "cd frontend && react-scripts test",
     "dev": "cd frontend && react-scripts build && cd .. && electron ./backend/server.js",
     "build": "cd frontend && react-scripts build",
-    "electron-dev": "concurrently \"BROWSER=none npm dev\" \"wait-on http://localhost:3001 && electron .\""
+    "electron-dev": "concurrently \"BROWSER=none npm dev\" \"wait-on http://localhost:3001 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "CSC302 Fake Birds",
   "license": "ISC",
@@ -27,9 +30,6 @@
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "electron": "^8.1.1",
-    "electron-builder": "^22.4.1",
-    "electron-is-dev": "^1.1.0",
     "express": "^4.17.1",
     "mongodb": "^3.5.2",
     "mongoose": "^5.9.2",
@@ -44,6 +44,10 @@
   },
   "devDependencies": {
     "@popperjs/core": "^2.1.1",
+    "electron": "1.4.15",
+    "electron-builder": "^22.4.1",
+    "electron-is-dev": "^1.1.0",
+    "electron-packager": "^14.2.1",
     "jquery": "^3.4.1",
     "nodemon": "^2.0.2",
     "popper.js": "^1.16.1",
@@ -64,5 +68,32 @@
       "last 1 safari version"
     ]
   },
-  "main": "./backend/server.js"
+  "main": "./backend/server.js",
+  "build": {
+    "appId": "com.FakeBirds.SDC",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/icon.ico"
+    }
+  }
 }
