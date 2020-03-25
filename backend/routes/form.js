@@ -4,12 +4,9 @@ let form = require("../models/form.model");
 
 // Post new XML to be processed
 router.route("/xml").post((req, res) => {
-  res.status(200).send(
-    JSON.stringify({
-      "1. What is your name": "<1>",
-      "2. How are you feeling": "<2>"
-    })
-  );
+  res
+    .status(200)
+    .json({ question1: "What is your name", question2: "How are you feeling" });
 });
 
 // Get all available fillout forms

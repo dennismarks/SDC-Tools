@@ -10,7 +10,7 @@ router.route("/").get((req, res) => {
 
 // Read
 router.route("/:id").get((req, res) => {
-  Patient.findById(req.params.id)
+  Patient.findOne({ patient_number: req.params.id })
     .then(patient => res.json(patient))
     .catch(err => res.status(400).json("Error: " + err));
 });

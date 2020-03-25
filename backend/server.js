@@ -38,7 +38,9 @@ app.use("/api/v1/account", accountRoutes);
 /* Frontend Resource Routes */
 app.use(express.static(path.resolve(__dirname, "../frontend/build")));
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+  res
+    .status(200)
+    .sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
 });
 /* Frontend Resource Routes End */
 
@@ -48,3 +50,5 @@ app.listen(port, () => {
     `Server is running on port: ${port}... \n For development use http://localhost:${port}/ \n For API use http://localhost:${port}/api/v1/`
   );
 });
+
+module.exports = app;
