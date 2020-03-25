@@ -7,7 +7,22 @@ const AnswerSchema = new Schema({
     required: true,
     unique: true
   },
-  answer: String // All strings can be convert to option.
+  answer: Schema.Types.Mixed // For multiple choice, this would be the chosen option id as a string
+});
+
+const MultipleChoiceOption = new Schema({
+  optionID: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  value: Schema.Types.Mixed
+});
+
+const MultipleChoiceBodySchema = new Schema({
+  is_radio: {type: Boolean, default: false},
+  is_checkbox: {type: Boolean, default: false},
+  options: [MultipleChoiceOption]
 });
 
 const QuestionSchema = new Schema({
@@ -17,12 +32,15 @@ const QuestionSchema = new Schema({
     unique: true
   },
   questionTitle: String,
-  enableState: Boolean,
+  questionText: String,
   dependentQuestions: [this],
+  controlQuestion: this,
+  // Since currently only multiple choice needs an extra schema for the question
+  // body, we do not need to create a schema collection or use a discriminator
+  questionBody: MultipleChoiceBodySchema,
   answerType: {
-    type: Number // 0 - Text (or Integer); 1 - MultipleChoice; 2 - T/F
-  },
-  answerObject: AnswerSchema
+    type: Number // 0 - Text; 1 - Integer; 2 - MultipleChoiceRadio; 3 - MultipleChoiceCheckbox; 4 - T/F
+  }
 });
 
 const SectionSchema = new Schema({
