@@ -20,8 +20,8 @@ const MultipleChoiceOption = new Schema({
 });
 
 const MultipleChoiceBodySchema = new Schema({
-  is_radio: {type: Boolean, default: false},
-  is_checkbox: {type: Boolean, default: false},
+  is_radio: { type: Boolean, default: false },
+  is_checkbox: { type: Boolean, default: false },
   options: [MultipleChoiceOption]
 });
 
@@ -53,13 +53,14 @@ const SectionSchema = new Schema({
     type: String,
     required: true
   },
+  subSections: [this],
   questions: [QuestionSchema]
 });
 
 const FormSchema = new Schema(
   {
     formID: {
-      type: Number,
+      type: String,
       required: true,
       unique: true
     },
@@ -68,7 +69,15 @@ const FormSchema = new Schema(
       required: true,
       unique: true
     },
-    sections: [SectionSchema]
+    version: String,
+    originalFile: {
+      type: String,
+      required: true
+    },
+    property: [{ name: String, type: String, val: String }],
+    note: String,
+    sections: [SectionSchema],
+    copyrightFooter: String
   },
   { collection: "fillouts" }
 );
