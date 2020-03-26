@@ -74,7 +74,7 @@ const FormSchema = new Schema(
       type: String,
       required: true
     },
-    property: [{ name: String, type: String, val: String }],
+    property: [new Schema({ name: String, type: String, val: String })],
     note: String,
     sections: [SectionSchema],
     copyrightFooter: String
