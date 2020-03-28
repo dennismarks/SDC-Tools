@@ -39,8 +39,8 @@ export default class Main extends Component {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">About</Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
+              <Nav.Link href="/about">About</Nav.Link>
+              <Nav.Link eventKey={2} href="/contact">
                 Contact Us
               </Nav.Link>
             </Nav>
