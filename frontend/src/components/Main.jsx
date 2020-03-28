@@ -24,19 +24,6 @@ export default class Main extends Component {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/forms">Forms</Nav.Link>
               <Nav.Link href="/patients">Patients</Nav.Link>
-              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
             </Nav>
             <Nav>
               <Nav.Link href="/about">About</Nav.Link>
