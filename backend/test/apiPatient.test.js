@@ -12,6 +12,7 @@ describe("apiPatient testing", () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.deep.include({
+          historical_form: [1, 0],
           _id: "5e574bf00783ca4b578354ea",
           patient_number: 0,
           name: "Mike",

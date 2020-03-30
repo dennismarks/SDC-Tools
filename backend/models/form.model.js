@@ -20,8 +20,8 @@ const MultipleChoiceOption = new Schema({
 });
 
 const MultipleChoiceBodySchema = new Schema({
-  is_radio: {type: Boolean, default: false},
-  is_checkbox: {type: Boolean, default: false},
+  is_radio: { type: Boolean, default: false },
+  is_checkbox: { type: Boolean, default: false },
   options: [MultipleChoiceOption]
 });
 
@@ -63,7 +63,7 @@ const FormSchema = new Schema(
       required: true,
       unique: true
     },
-    diagnostic_id: {
+    diagnosticID: {
       type: Number,
       required: true,
       unique: true

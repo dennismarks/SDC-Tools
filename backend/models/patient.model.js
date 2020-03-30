@@ -21,6 +21,9 @@ const PatientSchema = new Schema(
     phone: {
       type: Number,
       required: true
+    },
+    historical_form: {
+      type: [{ type: Number }]
     }
   },
   {
