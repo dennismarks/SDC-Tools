@@ -17,7 +17,7 @@ export default class Main extends Component {
           variant="dark"
           style={{ position: "fixed", width: "100vw", height: "50px" }}
         >
-          <Navbar.Brand href="#home">SDCTools</Navbar.Brand>
+          <Navbar.Brand href="/">SDCTools</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
