@@ -7,7 +7,9 @@ export default class PatientPage extends Component {
       super(props);
 
       this.state = {
-        patientID: ''
+        patientID: '',
+
+        historical_forms: ''
       }
 
       this.retrievePatient = this.retrievePatient.bind(this);
@@ -15,19 +17,32 @@ export default class PatientPage extends Component {
       
     }
 
+    download = (filename, text) => {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+    
+        element.style.display = 'none';
+        document.body.appendChild(element);
+    
+        element.click();
+    
+        document.body.removeChild(element);
+    }
+
     retrievePatient = (event) => {
         event.preventDefault();
-        console.log("hello");
-    
         console.log(this.state.patientID)
-
         axios.get(`http://localhost:3001/api/v1/patient/${this.state.patientID}`).then(res => {
-            console.log(res);
+            var form_info = res.data
+            console.log(form_info)
+            this.setState({
+                historical_forms: form_info
+            })
         })
     }
 
     enterPatientID = (event) => {
-        console.log("hello 2");
         this.setState({
             patientID: event.target.value
           });
@@ -70,14 +85,19 @@ export default class PatientPage extends Component {
                 style={{ maxWidth: "700px" }}>
                     <thead>
                         <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
+                        <th>form number</th>
+                        <th>link</th>
                         </tr>
                     </thead>
                     <tbody>
-                    </tbody>
+                        {/* {this.state.historical_forms.map(p => (
+                            <tr key={p.formID}>
+                            <td>
+                                <Button>button</Button>
+                            </td>
+                            </tr>
+                        ))} */}
+                        </tbody>
                 </Table>
                 </div>           
             </div>
