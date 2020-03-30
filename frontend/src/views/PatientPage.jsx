@@ -33,7 +33,7 @@ export default class PatientPage extends Component {
     retrievePatient = (event) => {
         event.preventDefault();
         console.log(this.state.patientID)
-        axios.get(`http://localhost:3001/api/v1/patient/${this.state.patientID}`).then(res => {
+        axios.get(`http://localhost:3001/api/v1/patient/form_query/${this.state.patientID}`).then(res => {
             var form_info = res.data
             console.log(form_info)
             this.setState({
