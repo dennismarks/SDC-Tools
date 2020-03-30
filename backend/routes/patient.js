@@ -33,6 +33,7 @@ router.route("/").get((req, res) => {
 
 router.route("/:id").get((req, res) => {
   Patient.findOne({ patient_number: req.params.id }, function(err, patient){
+    console.log(patient)
     forms_objectId = patient.historical_form
     array_of_objectID = forms_objectId.toString().split(",")
     length = array_of_objectID.length

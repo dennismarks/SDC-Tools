@@ -16,7 +16,8 @@ describe("apiPatient testing", () => {
           patient_number: 0,
           name: "Mike",
           email: "mike@gmail.com",
-          phone: 6471222324,
+          phone: 111111111,
+          historical_form: ["5e7907be1c9d4400001b666b", "5e7907be1c9d4400001b666b"],
           createdAt: "2020-02-27T04:56:16.147Z",
           updatedAt: "2020-02-27T04:56:16.147Z",
           __v: 0
