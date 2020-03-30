@@ -70,7 +70,7 @@ const FormSchema = new Schema(
     },
     sections: [SectionSchema]
   },
-  { collection: "drafts" }
+  { collection: "fillouts" }
 );
 
 module.exports = mongoose.model("form", FormSchema);

@@ -23,7 +23,7 @@ const PatientSchema = new Schema(
       required: true
     },
     historical_form: {
-      type: [Number]
+      type: [{type: Schema.Types.ObjectId, ref: "form"}]
     }
   },
   {
