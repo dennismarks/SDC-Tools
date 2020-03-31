@@ -60,7 +60,7 @@ const SectionSchema = new Schema({
 const FormSchema = new Schema(
   {
     formID: {
-      type: String,
+      type: Number,
       required: true,
       unique: true
     },
