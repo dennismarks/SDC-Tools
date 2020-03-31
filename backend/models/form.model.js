@@ -64,7 +64,7 @@ const FormSchema = new Schema(
       required: true,
       unique: true
     },
-    diagnostic_id: {
+    diagnosticID: {
       type: Number,
       required: true,
       unique: true
