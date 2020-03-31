@@ -21,9 +21,16 @@ let SDCPackage_Metadata,
   XMLPackage_Footer_Property;
 
 var parser = new xml2js.Parser();
-fs.readFile(__dirname + "/source/thyroid.xml", function(err, data) {
+fs.readFile(__dirname + "/source/1.xml", function(err, data) {
   parser.parseString(data, function(err, result) {
-    SDCPackage_Metadata = result.SDCPackage.$;
+    //TODO: check to see if we need this data.
+    // SDCPackage_Metadata = result.SDCPackage.$;
+
+    if (json.SDCPackage.XMLPackage[0].FormDesign) {
+      XMLPackage_FormDesign = json.SDCPackage.XMLPackage[0].FormDesign;
+    } else {
+      XMLPackage_FormDesign = json.FormDesign;
+    }
 
     XMLPackage_FormDesign = result.SDCPackage.XMLPackage[0].FormDesign;
 
@@ -56,12 +63,80 @@ fs.readFile(__dirname + "/source/thyroid.xml", function(err, data) {
     log(JSON.stringify(result));
   });
 });
+
+function extractMetadata(FormDesign){
+  return FormDesign.Property;
+}
 /*
 This function extracts questions from the raw json from xml2js.
 json: string
 returns list of json of questions
+example [Question1, question2, [question4, [question5, question6]], question3]
+
 */
-function extractQuestions(json) {}
+function extractQuestions(sections) {
+  const reQuestions = [];
+  let qID = 0;
+
+  for (let i = 0; i < sections.length; i++){
+
+    let ListQuestions = sections[i].ChildItems[0].Question;
+    let ListSections = sections[i].ChildItems[0].Section;
+    if (ListQuestions != null) {
+
+      let qs = ListQuestions.map(q =>
+        parsingQuestion(q));
+
+
+
+
+      reQuestions.push(qs);
+    } else if (ListSections) {
+      reQuestions.push(extractQuestions(ListSections));
+    }
+  }
+  return reQuestions;
+}
+
+function parsingQuestion(question, qID,){
+/*
+{
+  "$": {
+    "name": "Q_77894",
+    "ID": "77894.100004300",
+    "title": "Clinical History:"
+  },
+  "ResponseField": [
+    {
+      "$": { "name": "rf_77894_1" },
+      "Response": [
+        {
+          "$": { "name": "rsp_77894_2" },
+          "string": [
+            { "$": { "name": "str_77894_3" } }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{
+
+  questionID: "77894.100004300"
+  questionTitle: "Clinical History:",
+  dependentQuestions: ["xxx", "yyy"],
+  controlQuestion: null,
+
+  questionBody: MultipleChoiceBodySchema,
+  answerType: {
+    type: Number // 0 - Text; 1 - Integer; 2 - MultipleChoiceRadio; 3 - MultipleChoiceCheckbox; 4 - T/F
+  }
+}
+*/
+
+
+
+}
 /*
 This function takes in a question json and returns question type
 */

@@ -27,14 +27,14 @@ const MultipleChoiceBodySchema = new Schema({
 
 const QuestionSchema = new Schema({
   questionID: {
-    type: Number,
+    type: String,
     required: true,
     unique: true
   },
   questionTitle: String,
   questionText: String,
-  dependentQuestions: [this],
-  controlQuestion: this,
+  dependentQuestionIds: [String],
+  controlQuestionId: String,
   // Since currently only multiple choice needs an extra schema for the question
   // body, we do not need to create a schema collection or use a discriminator
   questionBody: MultipleChoiceBodySchema,
