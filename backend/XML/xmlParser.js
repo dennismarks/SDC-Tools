@@ -56,12 +56,24 @@ fs.readFile(__dirname + "/source/thyroid.xml", function(err, data) {
     log(JSON.stringify(result));
   });
 });
+/*
+This function extracts questions from the raw json from xml2js.
+json: string
+returns list of json of questions
+*/
+function extractQuestions(json) {}
+/*
+This function takes in a question json and returns question type
+*/
+function getAnswerType(question) {}
 
-// log(
-//   JSON.stringify({
-//     Footer: [
-//       { metadata: XMLPackage_Footer_Metadata },
-//       { Property: XMLPackage_Footer_Property }
-//     ]
-//   })
-// );
+function buildSchema() {}
+
+log(
+  JSON.stringify({
+    Footer: [
+      { metadata: XMLPackage_Footer_Metadata },
+      { Property: XMLPackage_Footer_Property }
+    ]
+  })
+);
