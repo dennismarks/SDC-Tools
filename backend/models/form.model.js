@@ -77,6 +77,7 @@ const FormSchema = new Schema(
     property: [new Schema({ name: String, type: String, val: String })],
     note: String,
     sections: [SectionSchema],
+    comment: QuestionSchema,
     copyrightFooter: String
   },
   { collection: "fillouts" }
