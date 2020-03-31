@@ -53,6 +53,7 @@ const SectionSchema = new Schema({
     type: String,
     required: true
   },
+  subSections: [this],
   questions: [QuestionSchema]
 });
 
@@ -68,7 +69,15 @@ const FormSchema = new Schema(
       required: true,
       unique: true
     },
-    sections: [SectionSchema]
+    version: String,
+    originalFile: {
+      type: String,
+      required: true
+    },
+    property: [new Schema({ name: String, type: String, val: String })],
+    note: String,
+    sections: [SectionSchema],
+    copyrightFooter: String
   },
   { collection: "fillouts" }
 );
