@@ -6,5 +6,3 @@ node_modules
 .DS_Store
 .gitignore
 frontend/build
-backend/XML/source
-*.json
