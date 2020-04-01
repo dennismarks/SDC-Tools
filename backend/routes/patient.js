@@ -10,46 +10,25 @@ router.route("/").get((req, res) => {
 });
 
 // Read
-// router.route("/:id").get((req, res) => {
-//   Patient.findOne({ patient_number: req.params.id })
-//     .then(patient => {
-      
-//       forms_objectId = patient.historical_form
-//       array_of_objectID = forms_objectId.toString().split(",")
-//       console.log(array_of_objectID)
-//       var array = []
-//       array_of_objectID.forEach(form_id => {
-//         Form.findById(form_id, function(err, product){
-//           console.log(product)
-//           array.push(product)
-//           console.log(array)
-//         })
-//       });
-//       console.log(array)
-      
-//     }).catch(err => {
-//     });
-// });
 
 router.route("/form_query/:id").get((req, res) => {
   Patient.findOne({ patient_number: req.params.id }, function(err, patient){
-    console.log(patient)
-    forms_objectId = patient.historical_form
-    array_of_objectID = forms_objectId.toString().split(",")
-    length = array_of_objectID.length
-    console.log(array_of_objectID)
-    var array = []
+    array_of_diagnosticID = patient.historical_form
+    length_array = array_of_diagnosticID.length
+    counter = 0
+    const array = []
   
-    array_of_objectID.forEach(form_id => {
-      Form.findById(form_id, function(err, product){
-        array.push(product)
-        console.log(array)
+    array_of_diagnosticID.forEach(dID   => {
+      Form.findOne({ diagnosticID: dID }, function(err, product){
+      array.push(product)
+      counter += 1
+      if (counter == length_array){
+        res.json(array)
+      }
       })
-    })
+    });
 
-   console.log("why this code run first" + array.toString())
 
-   res.json(array)
   })
 });
 
