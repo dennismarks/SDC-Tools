@@ -17,7 +17,7 @@ export default class PatientPage extends Component {
     }
 
     download = (filename, text) => {
-        var element = document.createElement('a');
+        const element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
         element.setAttribute('download', filename);
     
@@ -31,10 +31,8 @@ export default class PatientPage extends Component {
 
     retrievePatient = (event) => {
         event.preventDefault();
-        console.log(this.state.patientID)
         axios.get(`http://localhost:3001/api/v1/patient/form_query/${this.state.patientID}`).then(res => {
-            var form_info = res.data
-            console.log(form_info)
+            const form_info = res.data
             this.setState({
                 historical_forms: form_info
             })
