@@ -85,7 +85,7 @@ const FormSchema = new Schema(
     comment: QuestionSchema,
     copyrightFooter: String
   },
-  { collection: "fillouts" }
+  { collection: "fillables" }
 );
 
 module.exports = mongoose.model("form", FormSchema);
