@@ -35,19 +35,23 @@ router.route("/form_query/:id").get((req, res) => {
   Patient.findOne({ patient_number: req.params.id }, function(err, patient){
     console.log(patient)
     array_of_diagnosticID = patient.historical_form
+    length_array = array_of_diagnosticID.length
+    counter = 0
     console.log(array_of_diagnosticID)
     var array = []
   
     array_of_diagnosticID.forEach(dID   => {
       Form.findOne({ diagnosticID: dID }, function(err, product){
-        array.push(product)
-        console.log(array)
+      array.push(product)
+      console.log(array)
+      counter += 1
+      if (counter == length_array){
+        res.json(array)
+      }
       })
-    })
+    });
 
-   console.log("why this code run first" + array.toString())
 
-   res.json(array)
   })
 });
 

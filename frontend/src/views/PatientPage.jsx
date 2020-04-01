@@ -8,8 +8,7 @@ export default class PatientPage extends Component {
 
       this.state = {
         patientID: '',
-
-        historical_forms: ''
+        historical_forms: []
       }
 
       this.retrievePatient = this.retrievePatient.bind(this);
@@ -82,21 +81,22 @@ export default class PatientPage extends Component {
                 bordered
                 hover
                 variant="dark"
-                style={{ maxWidth: "700px" }}>
+                style={{ maxWidth: "300px" }}>
                     <thead>
                         <tr>
-                        <th>form number</th>
+                        <th>form #</th>
                         <th>link</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {this.state.historical_forms.map(p => (
-                            <tr key={p.formID}>
+                        {this.state.historical_forms.map(form => (
+                            <tr key={form.diagnosticID}>
+                            <td>{form.diagnosticID}</td>
                             <td>
-                                <Button>button</Button>
+                                <Button>Link</Button>
                             </td>
                             </tr>
-                        ))} */}
+                        ))}
                         </tbody>
                 </Table>
                 </div>           
