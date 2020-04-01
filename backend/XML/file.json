@@ -1,1025 +1,725 @@
-{
-    "SDCPackage": {
-        "$": {
-            "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-            "xmlns": "urn:ihe:qrph:sdc:2016",
-            "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
-            "xsi:schemaLocation": "urn:ihe:qrph:sdc:2016 ../Schemas/RFD+SDCRetrieveForm.xsd",
-            "packageID": "PKG_ACR_CT_STROKE"
-        },
-        "XMLPackage": [
-            {
-                "FormDesign": [
-                    {
-                        "$": {
-                            "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-                            "xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
-                            "ID": "CT_Stroke_CCO.358_1.0.0.DRAFT_sdcFDF",
-                            "baseURI": "cap.org",
-                            "fullURI": "_baseURI=cap.org&_lineage=CT_Stroke_CCO.358&_version=1.0.0.DRAFT&_docType=sdcFDF",
-                            "formTitle": "CCO Synoptic Template for  Stroke",
-                            "lineage": "CT_Stroke_CCO.358",
-                            "filename": "CT_Stroke_CCO.358_1.0.0.DRAFT_sdcFDF.xml",
-                            "version": "1.0.0.DRAFT",
-                            "xmlns": "urn:ihe:qrph:sdc:2016"
-                        },
-                        "Property": [
+[
+    {
+        "sectionID": "4257.100004300",
+        "subSections": [],
+        "questions": [
+            [
+                {
+                    "questionID": "2118.100004300",
+                    "questionText": "Tumor Site",
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": true,
+                        "is_checkbox": false,
+                        "options": [
                             {
-                                "$": {
-                                    "name": "Copyright",
-                                    "type": "CAPeCC_static_text",
-                                    "styleClass": "copyright",
-                                    "propName": "Copyright",
-                                    "val": "(c) 2018 College of American Pathologists.  All rights reserved.  License required for use."
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "GenericHeaderText",
-                                    "type": "CAPeCC_static_text",
-                                    "propName": "GenericHeaderText",
-                                    "val": "CCO Radiology Synoptic Template"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "Category",
-                                    "type": "CAPeCC_meta",
-                                    "propName": "Category",
-                                    "val": "CNS"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "OfficialName",
-                                    "type": "CAPeCC_meta",
-                                    "propName": "OfficialName",
-                                    "val": "CCO Synoptic Template for  Stroke"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "CAP_ProtocolName",
-                                    "type": "CAPeCC_meta",
-                                    "propName": "CAP_ProtocolName"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "CAP_ProtocolVersion",
-                                    "type": "CAPeCC_meta",
-                                    "propName": "CAP_ProtocolVersion"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "TemplateID",
-                                    "type": "CAPeCC_meta",
-                                    "propName": "TemplateID",
-                                    "val": "358.1000043"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "Restrictions",
-                                    "type": "CAPeCC_meta",
-                                    "propName": "Restrictions",
-                                    "val": "This template applies to CT scans for stroke"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "CAP_Required",
-                                    "type": "CAPeCC_meta",
-                                    "propName": "CAP_Required",
-                                    "val": "true"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "AccreditationDate",
-                                    "type": "CAPeCC_meta dt.dateTime",
-                                    "propName": "AccreditationDate",
-                                    "val": "9/14/2018 12:00:00 AM"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "WebPostingDate",
-                                    "type": "CAPeCC_meta dt.dateTime",
-                                    "propName": "WebPostingDate",
-                                    "val": "9/14/2018 12:00:00 AM"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "ShortName",
-                                    "type": "CAPeCC_meta",
-                                    "propName": "ShortName",
-                                    "val": "CT_Stroke_CCO"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "ApprovalStatus",
-                                    "type": "CAPeCC_meta",
-                                    "propName": "ReleaseStatus",
-                                    "val": "DRAFT"
-                                }
-                            },
-                            {
-                                "$": {
-                                    "name": "AJCC_Version",
-                                    "type": "CAPeCC_meta",
-                                    "propName": "AJCC_Version",
-                                    "val": "8"
-                                }
-                            }
-                        ],
-                        "Body": [
-                            {
-                                "$": {
-                                    "name": "Body",
-                                    "ID": "CT_Stroke_CCO.358_1.0.0.DRAFT_sdcFDF_Body"
-                                },
-                                "ChildItems": [
-                                    {
-                                        "$": {
-                                            "name": "ch_Body"
-                                        },
-                                        "Section": [
-                                            {
-                                                "$": {
-                                                    "name": "S_76242",
-                                                    "ID": "76242.100004300",
-                                                    "title": "#This template describes a Common Data Element for CT Stroke by the American College of Radiologists"
-                                                },
-                                                "ChildItems": [
-                                                    {
-                                                        "$": {
-                                                            "name": "ch_76242_1"
-                                                        },
-                                                        "Question": [
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_Tum_Site_76234",
-                                                                    "ID": "76234.100004300",
-                                                                    "readOnly": "true"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_76234_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_76234_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_Adrenal_Gland_76235",
-                                                                                            "ID": "76235.100004300",
-                                                                                            "title": "Adrenocortical neoplasm",
-                                                                                            "selected": "true"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "$": {
-                                                    "name": "S_76221",
-                                                    "ID": "76221.100004300",
-                                                    "title": "Administrative & Identification Data"
-                                                },
-                                                "ChildItems": [
-                                                    {
-                                                        "$": {
-                                                            "name": "ch_76221_1"
-                                                        },
-                                                        "Question": [
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_76219",
-                                                                    "ID": "76219.100004300",
-                                                                    "title": "Report Date"
-                                                                },
-                                                                "ResponseField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "rf_76219_1"
-                                                                        },
-                                                                        "Response": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "rsp_76219_2"
-                                                                                },
-                                                                                "string": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "str_76219_3"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_76413",
-                                                                    "ID": "76413.100004300",
-                                                                    "title": "Report completed by "
-                                                                },
-                                                                "ResponseField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "rf_76413_1"
-                                                                        },
-                                                                        "Response": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "rsp_76413_2"
-                                                                                },
-                                                                                "string": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "str_76413_3"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_76325",
-                                                                    "ID": "76325.100004300",
-                                                                    "title": "Procedure"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_76325_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_76325_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_NS_76240",
-                                                                                            "ID": "76240.100004300",
-                                                                                            "title": "LDCT "
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_Oth_76239",
-                                                                                            "ID": "76239.100004300",
-                                                                                            "title": "Other (specify)"
-                                                                                        },
-                                                                                        "ListItemResponseField": [
-                                                                                            {
-                                                                                                "$": {
-                                                                                                    "name": "lirf_76239_1",
-                                                                                                    "responseRequired": "true"
-                                                                                                },
-                                                                                                "Response": [
-                                                                                                    {
-                                                                                                        "$": {
-                                                                                                            "name": "rsp_76239_2"
-                                                                                                        },
-                                                                                                        "string": [
-                                                                                                            {
-                                                                                                                "$": {
-                                                                                                                    "name": "str_76239_3"
-                                                                                                                }
-                                                                                                            }
-                                                                                                        ]
-                                                                                                    }
-                                                                                                ]
-                                                                                            }
-                                                                                        ]
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "$": {
-                                                    "name": "S_77659",
-                                                    "ID": "77659.100004300",
-                                                    "title": "Findings"
-                                                },
-                                                "ChildItems": [
-                                                    {
-                                                        "$": {
-                                                            "name": "ch_77659_4"
-                                                        },
-                                                        "Question": [
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77913",
-                                                                    "ID": "77913.100004300",
-                                                                    "title": "Hyperacute signs"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77913_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77913_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77914",
-                                                                                            "ID": "77914.100004300",
-                                                                                            "title": "Yes"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77915",
-                                                                                            "ID": "77915.100004300",
-                                                                                            "title": "No"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77916",
-                                                                    "ID": "77916.100004300",
-                                                                    "title": "Location"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77916_1",
-                                                                            "maxSelections": "0"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77916_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77918",
-                                                                                            "ID": "77918.100004300",
-                                                                                            "title": "Right frontal"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77917",
-                                                                                            "ID": "77917.100004300",
-                                                                                            "title": "Temporal"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77919",
-                                                                                            "ID": "77919.100004300",
-                                                                                            "title": "parietal"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77920",
-                                                                    "ID": "77920.100004300",
-                                                                    "title": "Vascular Territory"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77920_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77920_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77921",
-                                                                                            "ID": "77921.100004300",
-                                                                                            "title": "ACA"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77922",
-                                                                                            "ID": "77922.100004300",
-                                                                                            "title": "MCA"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77923",
-                                                                                            "ID": "77923.100004300",
-                                                                                            "title": "PCA"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77924",
-                                                                                            "ID": "77924.100004300",
-                                                                                            "title": "SCA"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77925",
-                                                                                            "ID": "77925.100004300",
-                                                                                            "title": "AICA"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77926",
-                                                                                            "ID": "77926.100004300",
-                                                                                            "title": "PICA"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77927",
-                                                                                            "ID": "77927.100004300",
-                                                                                            "title": "Basil perforator"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77928",
-                                                                                            "ID": "77928.100004300",
-                                                                                            "title": "Thalamoperforator "
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77929",
-                                                                                            "ID": "77929.100004300",
-                                                                                            "title": "AntChoroidal "
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77930",
-                                                                    "ID": "77930.100004300",
-                                                                    "title": "Hemorrhagic conversion"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77930_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77930_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77931",
-                                                                                            "ID": "77931.100004300",
-                                                                                            "title": "Yes"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77932",
-                                                                                            "ID": "77932.100004300",
-                                                                                            "title": "No"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77933",
-                                                                    "ID": "77933.100004300",
-                                                                    "title": "Mass effect"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77933_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77933_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77934",
-                                                                                            "ID": "77934.100004300",
-                                                                                            "title": "Yes"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77935",
-                                                                                            "ID": "77935.100004300",
-                                                                                            "title": "No"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77936",
-                                                                    "ID": "77936.100004300",
-                                                                    "title": "Vascular Mechanism/Pattern"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77936_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77936_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77937",
-                                                                                            "ID": "77937.100004300",
-                                                                                            "title": "embolic"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77938",
-                                                                                            "ID": "77938.100004300",
-                                                                                            "title": "perforator"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77939",
-                                                                                            "ID": "77939.100004300",
-                                                                                            "title": " borderzone ischemia"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77940",
-                                                                    "ID": "77940.100004300",
-                                                                    "title": "Midlineshift in mm"
-                                                                },
-                                                                "ResponseField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "rf_77940_1"
-                                                                        },
-                                                                        "Response": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "rsp_77940_2"
-                                                                                },
-                                                                                "string": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "str_77940_3"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77941",
-                                                                    "ID": "77941.100004300",
-                                                                    "title": "Herniation"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77941_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77941_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77942",
-                                                                                            "ID": "77942.100004300",
-                                                                                            "title": "No"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77943",
-                                                                                            "ID": "77943.100004300",
-                                                                                            "title": "Subfalcine "
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77944",
-                                                                                            "ID": "77944.100004300",
-                                                                                            "title": "Transtentorial "
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77945",
-                                                                    "ID": "77945.100004300",
-                                                                    "title": "Hyperdense vessel?"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77945_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77945_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77946",
-                                                                                            "ID": "77946.100004300",
-                                                                                            "title": "Yes"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77947",
-                                                                                            "ID": "77947.100004300",
-                                                                                            "title": "No"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77948",
-                                                                    "ID": "77948.100004300",
-                                                                    "title": "Hyperdense Sign"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77948_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77948_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77949",
-                                                                                            "ID": "77949.100004300",
-                                                                                            "title": "Middle cerebral"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77950",
-                                                                                            "ID": "77950.100004300",
-                                                                                            "title": "Anteriorcerebral "
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77951",
-                                                                                            "ID": "77951.100004300",
-                                                                                            "title": "Intrasylvian cortical"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77952",
-                                                                                            "ID": "77952.100004300",
-                                                                                            "title": "Basilar artery "
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77953",
-                                                                    "ID": "77953.100004300",
-                                                                    "title": "Arterial calcification "
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77953_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77953_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77958",
-                                                                                            "ID": "77958.100004300",
-                                                                                            "title": "Yes"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77959",
-                                                                                            "ID": "77959.100004300",
-                                                                                            "title": "No"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77954",
-                                                                    "ID": "77954.100004300",
-                                                                    "title": "Venous thrombus"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77954_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77954_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77960",
-                                                                                            "ID": "77960.100004300",
-                                                                                            "title": "Yes"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77961",
-                                                                                            "ID": "77961.100004300",
-                                                                                            "title": "No"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77955",
-                                                                    "ID": "77955.100004300",
-                                                                    "title": "Sinus location"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77955_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77955_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77962",
-                                                                                            "ID": "77962.100004300",
-                                                                                            "title": "Dural venous sinus "
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77963",
-                                                                                            "ID": "77963.100004300",
-                                                                                            "title": "Cortical vein"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77956",
-                                                                    "ID": "77956.100004300",
-                                                                    "title": "Hydrocephalus"
-                                                                },
-                                                                "ListField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "lf_77956_1"
-                                                                        },
-                                                                        "List": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "lst_77956_2"
-                                                                                },
-                                                                                "ListItem": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77964",
-                                                                                            "ID": "77964.100004300",
-                                                                                            "title": "No"
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "LI_77965",
-                                                                                            "ID": "77965.100004300",
-                                                                                            "title": "Yes"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "$": {
-                                                                    "name": "Q_77957",
-                                                                    "ID": "77957.100004300",
-                                                                    "title": "ASPECTS classification"
-                                                                },
-                                                                "ResponseField": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "rf_77957_1"
-                                                                        },
-                                                                        "Response": [
-                                                                            {
-                                                                                "$": {
-                                                                                    "name": "rsp_77957_2"
-                                                                                },
-                                                                                "string": [
-                                                                                    {
-                                                                                        "$": {
-                                                                                            "name": "str_77957_3"
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "Question": [
-                                            {
-                                                "$": {
-                                                    "name": "Q_Comments_76386",
-                                                    "ID": "76386.100004300",
-                                                    "title": "Comment(s)"
-                                                },
-                                                "ResponseField": [
-                                                    {
-                                                        "$": {
-                                                            "name": "rf_76386_1"
-                                                        },
-                                                        "Response": [
-                                                            {
-                                                                "$": {
-                                                                    "name": "rsp_76386_2"
-                                                                },
-                                                                "string": [
-                                                                    {
-                                                                        "$": {
-                                                                            "name": "str_76386_3"
-                                                                        }
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "Footer": [
-                            {
-                                "$": {
-                                    "name": "footer",
-                                    "ID": "Footer.CT_Stroke_CCO.358_1.0.0.DRAFT_sdcFDF"
-                                },
-                                "Property": [
-                                    {
-                                        "$": {
-                                            "type": "meta",
-                                            "styleClass": "copyright",
-                                            "propName": "CopyrightFooter",
-                                            "val": "(c) 2018 College of American Pathologists.  All rights reserved.  License required for use."
-                                        }
-                                    }
-                                ]
+                                "optionID": "2119.100004300",
+                                "value": "Adrenal gland"
                             }
                         ]
+                    },
+                    "answerType": 2,
+                    "answerObject": {
+                        "questionID": "2118.100004300",
+                        "answer": null
                     }
-                ]
-            }
+                }
+            ]
+        ]
+    },
+    {
+        "sectionID": "17537.100004300",
+        "sectionTitle": "CLINICAL",
+        "subSections": [],
+        "questions": [
+            [
+                {
+                    "questionID": "4156.100004300",
+                    "questionTitle": "Clinical History (specify)",
+                    "questionText": "Clinical History",
+                    "dependentQuestions": [],
+                    "questionBody": null,
+                    "answerType": 0,
+                    "answerObject": {
+                        "questionID": "4156.100004300",
+                        "answer": null
+                    }
+                },
+                {
+                    "questionID": "53772.100004300",
+                    "questionTitle": "Functional Status (Notes J and K)",
+                    "questionText": "Functional Status",
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": false,
+                        "is_checkbox": true,
+                        "options": [
+                            {
+                                "optionID": "20900.100004300",
+                                "value": "Urinary 17-ketosteroids increased (10 mg / g creatinine / 24 hours)"
+                            },
+                            {
+                                "optionID": "20902.100004300",
+                                "value": "Cushing syndrome"
+                            },
+                            {
+                                "optionID": "20904.100004300",
+                                "value": "Conn syndrome"
+                            },
+                            {
+                                "optionID": "43052.100004300",
+                                "value": "Virilization"
+                            },
+                            {
+                                "optionID": "44618.100004300",
+                                "value": "Feminization"
+                            },
+                            {
+                                "optionID": "20906.100004300",
+                                "value": "Weight loss"
+                            },
+                            {
+                                "optionID": "20907.100004300",
+                                "value": "Other (specify)"
+                            }
+                        ]
+                    },
+                    "answerType": 3,
+                    "answerObject": {
+                        "questionID": "53772.100004300",
+                        "answer": null
+                    }
+                }
+            ]
+        ]
+    },
+    {
+        "sectionID": "17875.100004300",
+        "sectionTitle": "SPECIMEN",
+        "subSections": [],
+        "questions": [
+            [
+                {
+                    "questionID": "42554.100004300",
+                    "questionTitle": "Procedure",
+                    "questionText": null,
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": true,
+                        "is_checkbox": false,
+                        "options": [
+                            {
+                                "optionID": "50809.100004300",
+                                "value": "Percutaneous needle biopsy"
+                            },
+                            {
+                                "optionID": "46633.100004300",
+                                "value": "Endoscopic directed biopsy (specify radiographic technique)"
+                            },
+                            {
+                                "optionID": "2122.100004300",
+                                "value": "Adrenalectomy, total"
+                            },
+                            {
+                                "optionID": "2121.100004300",
+                                "value": "Adrenalectomy, partial"
+                            },
+                            {
+                                "optionID": "2123.100004300",
+                                "value": "Other (specify)"
+                            },
+                            {
+                                "optionID": "2124.100004300",
+                                "value": "Not specified"
+                            }
+                        ]
+                    },
+                    "answerType": 2,
+                    "answerObject": {
+                        "questionID": "42554.100004300",
+                        "answer": null
+                    }
+                },
+                {
+                    "questionID": "52756.100004300",
+                    "questionTitle": "Specimen Laterality",
+                    "questionText": null,
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": true,
+                        "is_checkbox": false,
+                        "options": [
+                            {
+                                "optionID": "2126.100004300",
+                                "value": "Right"
+                            },
+                            {
+                                "optionID": "2127.100004300",
+                                "value": "Left"
+                            },
+                            {
+                                "optionID": "56812.100004300",
+                                "value": "Bilateral"
+                            },
+                            {
+                                "optionID": "2128.100004300",
+                                "value": "Not specified"
+                            },
+                            {
+                                "optionID": "20866.100004300",
+                                "value": "Other (specify)"
+                            }
+                        ]
+                    },
+                    "answerType": 2,
+                    "answerObject": {
+                        "questionID": "52756.100004300",
+                        "answer": null
+                    }
+                }
+            ]
+        ]
+    },
+    {
+        "sectionID": "17876.100004300",
+        "sectionTitle": "TUMOR",
+        "subSections": [],
+        "questions": [
+            [
+                {
+                    "questionID": "59852.100004300",
+                    "questionTitle": "Histologic Type (Notes C through E)",
+                    "questionText": "Histologic Type",
+                    "dependentQuestions": [
+                        {
+                            "questionID": "43670.100004300",
+                            "questionTitle": "Histologic Type Comments",
+                            "questionText": null,
+                            "dependentQuestions": [],
+                            "questionBody": null,
+                            "answerType": 0,
+                            "answerObject": {
+                                "questionID": "43670.100004300",
+                                "answer": null
+                            }
+                        }
+                    ],
+                    "questionBody": {
+                        "is_radio": true,
+                        "is_checkbox": false,
+                        "options": [
+                            {
+                                "optionID": "2117.100004300",
+                                "value": "Adrenal cortical carcinoma"
+                            },
+                            {
+                                "optionID": "46925.100004300",
+                                "value": "Adrenal cortical carcinoma, oncocytic type"
+                            },
+                            {
+                                "optionID": "44449.100004300",
+                                "value": "Adrenal cortical carcinoma, myxoid type"
+                            },
+                            {
+                                "optionID": "59162.100004300",
+                                "value": "Adrenal cortical carcinoma, sarcomatoid type"
+                            }
+                        ]
+                    },
+                    "answerType": 2,
+                    "answerObject": {
+                        "questionID": "59852.100004300",
+                        "answer": null
+                    }
+                },
+                {
+                    "questionID": "49275.100004300",
+                    "questionTitle": "Histologic Grade (Notes C through E)",
+                    "questionText": "Histologic Grade",
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": true,
+                        "is_checkbox": false,
+                        "options": [
+                            {
+                                "optionID": "53603.100004300",
+                                "value": "Low grade (<= 20 mitoses / 50 high-power fields)"
+                            },
+                            {
+                                "optionID": "48634.100004300",
+                                "value": "High grade (> 20 mitoses / 50 high-power fields)"
+                            },
+                            {
+                                "optionID": "54648.100004300",
+                                "value": "Cannot be assessed (explain)#"
+                            }
+                        ]
+                    },
+                    "answerType": 2,
+                    "answerObject": {
+                        "questionID": "49275.100004300",
+                        "answer": null
+                    }
+                },
+                {
+                    "questionID": "2129.100004300",
+                    "questionTitle": "Tumor Size (Note A)",
+                    "questionText": "Tumor Size",
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": true,
+                        "is_checkbox": false,
+                        "options": [
+                            {
+                                "optionID": "2131.100004300",
+                                "value": "Greatest dimension in Centimeters (cm)"
+                            },
+                            {
+                                "optionID": "2130.100004300",
+                                "value": "Cannot be determined (explain)"
+                            }
+                        ]
+                    },
+                    "answerType": 2,
+                    "answerObject": {
+                        "questionID": "2129.100004300",
+                        "answer": null
+                    }
+                },
+                {
+                    "questionID": "40496.100004300",
+                    "questionTitle": "Tumor Weight (Note B)",
+                    "questionText": "Tumor Weight",
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": true,
+                        "is_checkbox": false,
+                        "options": [
+                            {
+                                "optionID": "44761.100004300",
+                                "value": "Specify weight (g)"
+                            },
+                            {
+                                "optionID": "57476.100004300",
+                                "value": "Cannot be determined"
+                            }
+                        ]
+                    },
+                    "answerType": 2,
+                    "answerObject": {
+                        "questionID": "40496.100004300",
+                        "answer": null
+                    }
+                },
+                {
+                    "questionID": "51265.100004300",
+                    "questionTitle": "Tumor Extension",
+                    "questionText": null,
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": false,
+                        "is_checkbox": true,
+                        "options": [
+                            {
+                                "optionID": "44186.100004300",
+                                "value": "No evidence of primary tumor"
+                            },
+                            {
+                                "optionID": "50695.100004300",
+                                "value": "Tumor confined to adrenal cortex without invasion through tumor capsule (if present)"
+                            },
+                            {
+                                "optionID": "39537.100004300",
+                                "value": "Tumor invades into or through the adrenal capsule"
+                            },
+                            {
+                                "optionID": "52315.100004300",
+                                "value": "Tumor invades into extra-adrenal structures (specify)"
+                            },
+                            {
+                                "optionID": "56271.100004300",
+                                "value": "Tumor invades into other adjacent organ(s)"
+                            },
+                            {
+                                "optionID": "51911.100004300",
+                                "value": "Cannot be assessed"
+                            }
+                        ]
+                    },
+                    "answerType": 3,
+                    "answerObject": {
+                        "questionID": "51265.100004300",
+                        "answer": null
+                    }
+                },
+                {
+                    "questionID": "39990.100004300",
+                    "questionTitle": "Lymphovascular Invasion (Note F)",
+                    "questionText": "Lymphovascular Invasion",
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": false,
+                        "is_checkbox": true,
+                        "options": [
+                            {
+                                "optionID": "2159.100004300",
+                                "value": "Not identified"
+                            },
+                            {
+                                "optionID": "52962.100004300",
+                                "value": "Large vessel invasion, renal vein (including when identified clinically)"
+                            },
+                            {
+                                "optionID": "59454.100004300",
+                                "value": "Large vessel invasion, vena cava (including when identified clinically)"
+                            },
+                            {
+                                "optionID": "43597.100004300",
+                                "value": "Large vessel invasion, not otherwise specified"
+                            },
+                            {
+                                "optionID": "55828.100004300",
+                                "value": "Microscopic angioinvasion"
+                            },
+                            {
+                                "optionID": "45031.100004300",
+                                "value": "Lymphatic invasion"
+                            },
+                            {
+                                "optionID": "2161.100004300",
+                                "value": "Cannot be determined"
+                            }
+                        ]
+                    },
+                    "answerType": 3,
+                    "answerObject": {
+                        "questionID": "39990.100004300",
+                        "answer": null
+                    }
+                },
+                {
+                    "questionID": "48491.100004300",
+                    "questionTitle": "Tumor Description",
+                    "questionText": null,
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": false,
+                        "is_checkbox": true,
+                        "options": [
+                            {
+                                "optionID": "20863.100004300",
+                                "value": "Hemorrhagic"
+                            },
+                            {
+                                "optionID": "20864.100004300",
+                                "value": "Necrotic"
+                            },
+                            {
+                                "optionID": "20865.100004300",
+                                "value": "Other (specify)"
+                            }
+                        ]
+                    },
+                    "answerType": 3,
+                    "answerObject": {
+                        "questionID": "48491.100004300",
+                        "answer": null
+                    }
+                }
+            ]
+        ]
+    },
+    {
+        "sectionID": "17878.100004300",
+        "sectionTitle": "MARGINS",
+        "subSections": [],
+        "questions": [
+            [
+                {
+                    "questionID": "2153.100004300",
+                    "questionTitle": "Margins",
+                    "questionText": null,
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": true,
+                        "is_checkbox": false,
+                        "options": [
+                            {
+                                "optionID": "2154.100004300",
+                                "value": "Uninvolved by tumor"
+                            },
+                            {
+                                "optionID": "2155.100004300",
+                                "value": "Involved by tumor"
+                            },
+                            {
+                                "optionID": "2157.100004300",
+                                "value": "Cannot be assessed"
+                            },
+                            {
+                                "optionID": "20852.100004300",
+                                "value": "Not applicable"
+                            }
+                        ]
+                    },
+                    "answerType": 2,
+                    "answerObject": {
+                        "questionID": "2153.100004300",
+                        "answer": null
+                    }
+                }
+            ]
+        ]
+    },
+    {
+        "sectionID": "17881.100004300",
+        "sectionTitle": "LYMPH NODES",
+        "subSections": [],
+        "questions": [
+            [
+                {
+                    "questionID": "1867.100004300",
+                    "questionTitle": "Regional Lymph Nodes",
+                    "questionText": null,
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": false,
+                        "is_checkbox": true,
+                        "options": [
+                            {
+                                "optionID": "1868.100004300",
+                                "value": "No lymph nodes submitted or found"
+                            }
+                        ]
+                    },
+                    "answerType": 3,
+                    "answerObject": {
+                        "questionID": "1867.100004300",
+                        "answer": null
+                    }
+                }
+            ]
+        ]
+    },
+    {
+        "sectionID": "2136.100004300",
+        "sectionTitle": "PATHOLOGIC STAGE CLASSIFICATION  (pTNM, AJCC 8th Edition) (Note G)",
+        "subSections": [],
+        "questions": [
+            [
+                {
+                    "questionID": "20880.100004300",
+                    "questionTitle": "?TNM Descriptors",
+                    "questionText": "TNM Descriptors",
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": false,
+                        "is_checkbox": true,
+                        "options": [
+                            {
+                                "optionID": "22897.100004300",
+                                "value": "?Not applicable"
+                            },
+                            {
+                                "optionID": "20890.100004300",
+                                "value": "m (multiple primary tumors)"
+                            },
+                            {
+                                "optionID": "20891.100004300",
+                                "value": "r (recurrent)"
+                            },
+                            {
+                                "optionID": "20892.100004300",
+                                "value": "y (post-treatment)"
+                            }
+                        ]
+                    },
+                    "answerType": 3,
+                    "answerObject": {
+                        "questionID": "20880.100004300",
+                        "answer": null
+                    }
+                },
+                {
+                    "questionID": "2137.100004300",
+                    "questionTitle": "Primary Tumor (pT)",
+                    "questionText": null,
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": true,
+                        "is_checkbox": false,
+                        "options": [
+                            {
+                                "optionID": "2142.100004300",
+                                "value": "pTX: Primary tumor cannot be assessed"
+                            },
+                            {
+                                "optionID": "20889.100004300",
+                                "value": "pT0: No evidence of primary tumor"
+                            },
+                            {
+                                "optionID": "2138.100004300",
+                                "value": "pT1: Tumor <= 5 cm in greatest dimension, no extra-adrenal invasion"
+                            },
+                            {
+                                "optionID": "2139.100004300",
+                                "value": "pT2: Tumor > 5 cm, no extra-adrenal invasion"
+                            },
+                            {
+                                "optionID": "2140.100004300",
+                                "value": "pT3: Tumor of any size with local invasion, but not invading adjacent organs"
+                            },
+                            {
+                                "optionID": "2141.100004300",
+                                "value": "pT4: Tumor of any size with invasion of adjacent organs (kidney, diaphragm, pancreas, spleen, or liver) or large blood vessels (renal vein or vena cava)"
+                            }
+                        ]
+                    },
+                    "answerType": 2,
+                    "answerObject": {
+                        "questionID": "2137.100004300",
+                        "answer": null
+                    }
+                },
+                {
+                    "questionID": "2143.100004300",
+                    "questionTitle": "Regional Lymph Nodes (pN) (Note H)",
+                    "questionText": "Regional Lymph Nodes (pN)",
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": true,
+                        "is_checkbox": false,
+                        "options": [
+                            {
+                                "optionID": "2144.100004300",
+                                "value": "pNX: Regional lymph nodes cannot be assessed"
+                            },
+                            {
+                                "optionID": "2145.100004300",
+                                "value": "pN0: No regional lymph node metastasis"
+                            },
+                            {
+                                "optionID": "2146.100004300",
+                                "value": "pN1: Metastasis in regional lymph node(s)"
+                            }
+                        ]
+                    },
+                    "answerType": 2,
+                    "answerObject": {
+                        "questionID": "2143.100004300",
+                        "answer": null
+                    }
+                },
+                {
+                    "questionID": "2149.100004300",
+                    "questionTitle": "?Distant Metastasis (pM) (Note I)",
+                    "questionText": "Distant Metastasis (pM)",
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": true,
+                        "is_checkbox": false,
+                        "options": [
+                            {
+                                "optionID": "20895.100004300",
+                                "value": "?Not applicable - pM cannot be determined from the submitted specimen(s)"
+                            },
+                            {
+                                "optionID": "2151.100004300",
+                                "value": "pM1: Distant metastasis"
+                            }
+                        ]
+                    },
+                    "answerType": 2,
+                    "answerObject": {
+                        "questionID": "2149.100004300",
+                        "answer": null
+                    }
+                }
+            ]
+        ]
+    },
+    {
+        "sectionID": "17884.100004300",
+        "sectionTitle": "ADDITIONAL FINDINGS",
+        "subSections": [],
+        "questions": [
+            [
+                {
+                    "questionID": "39188.100004300",
+                    "questionTitle": "Additional Pathologic Findings",
+                    "questionText": null,
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": false,
+                        "is_checkbox": true,
+                        "options": [
+                            {
+                                "optionID": "2163.100004300",
+                                "value": "None identified"
+                            },
+                            {
+                                "optionID": "20897.100004300",
+                                "value": "Hemorrhage"
+                            },
+                            {
+                                "optionID": "20898.100004300",
+                                "value": "Cystic change"
+                            },
+                            {
+                                "optionID": "20854.100004300",
+                                "value": "Calcifications"
+                            },
+                            {
+                                "optionID": "2167.100004300",
+                                "value": "Other (specify)"
+                            }
+                        ]
+                    },
+                    "answerType": 3,
+                    "answerObject": {
+                        "questionID": "39188.100004300",
+                        "answer": null
+                    }
+                }
+            ]
+        ]
+    },
+    {
+        "sectionID": "17880.100004300",
+        "sectionTitle": "SPECIAL STUDIES",
+        "subSections": [],
+        "questions": [
+            [
+                {
+                    "questionID": "42054.100004300",
+                    "questionTitle": "Ancillary Studies (Note L)",
+                    "questionText": "Ancillary Studies",
+                    "dependentQuestions": [],
+                    "questionBody": {
+                        "is_radio": false,
+                        "is_checkbox": true,
+                        "options": [
+                            {
+                                "optionID": "54683.100004300",
+                                "value": "Ki-67 labeling index (%) (specify)"
+                            },
+                            {
+                                "optionID": "54436.100004300",
+                                "value": "Reticulin stain (specify type(s) and result(s))"
+                            },
+                            {
+                                "optionID": "52023.100004300",
+                                "value": "Other (specify type and result)"
+                            }
+                        ]
+                    },
+                    "answerType": 3,
+                    "answerObject": {
+                        "questionID": "42054.100004300",
+                        "answer": null
+                    }
+                }
+            ]
         ]
     }
-}
+]
