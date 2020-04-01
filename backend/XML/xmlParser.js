@@ -20,7 +20,7 @@ let SDCPackage_Metadata,
   XMLPackage_Footer_Property_U,
   XMLPackage_Footer_Property;
 
-var parser = new xml2js.Parser();
+var parser = new xml2js.Parser({explicitArray : false});
 fs.readFile(__dirname + "/source/1.xml", function(err, data) {
   parser.parseString(data, function(err, result) {
     //TODO: check to see if we need this data.
@@ -74,7 +74,7 @@ returns list of json of questions
 example [Question1, question2, [question4, [question5, question6]], question3]
 
 */
-function extractQuestions(sections) {
+function extractSections(sections) {
   const reQuestions = [];
   let qID = 0;
 
@@ -120,21 +120,60 @@ function parsingQuestion(question, qID,){
     }
   ]
 }
-{
 
+{
   questionID: "77894.100004300"
   questionTitle: "Clinical History:",
   dependentQuestions: ["xxx", "yyy"],
-  controlQuestion: null,
-
-  questionBody: MultipleChoiceBodySchema,
-  answerType: {
-    type: Number // 0 - Text; 1 - Integer; 2 - MultipleChoiceRadio; 3 - MultipleChoiceCheckbox; 4 - T/F
-  }
+  questionBody: null,
+  answerType: 0,
+  answerObject: {questionID: "77894.100004300", answer: null}
 }
 */
+  let questionID, questionTitle, questionText, dependentQuestions, questionBody, answerType, answerObject;
+  questionID = question.$.ID;
+  questionTitle = question.$.title;
+  questionText = null;
+  if (question.Property){
+    questionText = question.Property.$.val;
+  }
 
 
+  dependentQuestions = [];
+  if (question.ListField) { // this is a multiple choice question
+    let options = question.ListField.List.ListItem.map(item => ({optionID: item.$.ID, value: item.$.title}));
+    if (question.ListField.$.maxSelections) {
+      questionBody = {is_radio: false, is_checkbox: true, options: options};
+      answerType = 3;
+    } else {
+      questionBody = {is_radio: true, is_checkbox: false, options: options};
+      answerType = 2
+    }
+  } else if (question.ResponseField) {
+    questionBody = null;
+    answerType = 0;
+  }
+  // If ResponseField then text only, If ListField then multiple choice
+  answerObject = {questionID, answer: null};
+  return {
+    questionID,
+    questionTitle,
+    questionText,
+    dependentQuestions: setDependentQuestions(question),
+    questionBody,
+    answerType,
+    answerObject,
+  };
+}
+{"1": [2], "2": [4], 4: []}
+{"1": {}, "2": {}, "4": {}}
+
+function setDependentQuestions(question) {
+  if (!question.ChildItems){
+    return [];
+  } else {
+    question.
+  }
 
 }
 /*

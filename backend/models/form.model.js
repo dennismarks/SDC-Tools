@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const AnswerSchema = new Schema({
   questionID: {
-    type: Number,
+    type: String,
     required: true,
     unique: true
   },
@@ -12,7 +12,7 @@ const AnswerSchema = new Schema({
 
 const MultipleChoiceOption = new Schema({
   optionID: {
-    type: Number,
+    type: String,
     required: true,
     unique: true
   },
@@ -37,10 +37,11 @@ const QuestionSchema = new Schema({
   controlQuestionId: String,
   // Since currently only multiple choice needs an extra schema for the question
   // body, we do not need to create a schema collection or use a discriminator
-  questionBody: MultipleChoiceBodySchema,
+  questionBody: MultipleChoiceBodySchema ,
   answerType: {
     type: Number // 0 - Text; 1 - Integer; 2 - MultipleChoiceRadio; 3 - MultipleChoiceCheckbox; 4 - T/F
-  }
+  },
+  answerObject: AnswerSchema
 });
 
 const SectionSchema = new Schema({
