@@ -37,7 +37,7 @@ const QuestionSchema = new Schema({
   controlQuestionId: String,
   // Since currently only multiple choice needs an extra schema for the question
   // body, we do not need to create a schema collection or use a discriminator
-  questionBody: MultipleChoiceBodySchema ,
+  questionBody: MultipleChoiceBodySchema,
   answerType: {
     type: Number // 0 - Text; 1 - Integer; 2 - MultipleChoiceRadio; 3 - MultipleChoiceCheckbox; 4 - T/F
   },
@@ -46,7 +46,7 @@ const QuestionSchema = new Schema({
 
 const SectionSchema = new Schema({
   sectionID: {
-    type: Number,
+    type: String,
     required: true,
     unique: true
   },
@@ -61,9 +61,13 @@ const SectionSchema = new Schema({
 const FormSchema = new Schema(
   {
     formID: {
-      type: Number,
+      type: String,
       required: true,
       unique: true
+    },
+    formTitle: {
+      type: String,
+      required: true
     },
     diagnosticID: {
       type: Number,
@@ -75,7 +79,7 @@ const FormSchema = new Schema(
       type: String,
       required: true
     },
-    property: [new Schema({ name: String, type: String, val: String })],
+    property: [new Schema({ name: String, value: String })],
     note: String,
     sections: [SectionSchema],
     comment: QuestionSchema,
