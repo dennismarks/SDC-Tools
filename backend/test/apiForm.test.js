@@ -3,7 +3,28 @@ const chai = require("chai");
 const chaiHttp = require("chai-http");
 
 const { expect } = chai;
+
+var supertest = require("supertest");
+var request = supertest("localhost:3001");
+
 chai.use(chaiHttp);
+// describe("upload", function() {
+//   it("posts new xml", function(done) {
+//     request
+//       .post("/api/v1/form/import")
+//       .field(
+//         "extra_info",
+//         '{"formID":"Appendix.Res.135_3.002.001.REL_sdcFDF", "version": "3.002.001.REL"}'
+//       )
+//       .field("Content-Type", "multipart/form-data")
+//       .attach("xml", __dirname.concat("/2.xml"))
+//       .end(function(err, res) {
+//         expect(res).to.have.status(409); // 'duplicate' status
+//         done();
+//       });
+//   });
+// });
+
 describe("apiForm Testing", () => {
   it("serves frontend", done => {
     chai
@@ -11,19 +32,6 @@ describe("apiForm Testing", () => {
       .get("/")
       .end((err, res) => {
         expect(res).to.have.status(200);
-        done();
-      });
-  });
-
-  it("posts new xml", done => {
-    chai
-      .request(app)
-      .post("/api/v1/form/xml")
-      .send({ num1: 5, num2: 5 })
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body.question1).to.equals("What is your name");
-        expect(res.body.question2).to.equals("How are you feeling");
         done();
       });
   });
@@ -44,12 +52,12 @@ describe("apiForm Testing", () => {
   it("get mockup form", done => {
     chai
       .request(app)
-      .get("/api/v1/form/0")
+      .get("/api/v1/form/GET/Appendix.Res.135_3.002.001.REL_sdcFDF")
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.formID)
-          .to.be.an("number")
-          .and.to.equals(0);
+          .to.be.an("string")
+          .and.to.equals("Appendix.Res.135_3.002.001.REL_sdcFDF");
         done();
       });
   });

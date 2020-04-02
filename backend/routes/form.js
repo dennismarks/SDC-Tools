@@ -8,17 +8,19 @@ const fs = require("fs");
 router.route("/import").post((req, res) => {
   // Take in XML
 
+  // Check for duplicates + version differences
+  let checks = false;
+
   try {
     form
       .findOne({ formID: req.body.formID, version: req.body.version })
       .then(duplicate => {
-        // Check for duplicates + version differences
-        if (!duplicate) {
+        checks = duplicate ? false : true;
+        if (checks) {
           // Process XML
 
           fs.readFile(req.file.path, { encoding: "utf-8" }, function(e, file) {
             if (!e) {
-              //TODO: read file then check for duplicate + version differences
               parser.xmlParse(file).then(data => {
                 // upload to Atlas
                 try {

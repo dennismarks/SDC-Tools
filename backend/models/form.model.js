@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 const AnswerSchema = new Schema({
   questionID: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   answer: Schema.Types.Mixed // For multiple choice, this would be the chosen option id as a string
 });
@@ -13,8 +12,7 @@ const AnswerSchema = new Schema({
 const MultipleChoiceOption = new Schema({
   optionID: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   value: Schema.Types.Mixed
 });
@@ -28,8 +26,7 @@ const MultipleChoiceBodySchema = new Schema({
 const QuestionSchema = new Schema({
   questionID: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   questionTitle: String,
   questionText: String,
@@ -47,8 +44,7 @@ const QuestionSchema = new Schema({
 const SectionSchema = new Schema({
   sectionID: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   sectionTitle: {
     type: String,
@@ -62,8 +58,7 @@ const FormSchema = new Schema(
   {
     formID: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
     formTitle: {
       type: String,
