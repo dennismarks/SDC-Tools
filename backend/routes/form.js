@@ -8,19 +8,17 @@ const fs = require("fs");
 router.route("/import").post((req, res) => {
   // Take in XML
 
-  // Check for duplicates + version differences
-  let checks = false;
-
   try {
     form
       .findOne({ formID: req.body.formID, version: req.body.version })
       .then(duplicate => {
-        checks = duplicate ? false : true;
-        if (checks) {
+        // Check for duplicates + version differences
+        if (!duplicate) {
           // Process XML
 
           fs.readFile(req.file.path, { encoding: "utf-8" }, function(e, file) {
             if (!e) {
+              //TODO: read file then check for duplicate + version differences
               parser.xmlParse(file).then(data => {
                 // upload to Atlas
                 try {
@@ -29,14 +27,14 @@ router.route("/import").post((req, res) => {
                       .findOne({
                         formID: req.body.formID
                       })
-                      .then(data => res.status(200).send(data));
+                      .then(data => res.status(200).send(data)); // Return newly parsed data
                   });
                 } catch (error) {
                   res.status(505).send(error.message);
                 }
               });
             } else {
-              console.log(e);
+              res.status(500).send(e);
             }
           });
         } else {
