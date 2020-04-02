@@ -10,6 +10,7 @@ router.route("/import").post((req, res) => {
 
   // Check for duplicates + version differences
   let checks = false;
+  //TODO: Update list of forms in admin collection as well
 
   try {
     form
