@@ -1,24 +1,22 @@
-const fs = require("fs"),
-  xml2js = require("xml2js"),
+const xml2js = require("xml2js"),
   log = console.log;
 
-let FormDesign;
+function xmlParse(data) {
+  var parser = new xml2js.Parser();
 
-var parser = new xml2js.Parser();
-fs.readFile(__dirname + "/source/1.xml", function(err, data) {
-  parser.parseString(data, function(err, result) {
-    //TODO: check to see if we need this data.
-    // SDCPackage_Metadata = result.SDCPackage.$;
+  return new Promise((res, rej) => {
+    parser.parseString(data, function(err, result) {
+      let FormDesign = result.SDCPackage
+        ? result.SDCPackage.XMLPackage[0].FormDesign
+        : result.FormDesign;
 
-    if (result.SDCPackage) {
-      FormDesign = result.SDCPackage.XMLPackage[0].FormDesign;
-    } else {
-      FormDesign = result.FormDesign;
-    }
+      // log(buildFormSchemas(FormDesign));
+      const re = buildFormSchemas(FormDesign);
 
-    log(JSON.stringify(buildFormSchemas(FormDesign)));
+      res(re);
+    });
   });
-});
+}
 
 /*
 This function extracts questions from the raw json from xml2js.
@@ -196,3 +194,7 @@ function buildFormSchemas(formDesign) {
 function extractProperty(property) {
   return { name: property.$.name, value: property.$.val };
 }
+
+module.exports = {
+  xmlParse
+};

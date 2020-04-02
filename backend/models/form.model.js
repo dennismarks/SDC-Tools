@@ -70,9 +70,7 @@ const FormSchema = new Schema(
       required: true
     },
     diagnosticID: {
-      type: Number,
-      required: true,
-      unique: true
+      type: Number
     },
     version: String,
     originalFile: {

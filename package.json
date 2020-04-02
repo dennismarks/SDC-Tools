@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "cd backend && mocha --timeout 10s --exit --inline-diffs",
-    "dev": "cd frontend && react-scripts build && cd .. && nodemon ./backend/server.js",
+    "dev": "cd frontend && react-scripts build && cd .. && DEBUG=express:* nodemon ./backend/server.js",
     "build": "cd frontend && react-scripts build"
   },
   "author": "CSC302 Fake Birds",
@@ -40,6 +40,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "mocha": "^7.1.1",
+    "multer": "^1.4.2",
     "nodemon": "^2.0.2"
   },
   "eslintConfig": {
