@@ -69,8 +69,6 @@ export default class SDCQuestion extends Component {
     this.setState({
       answer: value
     })
-    // Make api call to save answer
-    // TODO
   }
 
   render() {
@@ -101,8 +99,8 @@ export default class SDCQuestion extends Component {
               {this.state.is_text && <TextQuestionBody onChange={this.handleChange} answer={this.state.answer}/>}
             </Card.Text>
           </Card.Body>
+          {this.props.children}
         </Card>
-        {this.props.children}
       </div>
     );
   }
