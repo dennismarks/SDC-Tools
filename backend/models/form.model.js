@@ -30,8 +30,7 @@ const QuestionSchema = new Schema({
   },
   questionTitle: String,
   questionText: String,
-  dependentQuestionIds: [String],
-  controlQuestionId: String,
+  dependentQuestions: [this],
   // Since currently only multiple choice needs an extra schema for the question
   // body, we do not need to create a schema collection or use a discriminator
   questionBody: MultipleChoiceBodySchema,
