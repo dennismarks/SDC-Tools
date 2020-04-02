@@ -7,3 +7,5 @@ node_modules
 .gitignore
 frontend/build
 backend/XML
+uploads
+backend/uploads
