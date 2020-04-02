@@ -23,7 +23,7 @@ router.route("/").get((req, res) => {
 });
 
 // Get fillout form specifically @formID
-router.route("/:formID").get((req, res) => {
+router.route("/GET/:formID").get((req, res) => {
   try {
     form.findOne({ formID: req.params.formID }).then(data => {
       res.json(data);
