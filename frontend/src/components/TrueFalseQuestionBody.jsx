@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Card } from "react-bootstrap";
 
 export default class TrueFalseQuestionBody extends Component {
   constructor(props){
