@@ -3,6 +3,19 @@ const xml2js = require("xml2js"),
 
 function xmlParse(data) {
   var parser = new xml2js.Parser();
+  // require("fs").readFile(__dirname + "/source/lung.xml", function(err, data) {
+  //   parser.parseString(data, function(err, result) {
+  //     let FormDesign = result.SDCPackage
+  //       ? result.SDCPackage.XMLPackage[0].FormDesign
+  //       : result.FormDesign;
+
+  //     FormDesign = FormDesign.constructor === Array ? FormDesign[0] : FormDesign;
+
+  //     const re = buildFormSchemas(FormDesign);
+
+  //     log(JSON.stringify(result));
+  //   });
+  // });
 
   return new Promise((res, rej) => {
     parser.parseString(data, function(err, result) {
@@ -10,7 +23,8 @@ function xmlParse(data) {
         ? result.SDCPackage.XMLPackage[0].FormDesign
         : result.FormDesign;
 
-      // log(buildFormSchemas(FormDesign));
+      FormDesign =
+        FormDesign.constructor === Array ? FormDesign[0] : FormDesign;
       const re = buildFormSchemas(FormDesign);
 
       res(re);
@@ -68,9 +82,11 @@ function parsingQuestion(question) {
       optionID: item.$.ID,
       value: item.$.title
     }));
-    if (question.ListField[0].$.maxSelections) {
-      questionBody = { is_radio: false, is_checkbox: true, options: options };
-      answerType = 3;
+    if (question.ListField[0].$) {
+      if (question.ListField[0].$.maxSelections) {
+        questionBody = { is_radio: false, is_checkbox: true, options: options };
+        answerType = 3;
+      }
     } else {
       questionBody = { is_radio: true, is_checkbox: false, options: options };
       answerType = 2;
@@ -195,9 +211,9 @@ function buildFormSchemas(formDesign) {
 }
 
 function extractProperty(property) {
-  return { name: property.$.name, value: property.$.val };
+  return { name: property.$.propName, value: property.$.val };
 }
 
-module.exports = {
-  xmlParse
-};
+// module.exports = {
+//   xmlParse
+// };
