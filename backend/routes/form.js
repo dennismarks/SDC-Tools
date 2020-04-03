@@ -8,45 +8,29 @@ const fs = require("fs");
 router.route("/import").post((req, res) => {
   // Take in XML
 
-  // Check for duplicates + version differences
-  let checks = false;
-  //TODO: Update list of forms in admin collection as well
-
-  try {
-    form
-      .findOne({ formID: req.body.formID, version: req.body.version })
-      .then(duplicate => {
-        checks = duplicate ? false : true;
-        if (checks) {
-          // Process XML
-
-          fs.readFile(req.file.path, { encoding: "utf-8" }, function(e, file) {
-            if (!e) {
-              parser.xmlParse(file).then(data => {
-                // upload to Atlas
-                try {
-                  form.collection.insertOne(data).then(x => {
-                    form
-                      .findOne({
-                        formID: req.body.formID
-                      })
-                      .then(data => res.status(200).send(data)); // Return newly parsed data
-                  });
-                } catch (error) {
-                  res.status(505).send(error.message);
-                }
+  fs.readFile(req.file.path, { encoding: "utf-8" }, function(e, file) {
+    if (!e) {
+      parser.xmlParse(file).then(data => {
+        // upload to Atlas
+        form.collection
+          .insertOne(data)
+          .then(x => {
+            admin.findOneAndUpdate({}, { new: true }, (err, re) => {
+              re["allForms"].push({
+                formID: x.ops[0].formID,
+                formTitle: x.ops[0].formTitle
               });
-            } else {
-              res.status(500).send(e);
-            }
-          });
-        } else {
-          res.status(409).send(`Conflict found in Server: did not pass checks`);
-        }
+              re.save();
+              res.status(200).send(re["allForms"]);
+            });
+            // Return newly parsed data
+          })
+          .catch(e => res.status(409).send(e.message));
       });
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
+    } else {
+      res.status(500).send(e);
+    }
+  });
 });
 
 // Get all available fillout forms
