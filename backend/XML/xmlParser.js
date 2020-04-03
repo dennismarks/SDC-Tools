@@ -214,6 +214,6 @@ function extractProperty(property) {
   return { name: property.$.propName, value: property.$.val };
 }
 
-// module.exports = {
-//   xmlParse
-// };
+module.exports = {
+  xmlParse
+};
