@@ -52,12 +52,12 @@ describe("apiForm Testing", () => {
   it("get mockup form", done => {
     chai
       .request(app)
-      .get("/api/v1/form/GET/Appendix.Res.135_3.002.001.REL_sdcFDF")
+      .get("/api/v1/form/GET/05650b352e97cc6bdc3176aba07627bd")
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body.formID)
+        expect(res.body.formTitle)
           .to.be.an("string")
-          .and.to.equals("Appendix.Res.135_3.002.001.REL_sdcFDF");
+          .and.to.equals("APPENDIX: Resection");
         done();
       });
   });
