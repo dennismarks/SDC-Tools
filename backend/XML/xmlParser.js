@@ -162,7 +162,10 @@ function buildFormSchemas(formDesign) {
     comment,
     copyrightFooter;
 
-  formID = formDesign.$.ID;
+  formID = require("crypto")
+    .createHash("md5")
+    .update(formDesign.$.ID.concat(formDesign.$.version))
+    .digest("hex");
   formTitle = formDesign.$.formTitle;
   diagnosticID = null;
   version = formDesign.$.version;
