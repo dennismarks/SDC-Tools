@@ -3,7 +3,12 @@ const Schema = mongoose.Schema;
 
 const AdminSchema = new Schema(
   {
-    allForms: []
+    allForms: [
+      {
+        formID: String,
+        formTitle: String
+      }
+    ]
   },
   { collection: "admin" }
 );
