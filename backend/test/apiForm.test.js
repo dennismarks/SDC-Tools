@@ -44,12 +44,12 @@ describe("apiForm Testing", () => {
   it("get mockup form", done => {
     chai
       .request(app)
-      .get("/api/v1/form/0")
+      .get("/api/v1/form/GET/05650b352e97cc6bdc3176aba07627bd")
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body.formID)
-          .to.be.an("number")
-          .and.to.equals(0);
+        expect(res.body.formTitle)
+          .to.be.an("string")
+          .and.to.equals("APPENDIX: Resection");
         done();
       });
   });
