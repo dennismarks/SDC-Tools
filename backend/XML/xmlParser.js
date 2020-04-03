@@ -3,7 +3,10 @@ const xml2js = require("xml2js"),
 
 function xmlParse(data) {
   var parser = new xml2js.Parser();
-  // require("fs").readFile(__dirname + "/source/lung.xml", function(err, data) {
+  // require("fs").readFile(__dirname + "/source/lung_surgery.xml", function(
+  //   err,
+  //   data
+  // ) {
   //   parser.parseString(data, function(err, result) {
   //     let FormDesign = result.SDCPackage
   //       ? result.SDCPackage.XMLPackage[0].FormDesign
@@ -13,7 +16,7 @@ function xmlParse(data) {
 
   //     const re = buildFormSchemas(FormDesign);
 
-  //     log(JSON.stringify(result));
+  //     log(JSON.stringify(re));
   //   });
   // });
 
@@ -40,8 +43,10 @@ example [Question1, question2, [question4, [question5, question6]], question3]
 
 */
 // pass in individual sections
-function extractQuestions(section) {
+function extractQuestions(sectionInput) {
   let reQuestions = [];
+  const section =
+    sectionInput.constructor === Array ? sectionInput[0] : sectionInput;
   let ListQuestions = section.ChildItems[0].Question;
   let ListSections = section.ChildItems[0].Section;
   if (ListQuestions != null) {
@@ -54,7 +59,7 @@ function extractQuestions(section) {
   return reQuestions;
 }
 
-function parsingQuestion(question) {
+function parsingQuestion(questionInput) {
   /*
 {
   questionID: "77894.100004300"
@@ -71,13 +76,16 @@ function parsingQuestion(question) {
     questionBody,
     answerType,
     answerObject;
+  const question =
+    questionInput.constructor === Array ? questionInput[0] : questionInput;
   questionID = question.$.ID;
   questionTitle = question.$.title;
   questionText = null;
   questionText = question.Property ? question.Property[0].$.val : null;
 
-  if (question.ListField) {
+  if (question.ListField && question.ListField[0].List[0].ListItem) {
     // this is a multiple choice question
+    // log(JSON.stringify(question));
     let options = question.ListField[0].List[0].ListItem.map(item => ({
       optionID: item.$.ID,
       value: item.$.title
