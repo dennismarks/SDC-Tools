@@ -57,7 +57,8 @@ const FormSchema = new Schema(
   {
     formID: {
       type: String,
-      required: true
+      required: true,
+      unique: true
     },
     formTitle: {
       type: String,
@@ -80,4 +81,4 @@ const FormSchema = new Schema(
   { collection: "fillables" }
 );
 
-module.exports = mongoose.model("form", FormSchema);
+module.exports = mongoose.model("fillables", FormSchema);
