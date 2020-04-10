@@ -23,19 +23,17 @@ const PatientSchema = new Schema(
       type: Number,
       required: true,
     },
-    relatedForms: {
-      type: [
-        new Schema({
-          filler: String,
-          formID: String,
-          //TODO: might need to have timestamp: "filled out 2 days ago"
-        }),
-      ],
-    },
+    relatedForms: [
+      new Schema({
+        filler: String,
+        diagnosticID: String,
+        //TODO: might need to have timestamp: "filled out 2 days ago"
+      }),
+    ],
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = mongoose.model("patient", PatientSchema);
+module.exports = mongoose.model("newPatients", PatientSchema);
