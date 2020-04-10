@@ -6,25 +6,26 @@ export default class FormPage extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeFormId = this.onChangeFormId.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeForm = this.onChangeForm.bind(this);
     this.getDedicatedFillout = this.getDedicatedFillout.bind(this);
     this.getFillouts = this.getFillouts.bind(this);
 
     this.state = {
       formID: "",
-      allForms: []
+      formTitle: "",
+      allForms: [],
+      allFormsTitle: [],
     };
   }
 
-  onChangeFormId(e) {
+  onChangeForm(e) {
+    let newId = this.state.allForms[
+      this.state.allFormsTitle.indexOf(e.target.value)
+    ];
     this.setState({
-      formID: e.target.value
+      formID: newId,
+      formTitle: e.target.value,
     });
-  }
-
-  onSubmit(e) {
-    console.log("Get Form: " + this.state.formID);
   }
 
   componentDidMount() {
@@ -34,13 +35,16 @@ export default class FormPage extends Component {
   getDedicatedFillout(e) {
     axios({
       method: "get",
-      url: `http://localhost:3001/api/v1/form/${this.state.formID}`,
-      responseType: "application/json"
+      url: `http://localhost:3001/api/v1/form/GET/${this.state.formID}`,
+      responseType: "application/json",
     })
-      .then(response => {
-        console.log(response.data);
+      .then((response) => {
+        window.open(
+          `http://localhost:3001/api/v1/form/GET/${this.state.formID}`,
+          "_blank"
+        );
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   }
@@ -49,15 +53,17 @@ export default class FormPage extends Component {
     axios({
       method: "get",
       url: "http://localhost:3001/api/v1/form",
-      responseType: "application/json"
-    }).then(response => {
+      responseType: "application/json",
+    }).then((response) => {
       console.log(response.data);
 
       this.setState({
-        formID: 0,
-        allForms: response.data.allForms.map(x => x.formID)
+        formID: response.data.allForms[0].formID,
+        formTitle: response.data.allForms[0].formTitle,
+        allForms: response.data.allForms.map((x) => x.formID),
+        allFormsTitle: response.data.allForms.map((x) => x.formTitle),
       });
-      console.log(this.state.allForms);
+      console.log(this.state.allFormsTitle);
     });
   }
 
@@ -66,22 +72,21 @@ export default class FormPage extends Component {
       <div>
         <div className="App-header">
           <h1>Find a Form:</h1>
-          <Form onSubmit={this.onSubmit}>
+          <Form>
             <Form.Row>
               <Form.Group as={Col}>
-                <Form.Label>Form ID</Form.Label>
+                <Form.Label>Form Title</Form.Label>
                 <Form.Control
-                  value={this.state.formID}
-                  onChange={this.onChangeFormId}
+                  value={this.state.formTitle}
+                  onChange={this.onChangeForm}
                   id="1"
                 />
               </Form.Group>
             </Form.Row>
             <Form.Group controlId="allForm">
               <Form.Label>Available Forms</Form.Label>
-              <Form.Control as="select" onChange={this.onChangeFormId}>
-                <option>-</option>
-                {this.state.allForms.map(x => (
+              <Form.Control as="select" onChange={this.onChangeForm}>
+                {this.state.allFormsTitle.map((x) => (
                   <option>{x}</option>
                 ))}
               </Form.Control>
