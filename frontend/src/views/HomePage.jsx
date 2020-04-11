@@ -60,7 +60,7 @@ export default class HomePage extends Component {
     const patient = {
       //TODO: this needs to be a util
       patientID: require("crypto")
-        .createHash("md5")
+        .createHash("SHA256")
         .update(this.state.name.concat(this.state.email, this.state.phone))
         .digest("hex"),
       name: this.state.name,
