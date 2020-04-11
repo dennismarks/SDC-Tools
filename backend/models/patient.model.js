@@ -25,6 +25,7 @@ const PatientSchema = new Schema(
     },
     relatedForms: [
       new Schema({
+        //TODO: need to implement filler, get their id
         filler: String,
         diagnosticID: String,
         //TODO: might need to have timestamp: "filled out 2 days ago"
