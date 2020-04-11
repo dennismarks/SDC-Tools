@@ -8,14 +8,19 @@ const mongoURI =
 mongoose
   .connect(
     mongoURI,
-    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
-    function(error) {
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    },
+    function (error) {
       if (error) console.log(error);
 
       console.log("MongoConnection successful");
     }
   )
-  .catch(error => console.log(error));
+  .catch((error) => console.log(error));
 
 //Get the default connection
 var db = mongoose.connection;
