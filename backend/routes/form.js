@@ -109,16 +109,15 @@ router.route("/save").post((req, res) => {
 
       cryptDe(req.body.payload.diagnosticID).then((decrypted) => {
         // Append to patient profile
-        //TODO: new patientID takes up 64 characters
-        const patientID = decrypted.slice(-1);
-        //TODO: patient_number deprecated need to change to patientID
+        const patientID = decrypted.slice(-64);
         patient.findOneAndUpdate(
-          { patient_number: patientID },
+          { patientID: patientID },
           { new: true },
           (err, re) => {
-            //TODO: relatedForms not historical
-            // re.historical_form.push(req.body.payload.diagnosticID)
-            re.historical_form.push(5);
+            re.relatedForms.push({
+              filler: null,
+              diagnosticID: req.body.payload.diagnosticID,
+            });
             re.save();
             res.status(200).send("added draft to patient profile");
           }
