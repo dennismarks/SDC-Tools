@@ -109,6 +109,7 @@ router.route("/save").post((req, res) => {
 
       cryptDe(req.body.payload.diagnosticID).then((decrypted) => {
         // Append to patient profile
+        //TODO: new patientID takes up 64 characters
         const patientID = decrypted.slice(-1);
         //TODO: patient_number deprecated need to change to patientID
         patient.findOneAndUpdate(
