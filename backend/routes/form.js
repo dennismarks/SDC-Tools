@@ -21,21 +21,25 @@ router.route("/import").post((req, res) => {
           .insertOne(data)
           .then((x) => {
             admin.findOneAndUpdate({}, { new: true }, (err, re) => {
-              re["allForms"].push({
-                //TODO: dont use x.ops
-                formID: x.ops[0].formID,
-                formTitle: x.ops[0].formTitle,
+              re.allForms.push({
+                formID: data.formID,
+                formTitle: data.formTitle,
               });
               re.save();
               res.status(200).send(re["allForms"]);
             });
-            // Return newly parsed data
           })
           .catch((e) => res.status(409).send(e.message));
       });
     } else {
       res.status(500).send(e);
     }
+  });
+});
+
+router.route("/remove/:formID").delete((req, res) => {
+  form.deleteOne({ formID: req.params.formID }).then((re) => {
+    res.status(200).send(`removed form - ${req.params.formID}`);
   });
 });
 
