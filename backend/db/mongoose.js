@@ -16,8 +16,6 @@ mongoose
     },
     function (error) {
       if (error) console.log(error);
-
-      console.log("MongoConnection successful");
     }
   )
   .catch((error) => console.log(error));

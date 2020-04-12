@@ -15,24 +15,30 @@ router.route("/import").post((req, res) => {
 
   fs.readFile(req.file.path, { encoding: "utf-8" }, function (e, file) {
     if (!e) {
-      parser.xmlParse(file).then((data) => {
-        // upload to Atlas
-        form.collection.insertOne(data).then((x) => {
-          admin.findOneAndUpdate({}, { new: true }, (err, re) => {
-            re.allForms.push({
-              formID: data.formID,
-              formTitle: data.formTitle,
-            });
-            re.save()
-              .then((x) =>
-                res
-                  .status(200)
-                  .send(`inserted ${data.formID} - ${data.formTitle}`)
-              )
-              .catch((e) => res.status(409).send(e.message));
-          });
-        });
-      });
+      parser
+        .xmlParse(file)
+        .then((data) => {
+          // upload to Atlas
+          form.collection
+            .insertOne(data)
+            .then((x) => {
+              admin.findOneAndUpdate({}, { new: true }, (err, re) => {
+                re.allForms.push({
+                  formID: data.formID,
+                  formTitle: data.formTitle,
+                });
+                re.save()
+                  .then((x) =>
+                    res
+                      .status(200)
+                      .send(`inserted ${data.formID} - ${data.formTitle}`)
+                  )
+                  .catch((e) => res.status(500).send(e.message));
+              });
+            })
+            .catch((e) => res.status(409).send(e.message));
+        })
+        .catch((e) => res.status(500).send(e.message));
     } else {
       res.status(500).send(e);
     }
@@ -94,7 +100,7 @@ router.route("/GET/:formID").get((req, res) => {
   form
     .findOne({ formID: req.params.formID })
     .then((data) => {
-      res.json(data);
+      res.status(200).json(data);
     })
     .catch((error) => {
       res.status(404).send(error.message);
