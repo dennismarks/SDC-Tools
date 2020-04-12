@@ -53,7 +53,7 @@ const SectionSchema = new Schema({
   questions: [QuestionSchema],
 });
 
-const FormSchema = new Schema(
+const DraftSchema = new Schema(
   {
     formID: {
       type: String,
@@ -78,7 +78,7 @@ const FormSchema = new Schema(
     comment: QuestionSchema,
     copyrightFooter: String,
   },
-  { collection: "fillables" }
+  { collection: "drafts" }
 );
 
-module.exports = mongoose.model("fillables", FormSchema);
+module.exports = mongoose.model("drafts", DraftSchema);

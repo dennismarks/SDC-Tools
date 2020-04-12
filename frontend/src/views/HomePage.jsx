@@ -15,7 +15,7 @@ export default class HomePage extends Component {
       name: "",
       email: "",
       phone: "",
-      patients: []
+      patients: [],
     };
   }
 
@@ -25,29 +25,29 @@ export default class HomePage extends Component {
 
   onChangeName(e) {
     this.setState({
-      name: e.target.value
+      name: e.target.value,
     });
   }
 
   onChangeEmail(e) {
     this.setState({
-      email: e.target.value
+      email: e.target.value,
     });
   }
 
   onChangePhone(e) {
     this.setState({
-      phone: e.target.value
+      phone: e.target.value,
     });
   }
 
   getPatients() {
-    axios.get("http://localhost:3001/api/v1/patient/").then(response => {
+    axios.get("http://localhost:3001/api/v1/patient/").then((response) => {
       if (response.data.length > 0) {
         console.log(response.data);
 
         this.setState({
-          patients: response.data
+          patients: response.data,
         });
       }
       console.log(this.state.patients);
@@ -58,16 +58,22 @@ export default class HomePage extends Component {
     e.preventDefault();
 
     const patient = {
-      patient_number: this.state.patients.length,
+      //TODO: this needs to be a util
+      patientID: require("crypto")
+        .createHash("SHA256")
+        .update(this.state.name.concat(this.state.email, this.state.phone))
+        .digest("hex")
+        .slice(0, 15),
+      //TODO: put slice number as env variable
       name: this.state.name,
       email: this.state.email,
-      phone: this.state.phone
+      phone: this.state.phone,
     };
 
     console.log(patient);
     axios
       .post("http://localhost:3001/api/v1/patient/add", patient)
-      .then(res => {
+      .then((res) => {
         console.log(res.data);
         this.getPatients();
       });
@@ -75,7 +81,7 @@ export default class HomePage extends Component {
     this.setState({
       name: "",
       email: "",
-      phone: ""
+      phone: "",
     });
   }
 
@@ -132,16 +138,16 @@ export default class HomePage extends Component {
           >
             <thead>
               <tr>
-                <th>#</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
               </tr>
             </thead>
             <tbody>
-              {this.state.patients.map(p => (
-                <tr key={p.patient_number}>
-                  <td>{p.patient_number}</td>
+              {this.state.patients.map((p) => (
+                <tr key={p.patientID}>
+                  <td>{p.patientID}</td>
                   <td>{p.name}</td>
                   <td>{p.email}</td>
                   <td>{p.phone}</td>

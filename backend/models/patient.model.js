@@ -3,32 +3,38 @@ const Schema = mongoose.Schema;
 
 const PatientSchema = new Schema(
   {
-    patient_number: {
-      type: Number,
+    patientID: {
+      type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     name: {
       type: String,
       required: true,
       trim: true,
-      minlength: 3
+      minlength: 3,
     },
     email: {
       type: String,
-      required: true
+      required: true,
+      unique: true,
     },
     phone: {
       type: Number,
-      required: true
+      required: true,
     },
-    historical_form: {
-      type: [{ type: Number }]
-    }
+    relatedForms: [
+      new Schema({
+        //TODO: need to implement filler, get their id
+        filler: String,
+        diagnosticID: String,
+        //TODO: might need to have timestamp: "filled out 2 days ago"
+      }),
+    ],
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
-module.exports = mongoose.model("patient", PatientSchema);
+module.exports = mongoose.model("patients", PatientSchema);

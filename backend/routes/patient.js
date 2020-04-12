@@ -25,15 +25,15 @@ router.route("/form_query/:id").get((req, res) => {
 });
 
 router.route("/:id").get((req, res) => {
-  Patient.findOne({ patient_number: req.params.id })
+  Patient.findOne({ patientID: req.params.id })
     .then(patient => res.json(patient))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
 // Create
 router.route("/add").post((req, res) => {
-  const { patient_number, name, email, phone } = req.body;
-  const newPatient = new Patient({ patient_number, name, email, phone });
+  const { patientID, name, email, phone } = req.body;
+  const newPatient = new Patient({ patientID, name, email, phone });
   newPatient
     .save()
     .then(() => res.json("Patient added"))
@@ -44,8 +44,8 @@ router.route("/add").post((req, res) => {
 router.route("/update/:id").post((req, res) => {
   Patient.findById(req.params.id)
     .then(patient => {
-      const { patient_number, name, email, phone } = req.body;
-      patient.patient_number = patient_number;
+      const { patientID, name, email, phone } = req.body;
+      patient.patientID = patientID;
       patient.name = name;
       patient.email = email;
       patient.phone = phone;

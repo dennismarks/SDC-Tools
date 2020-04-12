@@ -4,8 +4,8 @@ import axios from "axios";
 
 
 export default class PatientPage extends Component {
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
       this.state = {
         patientName: '',
@@ -136,4 +136,3 @@ export default class PatientPage extends Component {
         );
     }
 }
-

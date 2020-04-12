@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "cd backend && mocha --timeout 10s --exit --inline-diffs",
-    "dev": "cd frontend && react-scripts build && cd .. && DEBUG=express:* nodemon ./backend/server.js",
+    "dev": "cd frontend && react-scripts build && cd .. && nodemon ./backend/server.js",
     "build": "cd frontend && react-scripts build"
   },
   "author": "CSC302 Fake Birds",
@@ -24,6 +24,7 @@
     "axios": "^0.19.0",
     "bootstrap": "4.4.1",
     "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongodb": "^3.5.2",
