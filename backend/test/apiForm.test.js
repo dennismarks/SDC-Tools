@@ -47,7 +47,7 @@ describe("apiForm Testing", () => {
   it("get mockup form", (done) => {
     chai
       .request(app)
-      .get("/api/v1/form/GET/05650b352e97cc6bdc3176aba07627bd")
+      .get("/api/v1/form/GET/e650c524a1a40b9bd21f67458c4227")
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.formTitle)
@@ -60,9 +60,7 @@ describe("apiForm Testing", () => {
   it("get draft form", (done) => {
     chai
       .request(app)
-      .get(
-        "/api/v1/form/GET/05650b352e97cc6bdc3176aba07627bd/a0d310540e48893af7011de9a759987760fa7c9d7865c0506a44e1deeaf8f46a"
-      )
+      .get("/api/v1/form/GET/e650c524a1a40b9bd21f67458c4227/0516ae2ce344167")
       .end((err, res) => {
         expect(res).to.have.status(200);
         done();

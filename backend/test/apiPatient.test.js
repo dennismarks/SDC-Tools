@@ -19,8 +19,8 @@ describe("apiPatient testing", () => {
           phone: 111111111,
           relatedForms: [],
           createdAt: "2020-04-12T15:56:01.797Z",
-          updatedAt: "2020-04-12T15:56:01.797Z",
-          __v: 0,
+          updatedAt: "2020-04-12T16:27:03.497Z",
+          __v: 1,
         });
         done();
       });
@@ -29,9 +29,7 @@ describe("apiPatient testing", () => {
   it("retrieves specific patient", (done) => {
     chai
       .request(app)
-      .get(
-        "/api/v1/patient/0516ae2ce344167d5dadfdd924d686690727ef324d812d620a955d14c3b68151"
-      )
+      .get("/api/v1/patient/0516ae2ce344167")
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.name).to.equal("test");
