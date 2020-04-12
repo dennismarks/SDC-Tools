@@ -2,63 +2,69 @@ import React, { Component } from "react";
 import { Form, Button, Col, Table } from "react-bootstrap";
 import axios from "axios";
 
+
 export default class PatientPage extends Component {
     constructor(props) {
       super(props);
 
       this.state = {
-        patientID: '',
-        historical_forms: []
+        patientName: '',
+        allPatients: [],
+        related_Forms: []
       }
 
-      this.retrievePatient = this.retrievePatient.bind(this);
-      this.enterPatientID = this.enterPatientID.bind(this);
-      
+      this.retireveAllRelatedForms = this.retireveAllRelatedForms.bind(this);
+      this.renderAPage = this.renderAPage.bind(this);
     }
 
-    download = (filename, text) => {
-        const element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', filename);
-    
-        element.style.display = 'none';
-        document.body.appendChild(element);
-    
-        element.click();
-    
-        document.body.removeChild(element);
-    }
-
-    retrievePatient = (event) => {
+    retrieveAllPatients = (event) => {
         event.preventDefault();
-        axios.get(`http://localhost:3001/api/v1/patient/form_query/${this.state.patientID}`).then(res => {
-            const form_info = res.data
+        axios.get(`http://localhost:3001/api/v1/patient/search/${this.state.patientName}`).then(res => {
+            const all_patients = res.data
             this.setState({
-                historical_forms: form_info
+                allPatients: all_patients
             })
+            
         })
     }
 
-    enterPatientID = (event) => {
+    retireveAllRelatedForms = (pID) => {
+        let length_of_patients = this.state.allPatients.length
+        for(let i = 0; i< length_of_patients; i++){
+            
+            if (this.state.allPatients[i].patientID === pID){
+                this.setState({
+                    related_Forms: this.state.allPatients[i].relatedForms
+                })
+            }
+            }
+
+    }
+
+    enterPatientName = (event) => {
         this.setState({
-            patientID: event.target.value
+            patientName: event.target.value
           });
      }
+    
 
+    renderAPage = (dID) =>{
+        window.open(`/draft/get/:diagnosticID `)
+    }
 
     render() {
         return (
             <div>
                 <div className="App-header">
                 <h1>Enter Patient ID:</h1>
-                <Form onSubmit={this.retrievePatient}>
+                <Form onSubmit={this.retrieveAllPatients}>
                     <Form.Row>
                         <Col>
                         <Form.Group>
-                        <Form.Label>Patient ID:</Form.Label>
+                        <Form.Label>Patient Name:</Form.Label>
                         <Form.Control
                         value={this.state.name}
-                        onChange={this.enterPatientID}
+                        onChange={this.enterPatientName}
                         />
                         </Form.Group>
                         </Col>
@@ -82,14 +88,42 @@ export default class PatientPage extends Component {
                 style={{ maxWidth: "300px" }}>
                     <thead>
                         <tr>
-                        <th>form #</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone #</th>
+                        <th>Choose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.allPatients.map(patient => (
+                            <tr>
+                            <td>{patient.name}</td>
+                            <td>{patient.email}</td>
+                            <td>{patient.phone}</td>
+                            <td>
+                                <Button onClick={() => this.retireveAllRelatedForms(patient.patientID)}>Choose</Button>
+                            </td>
+                            </tr>
+                        ))}
+                        </tbody>
+                </Table>
+
+                <Table
+                striped
+                bordered
+                hover
+                variant="dark"
+                style={{ maxWidth: "300px" }}>
+                    <thead>
+                        <tr>
+                        <th>filler</th>
                         <th>link</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.historical_forms.map(form => (
-                            <tr key={form.diagnosticID}>
-                            <td>{form.diagnosticID}</td>
+                        {this.state.related_Forms.map(formObject => (
+                            <tr>
+                            <td>{formObject.filler}</td>
                             <td>
                                 <Button>Link</Button>
                             </td>
