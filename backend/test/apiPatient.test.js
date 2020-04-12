@@ -12,16 +12,15 @@ describe("apiPatient testing", () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.deep.include({
-          _id: "5e923456ce381813de19effc",
-          patientID:
-            "725eb518771df39d6888213145690a4baa09b675464bed06874b09720ddb0650",
+          _id: "5e933a11888dd00eeaad324f",
+          patientID: "0516ae2ce344167",
           name: "test",
-          email: "test@gmail.com",
-          phone: 123456789,
+          email: "test@me.com",
+          phone: 111111111,
           relatedForms: [],
-          createdAt: "2020-04-11T21:19:18.840Z",
-          updatedAt: "2020-04-11T21:19:18.840Z",
-          __v: 0,
+          createdAt: "2020-04-12T15:56:01.797Z",
+          updatedAt: "2020-04-12T16:27:03.497Z",
+          __v: 1,
         });
         done();
       });
@@ -30,9 +29,7 @@ describe("apiPatient testing", () => {
   it("retrieves specific patient", (done) => {
     chai
       .request(app)
-      .get(
-        "/api/v1/patient/725eb518771df39d6888213145690a4baa09b675464bed06874b09720ddb0650"
-      )
+      .get("/api/v1/patient/0516ae2ce344167")
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.name).to.equal("test");
