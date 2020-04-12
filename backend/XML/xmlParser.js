@@ -21,7 +21,7 @@ function xmlParse(data) {
   // });
 
   return new Promise((res, rej) => {
-    parser.parseString(data, function(err, result) {
+    parser.parseString(data, function (err, result) {
       let FormDesign = result.SDCPackage
         ? result.SDCPackage.XMLPackage[0].FormDesign
         : result.FormDesign;
@@ -50,7 +50,7 @@ function extractQuestions(sectionInput) {
   let ListQuestions = section.ChildItems[0].Question;
   let ListSections = section.ChildItems[0].Section;
   if (ListQuestions != null) {
-    let qs = ListQuestions.map(q => parsingQuestion(q));
+    let qs = ListQuestions.map((q) => parsingQuestion(q));
 
     reQuestions.push(...qs);
   } else if (ListSections) {
@@ -86,9 +86,9 @@ function parsingQuestion(questionInput) {
   if (question.ListField && question.ListField[0].List[0].ListItem) {
     // this is a multiple choice question
     // log(JSON.stringify(question));
-    let options = question.ListField[0].List[0].ListItem.map(item => ({
+    let options = question.ListField[0].List[0].ListItem.map((item) => ({
       optionID: item.$.ID,
-      value: item.$.title
+      value: item.$.title,
     }));
     if (question.ListField[0].$) {
       if (question.ListField[0].$.maxSelections) {
@@ -110,11 +110,11 @@ function parsingQuestion(questionInput) {
     questionTitle,
     questionText,
     dependentQuestions: question.ChildItems
-      ? question.ChildItems[0].Question.map(q => parsingQuestion(q))
+      ? question.ChildItems[0].Question.map((q) => parsingQuestion(q))
       : [],
     questionBody,
     answerType,
-    answerObject
+    answerObject,
   };
 }
 
@@ -187,14 +187,15 @@ function buildFormSchemas(formDesign) {
     copyrightFooter;
 
   formID = require("crypto")
-    .createHash("md5")
+    .createHash("sha256")
     .update(formDesign.$.ID.concat(formDesign.$.version))
-    .digest("hex");
+    .digest("hex")
+    .slice(0, 30);
   formTitle = formDesign.$.formTitle;
   diagnosticID = null;
   version = formDesign.$.version;
   originalFile = formDesign.$.filename;
-  property = formDesign.Property.map(prop => extractProperty(prop));
+  property = formDesign.Property.map((prop) => extractProperty(prop));
   note = formDesign.Body[0].ChildItems[0].DisplayedItem
     ? formDesign.Body[0].ChildItems[0].DisplayedItem[0].$.title
     : null;
@@ -214,7 +215,7 @@ function buildFormSchemas(formDesign) {
     note,
     sections,
     comment,
-    copyrightFooter
+    copyrightFooter,
   };
 }
 
@@ -223,5 +224,5 @@ function extractProperty(property) {
 }
 
 module.exports = {
-  xmlParse
+  xmlParse,
 };

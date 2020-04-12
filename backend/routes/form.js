@@ -70,18 +70,23 @@ router.route("/").get((req, res) => {
 
 function cryptEn(data) {
   return new Promise((res, rej) => {
-    res(CryptoJS.AES.encrypt(data, "secret").toString());
+    const encrypted = CryptoJS.AES.encrypt(data, "secret")
+      .toString()
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_");
+    res(encrypted);
   });
 }
 
 function cryptDe(encrypted) {
   return new Promise((res, rej) => {
-    res(CryptoJS.AES.decrypt(encrypted, "secret").toString(CryptoJS.enc.Utf8));
+    const reAligning = encrypted.replace(/-/g, "+").replace(/_/g, "/");
+    res(CryptoJS.AES.decrypt(reAligning, "secret").toString(CryptoJS.enc.Utf8));
   });
 }
 
 // Get draft form specifically @formID @patientID
-router.route("/GET/:formID/:patientID").get((req, res) => {
+router.route("/get/:formID/:patientID").get((req, res) => {
   form.findOne({ formID: req.params.formID }).then((data) => {
     cryptEn(req.params.formID.concat(data.version, req.params.patientID))
       .then((diag) => {
@@ -96,7 +101,7 @@ router.route("/GET/:formID/:patientID").get((req, res) => {
 });
 
 // Get fillable form specifically @formID
-router.route("/GET/:formID").get((req, res) => {
+router.route("/get/:formID").get((req, res) => {
   form
     .findOne({ formID: req.params.formID })
     .then((data) => {
@@ -107,32 +112,58 @@ router.route("/GET/:formID").get((req, res) => {
     });
 });
 
-router.route("/save").post((req, res) => {
-  draft.collection.insertOne(req.body.payload).then((data) => {
-    if (data.insertedCount !== 1) {
-      res.status(404).send("Unable to insert document to database");
-    }
-
-    cryptDe(req.body.payload.diagnosticID).then((decrypted) => {
-      // Append to patient profile
-      const patientID = decrypted.slice(-64);
-      patient.findOneAndUpdate(
-        { patientID: patientID },
-        { new: true },
-        (err, re) => {
-          re.relatedForms.push({
-            filler: null,
-            diagnosticID: req.body.payload.diagnosticID,
-          });
-          re.save()
-            .then((x) => res.status(200).send("added draft to patient profile"))
-            .catch((error) => {
-              res.status(500).send(error.message);
-            });
-        }
-      );
+router.route("/draft/get/:diagnosticID").get((req, res) => {
+  draft
+    .findOne({ diagnosticID: req.params.diagnosticID })
+    .then((draft) => {
+      res.status(200).json(draft);
+    })
+    .catch((error) => {
+      res.status(404).send(error.message);
     });
-  });
+});
+
+router.route("/draft/save").post((req, res) => {
+  draft.collection
+    .insertOne(req.body.payload)
+    .then((data) => {
+      if (data.insertedCount !== 1) {
+        res.status(404).send("Unable to insert document to database");
+      }
+
+      cryptDe(req.body.payload.diagnosticID)
+        .then((decrypted) => {
+          // Append to patient profile
+          const patientID = decrypted.slice(-15);
+          patient.findOneAndUpdate(
+            { patientID: patientID },
+            { new: true },
+            (err, re) => {
+              if (err) {
+                res.status(500).send(err);
+              } else {
+                re.relatedForms.push({
+                  filler: null,
+                  diagnosticID: req.body.payload.diagnosticID,
+                });
+                re.save()
+                  .then((x) =>
+                    res.status(200).send("added draft to patient profile")
+                  )
+                  .catch((error) => {
+                    res.status(500).send(error.message);
+                  });
+              }
+            }
+          );
+        })
+        .catch((error) => {
+          res.status(500).send(error.message);
+        });
+    })
+    .catch((error) => {
+      res.status(500).send(error.message);
+    });
 });
 
 module.exports = router;
