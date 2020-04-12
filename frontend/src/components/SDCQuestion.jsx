@@ -15,13 +15,6 @@ export default class SDCQuestion extends Component {
     // answer (if an answer has already been selected and saved), and dependent questions
     // Also, an onChange function to store this question's answer
 
-    // Example implementation:
-    // <SDCQuestion question_id="1" question_title="Title 1" question_type="true_false" question_text="Are you a student?" answer={true} />
-    // <SDCQuestion question_id="2" question_title="Title 2" question_type="text" question_text="What is your name?" />
-    // <SDCQuestion question_id="3" question_title="Title 3" question_type="int" question_text="What is your age?" answer={20} />
-    // <SDCQuestion question_id="4" question_title="Title 4" question_type="multiple_choice_radio" question_text="Which drink do you prefer the most?" question_options={[{id: "0", value: "Water"}, {id: "1", value: "Orange Juice"}, {id: "2", value: "Coca-Cola"}]} answer="0" />
-    // <SDCQuestion question_id="5" question_title="Title 5" question_type="multiple_choice_checkbox" question_text="What are your favourite foods?" question_options={[{id: "0", value: "Grilled Cheese"}, {id: "1", value: "Burger"}, {id: "2", value: "Chicken"}]} answer={["1", "2"]}/>
-
     this.render = this.render.bind(this);
     this.handleSelfChange = this.handleSelfChange.bind(this);
     this.handleDependentQuestionChange = this.handleDependentQuestionChange.bind(this);
