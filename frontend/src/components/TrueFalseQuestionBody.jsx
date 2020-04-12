@@ -12,7 +12,7 @@ export default class TrueFalseQuestionBody extends Component {
   handleChange(event) {
     const text = event.target.value;
     let bool = false;
-    if (text == "true") {
+    if (text === "true") {
       bool = true;
     }
     this.props.onChange(bool);
@@ -21,10 +21,10 @@ export default class TrueFalseQuestionBody extends Component {
   render() {
     return (
       <div>
-        <input type="radio" id={this.props.question_id + "true"} name={this.props.question_id} value="true" onChange={this.handleChange} checked={this.props.answer == true} />
+        <input type="radio" id={this.props.question_id + "true"} name={this.props.question_id} value="true" onChange={this.handleChange} checked={this.props.answer === true} />
         <label style={{paddingLeft: "3px"}} for={this.props.question_id + "true"}>True</label>
         &emsp;
-        <input type="radio" id={this.props.question_id + "false"} name={this.props.question_id} value="false" onChange={this.handleChange} checked={this.props.answer == false} />
+        <input type="radio" id={this.props.question_id + "false"} name={this.props.question_id} value="false" onChange={this.handleChange} checked={this.props.answer === false} />
         <label style={{paddingLeft: "3px"}} for={this.props.question_id + "false"}>False</label>
         {this.props.children}
       </div>

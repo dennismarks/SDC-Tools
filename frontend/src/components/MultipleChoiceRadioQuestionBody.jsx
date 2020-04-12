@@ -20,7 +20,7 @@ export default class MultipleChoiceRadioQuestionBody extends Component {
       let option = this.props.question_options[i];
       components.push(
         <div style={{marginBottom: "3px"}}>
-          <input type="radio" id={this.props.question_id + option.optionID} name={this.props.question_id} value={option.optionID} onChange={this.handleChange} checked={this.props.answer == option.optionID} />
+          <input type="radio" id={this.props.question_id + option.optionID} name={this.props.question_id} value={option.optionID} onChange={this.handleChange} checked={this.props.answer === option.optionID} />
           <label style={{paddingLeft: "3px"}} for={this.props.question_id + option.optionID}>{option.value}</label>
         </div>
       );
