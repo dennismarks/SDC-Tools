@@ -1,5 +1,7 @@
 # SDSee - Team FAKE BIRDS
 
+![](https://github.com/csc302-spring-2020/proj-FakeBirds/workflows/Node.js%20CI/badge.svg)
+
 ## Developing Instructions
 
 - Run `npm install` in root folder.
