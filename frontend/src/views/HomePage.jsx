@@ -62,7 +62,9 @@ export default class HomePage extends Component {
       patientID: require("crypto")
         .createHash("SHA256")
         .update(this.state.name.concat(this.state.email, this.state.phone))
-        .digest("hex"),
+        .digest("hex")
+        .slice(0, 15),
+      //TODO: put slice number as env variable
       name: this.state.name,
       email: this.state.email,
       phone: this.state.phone,
