@@ -10,25 +10,16 @@ router.route("/").get((req, res) => {
 });
 
 // Read
+router.route("/search/:name").get((req, res) => {
+  Patient.find({ name: req.params.name},  function(err, allPatients){
+    res.json(allPatients)
+  })
+})
+
 
 router.route("/form_query/:id").get((req, res) => {
-  Patient.findOne({ patientID: req.params.id }, function(err, patient){
-    array_of_diagnosticID = patient.historical_form
-    length_array = array_of_diagnosticID.length
-    counter = 0
-    const array = []
-  
-    array_of_diagnosticID.forEach(dID   => {
-      Form.findOne({ diagnosticID: dID }, function(err, product){
-      array.push(product)
-      counter += 1
-      if (counter == length_array){
-        res.json(array)
-      }
-      })
-    });
-
-
+  Patient.findOne({ patient_number: req.params.id }, function(err, patient){
+    res.json(patient.relatedForms)
   })
 });
 
