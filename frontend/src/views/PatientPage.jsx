@@ -10,7 +10,9 @@ export default class PatientPage extends Component {
       this.state = {
         patientName: '',
         allPatients: [],
-        relatedForms: []
+        relatedForms: [],
+        showTr_1: false,
+        showTr_2: false
       }
 
       this.retireveAllRelatedForms = this.retireveAllRelatedForms.bind(this);
@@ -21,7 +23,8 @@ export default class PatientPage extends Component {
         event.preventDefault();
         axios.get(`http://localhost:3001/api/v1/patient/search/${this.state.patientName}`).then(res => {
             this.setState({
-                allPatients: res.data
+                allPatients: res.data,
+                showTr_1: true
             })
             
         })
@@ -32,7 +35,8 @@ export default class PatientPage extends Component {
         for(let i = 0; i< lengthOfPatients; i++){
             if (this.state.allPatients[i].patientID === pID){
                 this.setState({
-                    relatedForms: this.state.allPatients[i].relatedForms
+                    relatedForms: this.state.allPatients[i].relatedForms,
+                    showTr_2: true
                 })
             }
             }
@@ -54,7 +58,7 @@ export default class PatientPage extends Component {
         return (
             <div>
                 <div className="App-header">
-                <h1>Enter Patient ID:</h1>
+                <h1>Enter Patient Name:</h1>
                 <Form onSubmit={this.retrieveAllPatients}>
                     <Form.Row>
                         <Col>
@@ -83,15 +87,17 @@ export default class PatientPage extends Component {
                 bordered
                 hover
                 variant="dark"
-                style={{ maxWidth: "300px" }}>
-                    <thead>
-                        <tr>
+                style={{ maxWidth: "max-content" }}>
+                    <div style={{display : this.state.showTr_1 ? 'block':'none'}}>
+                    <thead >
+                        <tr >
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone #</th>
                         <th>Choose</th>
                         </tr>
                     </thead>
+                    
                     <tbody>
                         {this.state.allPatients.map(patient => (
                             <tr>
@@ -103,7 +109,8 @@ export default class PatientPage extends Component {
                             </td>
                             </tr>
                         ))}
-                        </tbody>
+                    </tbody>
+                    </div>
                 </Table>
 
                 <Table
@@ -111,7 +118,8 @@ export default class PatientPage extends Component {
                 bordered
                 hover
                 variant="dark"
-                style={{ maxWidth: "300px" }}>
+                style={{ maxWidth: "max-content" }}>
+                    <div style={{display : this.state.showTr_2 ? 'block':'none'}}>
                     <thead>
                         <tr>
                         <th>filler</th>
@@ -127,7 +135,8 @@ export default class PatientPage extends Component {
                             </td>
                             </tr>
                         ))}
-                        </tbody>
+                    </tbody>
+                    </div>
                 </Table>
                 </div>           
             </div>
