@@ -13,7 +13,7 @@ export default class SDCSelectTable extends Component {
     this.getFormTableRows = this.getFormTableRows.bind(this);
     this.getPatientTableRows = this.getPatientTableRows.bind(this);
 
-    this.handleFormClick = this.handleFormClick().bind(this);
+    this.handleFormClick = this.handleFormClick.bind(this);
     this.handlePatientClick = this.handlePatientClick.bind(this);
 
     this.state = {
@@ -175,9 +175,11 @@ export default class SDCSelectTable extends Component {
   }
 
   render() {
-    return <div className="sdc-select-table">
-      {this.getFormTableRows()}
-      {this.getPatientTableRows()}
-    </div>;
+    return (
+      <div className="sdc-select-table">
+        {this.getFormTableRows()}
+        {this.getPatientTableRows()}
+      </div>
+    );
   }
 }
