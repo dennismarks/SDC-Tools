@@ -8,7 +8,6 @@ export default class SDCSelectTable extends Component {
 
     this.retrieveAllPatients = this.retrieveAllPatients.bind(this);
     this.searchPatient = this.searchPatient.bind(this);
-    this.retrieveAllForms = this.
     this.getTableRow = this.getTableRow.bind(this);
     this.state = {
       patientID: "",
