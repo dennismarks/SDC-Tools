@@ -19,8 +19,7 @@ router.route("/search/:name").get((req, res) => {
 
 router.route("/form_query/:id").get((req, res) => {
   Patient.findOne({ patient_number: req.params.id }, function(err, patient){
-    const related_forms = patient.relatedForms
-    res.json(related_forms)
+    res.json(patient.relatedForms)
   })
 });
 

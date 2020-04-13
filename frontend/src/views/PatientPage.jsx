@@ -10,7 +10,7 @@ export default class PatientPage extends Component {
       this.state = {
         patientName: '',
         allPatients: [],
-        related_Forms: []
+        relatedForms: []
       }
 
       this.retireveAllRelatedForms = this.retireveAllRelatedForms.bind(this);
@@ -20,21 +20,19 @@ export default class PatientPage extends Component {
     retrieveAllPatients = (event) => {
         event.preventDefault();
         axios.get(`http://localhost:3001/api/v1/patient/search/${this.state.patientName}`).then(res => {
-            const all_patients = res.data
             this.setState({
-                allPatients: all_patients
+                allPatients: res.data
             })
             
         })
     }
 
     retireveAllRelatedForms = (pID) => {
-        let length_of_patients = this.state.allPatients.length
-        for(let i = 0; i< length_of_patients; i++){
-            
+        let lengthOfPatients = this.state.allPatients.length
+        for(let i = 0; i< lengthOfPatients; i++){
             if (this.state.allPatients[i].patientID === pID){
                 this.setState({
-                    related_Forms: this.state.allPatients[i].relatedForms
+                    relatedForms: this.state.allPatients[i].relatedForms
                 })
             }
             }
@@ -121,7 +119,7 @@ export default class PatientPage extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.related_Forms.map(formObject => (
+                        {this.state.relatedForms.map(formObject => (
                             <tr>
                             <td>{formObject.filler}</td>
                             <td>
