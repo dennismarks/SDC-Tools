@@ -28,16 +28,19 @@ export default class SDCQuestion extends Component {
       answer: props.question.answerObject.answer
     }
 
-    if (props.question.answerType.$numberInt === "4") {
+    if (props.question.answerType === null) {
+      this.state["is_text"] = true;
+    }
+    else if (props.question.answerType === 4) {
       this.state["is_true_false"] = true;
     }
-    else if (props.question.answerType.$numberInt === "3") {
+    else if (props.question.answerType === 3) {
       this.state["is_multiple_choice_checkbox"] = true;
     }
-    else if (props.question.answerType.$numberInt === "2") {
+    else if (props.question.answerType === 2) {
       this.state["is_multiple_choice_radio"] = true;
     }
-    else if (props.question.answerType.$numberInt === "1") {
+    else if (props.question.answerType === 1) {
       this.state["is_int"] = true;
     }
     else {

@@ -27,16 +27,18 @@ export default class MultipleChoiceCheckboxQuestionBody extends Component {
     let value = event.target.value;
     let newState = {};
     newState[value] = !this.state[value];
-    this.setState(newState);
 
-    let answer = [];
-    for (let i = 0; i < this.props.question_options.length; i++) {
-      let option = this.props.question_options[i];
-      if (this.state[option.optionID]) {
-        answer.push(option.optionID);
-      }
-    }
-    this.props.onChange(answer);
+    // Set new state and then execute code
+    this.setState(newState, function() {
+        let answer = [];
+        for (let i = 0; i < this.props.question_options.length; i++) {
+          let option = this.props.question_options[i];
+          if (this.state[option.optionID]) {
+            answer.push(option.optionID);
+          }
+        }
+        this.props.onChange(answer);
+      });
   }
 
   render() {
