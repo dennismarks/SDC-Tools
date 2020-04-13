@@ -48,7 +48,7 @@ export default class SDCSection extends Component {
     return (
       <div>
         <Card style={cardStyle}>
-          <h4 style={{marginLeft: "10px", marginTop: "5px"}}>{this.props.section.sectionTitle}</h4>
+          <h4 style={{marginLeft: "10px", marginTop: "5px", textAlign: "center"}}>{this.props.section.sectionTitle}</h4>
           {questionComponents}
           {subsectionComponents}
           {this.props.children}
