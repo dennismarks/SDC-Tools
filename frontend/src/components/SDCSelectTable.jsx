@@ -31,8 +31,7 @@ export default class SDCSelectTable extends Component {
     this.retrieveAllPatients();
   }
 
-  retrieveAllPatients(event) {
-    event.preventDefault();
+  retrieveAllPatients() {
     axios.get(`http://localhost:3001/api/v1/patient/`).then((res) => {
       this.setState({
         allPatients: res.data,
@@ -40,8 +39,7 @@ export default class SDCSelectTable extends Component {
     });
   }
 
-  searchPatient(event) {
-    event.preventDefault();
+  searchPatient() {
     axios
       .get(
         `http://localhost:3001/api/v1/patient/search/${this.state.patientSearch}`
@@ -53,22 +51,20 @@ export default class SDCSelectTable extends Component {
       });
   }
 
-  retrieveAllForms(event) {
-    event.preventDefault();
+  retrieveAllForms() {
     axios.get(`http://localhost:3001/api/v1/form/`).then((res) => {
       this.setState({
-        allPatients: res.data,
+        allForms: res.data.allForms,
       });
     });
   }
 
-  searchForm(event) {
-    event.preventDefault();
+  searchForm() {
     axios
       .get(`http://localhost:3001/api/v1/form/search/${this.state.formSearch}`)
       .then((res) => {
         this.setState({
-          allForms: res.data,
+          allForms: res.data.allForms,
         });
       });
   }
