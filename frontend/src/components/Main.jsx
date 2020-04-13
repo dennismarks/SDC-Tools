@@ -20,6 +20,8 @@ export default class Main extends Component {
         <Navbar
           collapseOnSelect
           expand="lg"
+          bg="dark"
+          variant="dark"
           fixed="top"
           style={{
             width: "100vw",
