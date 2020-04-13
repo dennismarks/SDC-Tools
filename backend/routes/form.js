@@ -54,6 +54,24 @@ router.route("/remove/:formID").delete((req, res) => {
   });
 });
 
+
+router.route("/search/:title").get((req, res) => {
+  admin
+    .findOne()
+    .then((data) => {
+      const withTitle = data["allForms"].filter((form) =>
+        form.formTitle.includes(req.params.title)
+      );
+
+      res.json({
+        allForms: withTitle,
+      });
+    })
+    .catch((error) => {
+      res.status(404).send(error.message);
+    });
+});
+
 // Get all available fillout forms
 router.route("/").get((req, res) => {
   admin
