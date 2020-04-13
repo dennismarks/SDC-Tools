@@ -48,14 +48,15 @@ function extractQuestions(sectionInput) {
   const section =
     sectionInput.constructor === Array ? sectionInput[0] : sectionInput;
   let ListQuestions = section.ChildItems[0].Question;
-  let ListSections = section.ChildItems[0].Section;
+  // let ListSections = section.ChildItems[0].Section;
   if (ListQuestions != null) {
     let qs = ListQuestions.map((q) => parsingQuestion(q));
 
     reQuestions.push(...qs);
-  } else if (ListSections) {
-    reQuestions.push(extractQuestions(ListSections));
-  }
+  } 
+  // else if (ListSections) {
+  //   reQuestions.push(extractQuestions(ListSections));
+  // }
   return reQuestions;
 }
 
@@ -140,8 +141,8 @@ function buildSectionSchemas(sectionArray) {
   for (let i = 0; i < sectionArray.length; i++) {
     sectionID = sectionArray[i].$.ID;
     sectionTitle = sectionArray[i].$.title;
-    subSections = sectionArray[i].ChildItems.Section
-      ? buildSectionSchemas(sectionArray[i].ChildItems.Section)
+    subSections = sectionArray[i].ChildItems[0].Section
+      ? buildSectionSchemas(sectionArray[i].ChildItems[0].Section)
       : [];
     questions = extractQuestions(sectionArray[i]);
     reSections.push({ sectionID, sectionTitle, subSections, questions });

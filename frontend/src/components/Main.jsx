@@ -1,12 +1,19 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
+import icon from "../img/main-icon.png";
+
+const link = {
+  fontFamily: "Arial",
+  fontWeight: "bold",
+  fontSize: "18px",
+  lineHeight: "21px",
+  color: "#E7EFF6",
+  paddingRight: "35px",
+  textDecoration: "none",
+};
 
 export default class Main extends Component {
-  constructor(props) {
-    super(props);
-    console.log("initialized");
-  }
-
   render() {
     return (
       <div className="app-frame">
@@ -15,21 +22,35 @@ export default class Main extends Component {
           expand="lg"
           bg="dark"
           variant="dark"
-          style={{ position: "fixed", width: "100vw", height: "50px", zIndex: "100" }}
+          fixed="top"
+          style={{
+            width: "100vw",
+            height: "50px",
+            paddingTop: "35px",
+          }}
         >
-          <Navbar.Brand href="/">SDCTools</Navbar.Brand>
+          <Link to="/">
+            <img
+              style={{ width: "50px", marginLeft: "50px", paddingTop: "10px" }}
+              src={icon}
+              alt=""
+            />
+          </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/forms">Forms</Nav.Link>
-              <Nav.Link href="/patients">Patients</Nav.Link>
-            </Nav>
-            <Nav>
-              <Nav.Link href="/about">About</Nav.Link>
-              <Nav.Link eventKey={2} href="/contact">
+            <Nav className="ml-auto" style={{ paddingRight: "50px" }}>
+              <Link style={link} to="/forms">
+                Forms
+              </Link>
+              <Link style={link} to="/patients">
+                Patients
+              </Link>
+              <Link style={link} to="/about">
+                About
+              </Link>
+              <Link style={link} to="/contact">
                 Contact Us
-              </Nav.Link>
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
