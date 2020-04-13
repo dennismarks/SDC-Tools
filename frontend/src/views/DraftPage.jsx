@@ -9,6 +9,7 @@ export default class DraftPage extends Component {
 		this.render = this.render.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.findQuestionAndUpdate = this.findQuestionAndUpdate.bind(this);
+		this.saveDraft = this.saveDraft.bind(this);
 
 		// draft is not in this.state because we don't need the draft component to re-render
 		// every time we update the answers - sub components take care of the re-rendering
@@ -48,6 +49,29 @@ export default class DraftPage extends Component {
 
 		return false;
 	}
+
+	saveDraft() {
+		// API call to save the json into database
+		if (this.draft === null) {
+			return null;
+		}
+
+		axios({
+	    method: 'post',
+	    url: 'http://localhost:3001/api/v1/form/draft/save',
+	    data: this.draft,
+			json: true
+	    })
+	    .then(function (response) {
+	        alert("Form saved successfully!");
+	    })
+	    .catch(function (response) {
+	        alert("Sorry, failed to save form, an error occurred.\n" + response);
+	    });
+
+		return;
+	}
+
 	componentDidMount() {
 		axios({
       method: "get",
@@ -97,7 +121,22 @@ export default class DraftPage extends Component {
 		 marginLeft: "5%",
 		 marginRight: "5%",
 		 maringBottom: "30px",
-		 backgroundColor: "#282c34"
+		 backgroundColor: "#282c34",
+		 width: "90%"
+		}
+
+		const saveButtonStyle = {
+			position: "fixed",
+			bottom: "38px",
+			right: "5%",
+			marginRight: "17px",
+			width: "8%",
+			minWidth: "60px",
+			borderRadius: "5px",
+			borderWidth: "5px",
+			backgroundColor: "#e8b91e",
+			outline: "none",
+			fontWeight: "500"
 		}
 
 		return (
@@ -110,6 +149,7 @@ export default class DraftPage extends Component {
 						</div>
 						{sections}
 					</div>
+					<button style={saveButtonStyle} onClick={this.saveDraft}>Save</button>
 				</div>
 			</div>
 		);
