@@ -15,7 +15,7 @@ export default class Main extends Component {
           expand="lg"
           bg="dark"
           variant="dark"
-          style={{ position: "fixed", width: "100vw", height: "50px" }}
+          style={{ position: "fixed", width: "100vw", height: "50px", zIndex: "100" }}
         >
           <Navbar.Brand href="/">SDCTools</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
