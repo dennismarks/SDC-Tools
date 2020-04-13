@@ -54,7 +54,6 @@ router.route("/remove/:formID").delete((req, res) => {
   });
 });
 
-
 router.route("/search/:title").get((req, res) => {
   admin
     .findOne()
@@ -106,7 +105,9 @@ function cryptDe(encrypted) {
 // Get draft form specifically @formID @patientID
 router.route("/get/:formID/:patientID").get((req, res) => {
   form.findOne({ formID: req.params.formID }).then((data) => {
-    cryptEn(req.params.formID.concat(data.version, req.params.patientID))
+    cryptEn(
+      req.params.formID.concat(" ", data.version, " ", req.params.patientID)
+    )
       .then((diag) => {
         const newDraft = data.toObject();
         newDraft.diagnosticID = diag; // Generating diagnosticID for new Draft

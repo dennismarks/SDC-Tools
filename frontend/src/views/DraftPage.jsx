@@ -11,6 +11,7 @@ export default class DraftPage extends Component {
     this.findQuestionAndUpdate = this.findQuestionAndUpdate.bind(this);
     this.saveDraft = this.saveDraft.bind(this);
 
+    this.initialize = this.initialize.bind(this);
     // draft is not in this.state because we don't need the draft component to re-render
     // every time we update the answers - sub components take care of the re-rendering
     this.draft = null;
@@ -18,6 +19,34 @@ export default class DraftPage extends Component {
     this.state = {
       fetchError: null,
     };
+  }
+  //TODO: PLEASE REFACTOR THIS OMG
+
+  cryptEn(data) {
+    // formID.concat(data.version, patientID)
+    return new Promise((res, rej) => {
+      const encrypted = require("crypto-js")
+        .AES.encrypt(data, "secret")
+        .toString()
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_");
+      res(encrypted);
+    });
+  }
+
+  cryptDe(encrypted) {
+    return new Promise((res, rej) => {
+      const reAligning = encrypted.replace(/-/g, "+").replace(/_/g, "/");
+      const decrypted = require("crypto-js")
+        .AES.decrypt(reAligning, "secret")
+        .toString(require("crypto-js").enc.Utf8)
+        .split(" ");
+
+      const formID = decrypted[0];
+      const patientID = decrypted[2];
+
+      res({ formID: formID, patientID: patientID });
+    });
   }
 
   handleChange(value, questionID) {
@@ -58,7 +87,7 @@ export default class DraftPage extends Component {
     axios({
       method: "post",
       url: "http://localhost:3001/api/v1/form/draft/save",
-      data: this.draft,
+      data: { payload: this.draft },
       json: true,
     })
       .then(function (response) {
@@ -71,15 +100,37 @@ export default class DraftPage extends Component {
     return;
   }
 
-  componentDidMount() {
+  initialize() {
     axios({
       method: "get",
       url: `http://localhost:3001/api/v1/form/draft/get/${this.props.match.params.diagnosticID}`,
       responseType: "application/json",
     })
       .then((response) => {
-        this.draft = response.data;
-        this.forceUpdate(); // Force render so that the form is displayed
+        if (!response.data) {
+          this.cryptDe(this.props.match.params.diagnosticID)
+            .then((decrypted) => {
+              axios({
+                method: "get",
+                url: `http://localhost:3001/api/v1/form/get/${decrypted.formID}/${decrypted.patientID}`,
+                responseType: "application/json",
+              }).then((response) => {
+                response.data.diagnosticID = this.props.match.params.diagnosticID;
+                this.draft = response.data;
+                this.forceUpdate(); // Force render so that the form is displayed.
+              });
+            })
+            .catch((error) => {
+              this.setState({
+                fetchError: true,
+                error: error,
+              });
+            });
+        } else {
+          this.draft = response.data;
+          console.log(this.draft);
+          this.forceUpdate(); // Force render so that the form is displayed
+        }
       })
       .catch((error) => {
         this.setState({
@@ -87,6 +138,10 @@ export default class DraftPage extends Component {
           error: error,
         });
       });
+  }
+
+  componentDidMount() {
+    this.initialize();
   }
 
   render() {

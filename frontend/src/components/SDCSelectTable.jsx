@@ -119,7 +119,7 @@ export default class SDCSelectTable extends Component {
 
   getFormTableRows() {
     return (
-      <Table>
+      <Table style={{color:"white"}}>
         <thead>
           <tr>
             <th>ID</th>
@@ -156,7 +156,7 @@ export default class SDCSelectTable extends Component {
 
   getPatientTableRows() {
     return (
-      <Table>
+      <Table style={{color:"white"}}>
         <thead>
           <tr>
             <th>ID</th>
