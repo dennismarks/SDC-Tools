@@ -12,15 +12,16 @@ export default class HomePage extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      name: "",
-      email: "",
-      phone: "",
+      patientID: "",
+      formID: "",
       patients: [],
+      forms: [],
     };
   }
 
   componentDidMount() {
     this.getPatients();
+    this.getForms();
   }
 
   onChangeName(e) {
@@ -50,39 +51,50 @@ export default class HomePage extends Component {
           patients: response.data,
         });
       }
-      console.log(this.state.patients);
+    });
+  }
+
+  getForms() {
+    axios.get("http://localhost:3001/api/v1/form/").then((response) => {
+      if (response.data.length > 0) {
+        console.log(response.data);
+
+        this.setState({
+          forms: response.data,
+        });
+      }
     });
   }
 
   onSubmit(e) {
     e.preventDefault();
 
-    const patient = {
-      //TODO: this needs to be a util
-      patientID: require("crypto")
-        .createHash("SHA256")
-        .update(this.state.name.concat(this.state.email, this.state.phone))
-        .digest("hex")
-        .slice(0, 15),
-      //TODO: put slice number as env variable
-      name: this.state.name,
-      email: this.state.email,
-      phone: this.state.phone,
-    };
+    // const patient = {
+    //   //TODO: this needs to be a util
+    //   patientID: require("crypto")
+    //     .createHash("SHA256")
+    //     .update(this.state.name.concat(this.state.email, this.state.phone))
+    //     .digest("hex")
+    //     .slice(0, 15),
+    //   //TODO: put slice number as env variable
+    //   name: this.state.name,
+    //   email: this.state.email,
+    //   phone: this.state.phone,
+    // };
 
-    console.log(patient);
-    axios
-      .post("http://localhost:3001/api/v1/patient/add", patient)
-      .then((res) => {
-        console.log(res.data);
-        this.getPatients();
-      });
+    // console.log(patient);
+    // axios
+    //   .post("http://localhost:3001/api/v1/patient/add", patient)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     this.getPatients();
+    //   });
 
-    this.setState({
-      name: "",
-      email: "",
-      phone: "",
-    });
+    // this.setState({
+    //   name: "",
+    //   email: "",
+    //   phone: "",
+    // });
   }
 
   render() {
