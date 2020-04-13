@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Col, Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import axios from "axios";
 
 export default class SDCSelectTable extends Component {
