@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Card } from "react-bootstrap";
 
 export default class MultipleChoiceRadioQuestionBody extends Component {
   constructor(props){
@@ -11,8 +10,8 @@ export default class MultipleChoiceRadioQuestionBody extends Component {
   }
 
   handleChange(event) {
-    const text = event.target.value;
-    this.props.onChange(text);
+    const optionID = event.target.value;
+    this.props.onChange(optionID);
   }
 
   render() {
@@ -21,8 +20,8 @@ export default class MultipleChoiceRadioQuestionBody extends Component {
       let option = this.props.question_options[i];
       components.push(
         <div style={{marginBottom: "3px"}}>
-          <input type="radio" id={this.props.question_id + option["id"]} name={this.props.question_id} value={option["id"]} onChange={this.handleChange} checked={this.props.answer == option["id"]} />
-          <label style={{paddingLeft: "3px"}} for={this.props.question_id + option["id"]}>{option["value"]}</label>
+          <input type="radio" id={this.props.question_id + option.optionID} name={this.props.question_id} value={option.optionID} onChange={this.handleChange} checked={this.props.answer === option.optionID} />
+          <label style={{paddingLeft: "3px"}} for={this.props.question_id + option.optionID}>{option.value}</label>
         </div>
       );
     }
