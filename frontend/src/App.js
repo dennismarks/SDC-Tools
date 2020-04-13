@@ -20,7 +20,7 @@ function App() {
         {/* <Route path="/" exact component={HomePage}/> */}
         <Route path="/" exact component={MainPage} />
         <Route path="/forms" component={FormPage} />
-        <Route path="/draft/:form_id/:patient_id" component={DraftPage} />
+        <Route path="/draft/:diagnosticID" component={DraftPage} />
         <Route path="/patients" component={PatientPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/contact" component={ContactPage} />

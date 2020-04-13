@@ -15,6 +15,7 @@ export default class SDCSelectTable extends Component {
 
     this.handleFormClick = this.handleFormClick.bind(this);
     this.handlePatientClick = this.handlePatientClick.bind(this);
+    this.handleCreateDraft = this.handleCreateDraft.bind(this);
 
     this.state = {
       patientSearch: "",
@@ -96,6 +97,26 @@ export default class SDCSelectTable extends Component {
     });
   }
 
+  handleCreateDraft() {
+    if (!this.state.patientID) {
+      return console.log("Please select patient!");
+    }
+    if (!this.state.formID) {
+      return console.log("Please select form!");
+    }
+
+    if (this.state.formID && this.state.patientID) {
+      axios({
+        method: "get",
+        url: `http://localhost:3001/api/v1/form/get/${this.state.formID}/${this.state.patientID}`,
+        responseType: "application/json",
+      }).then((response) => {
+        const diagnosticID = response.data.diagnosticID;
+        window.open(`/draft/${diagnosticID}`);
+      });
+    }
+  }
+
   getFormTableRows() {
     return (
       <Table>
@@ -112,7 +133,9 @@ export default class SDCSelectTable extends Component {
               <td>{form.formID}</td>
               <td>{form.formTitle}</td>
               {this.state.formID === form.formID ? (
-                <td>Selected</td>
+                <td>
+                  <Button enabled={false}>Selected</Button>
+                </td>
               ) : (
                 <td>
                   <Button
@@ -151,7 +174,9 @@ export default class SDCSelectTable extends Component {
               <td>{patient.email}</td>
               <td>{patient.phone}</td>
               {this.state.patientID === patient.patientID ? (
-                <td>Selected</td>
+                <td>
+                  <Button enabled={false}>Selected</Button>
+                </td>
               ) : (
                 <td>
                   <Button
@@ -173,6 +198,7 @@ export default class SDCSelectTable extends Component {
   render() {
     return (
       <div className="sdc-select-table">
+        <Button onClick={this.handleCreateDraft}>get drafted boy</Button>
         {this.getFormTableRows()}
         {this.getPatientTableRows()}
       </div>
