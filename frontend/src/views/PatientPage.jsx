@@ -135,7 +135,7 @@ export default class PatientPage extends Component {
     }
 }
 
-
+//TODO: last version of homepage
 // import React, { Component } from "react";
 // import { Table, Form, Col, Button } from "react-bootstrap";
 // import axios from "axios";
