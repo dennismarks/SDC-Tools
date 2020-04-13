@@ -124,46 +124,72 @@ router.route("/draft/get/:diagnosticID").get((req, res) => {
 });
 
 router.route("/draft/save").post((req, res) => {
-  draft.collection
-    .insertOne(req.body.payload)
-    .then((data) => {
-      if (data.insertedCount !== 1) {
-        res.status(404).send("Unable to insert document to database");
-      }
-
-      cryptDe(req.body.payload.diagnosticID)
-        .then((decrypted) => {
-          // Append to patient profile
-          const patientID = decrypted.slice(-15);
-          patient.findOneAndUpdate(
-            { patientID: patientID },
-            { new: true },
-            (err, re) => {
-              if (err) {
-                res.status(500).send(err);
-              } else {
-                re.relatedForms.push({
-                  filler: null,
-                  diagnosticID: req.body.payload.diagnosticID,
-                });
-                re.save()
-                  .then((x) =>
-                    res.status(200).send("added draft to patient profile")
-                  )
-                  .catch((error) => {
-                    res.status(500).send(error.message);
-                  });
-              }
+  draft
+    .findOne({ diagnosticID: req.body.payload.diagnosticID })
+    .then((exists) => {
+      if (exists) {
+        // delete form
+        draft
+          .deleteOne({ diagnosticID: req.body.payload.diagnosticID })
+          .catch((e) => res.status(500).send(e.message));
+        // update form
+        draft.collection
+          .insertOne(req.body.payload)
+          .then((data) => {
+            if (data.insertedCount !== 1) {
+              res.status(404).send("Unable to insert document to database");
             }
-          );
-        })
-        .catch((error) => {
-          res.status(500).send(error.message);
-        });
+            res.status(200).send("updated new data to draft");
+          })
+          .catch((error) => {
+            res.status(500).send(error.message);
+          });
+      } else {
+        draft.collection
+          .insertOne(req.body.payload)
+          .then((data) => {
+            if (data.insertedCount !== 1) {
+              res.status(404).send("Unable to insert document to database");
+            }
+
+            cryptDe(req.body.payload.diagnosticID)
+              .then((decrypted) => {
+                // Append to patient profile
+                const patientID = decrypted.slice(-15);
+                patient.findOneAndUpdate(
+                  { patientID: patientID },
+                  { new: true },
+                  (err, re) => {
+                    if (err) {
+                      res.status(500).send(err);
+                    } else {
+                      re.relatedForms.push({
+                        filler: null,
+                        diagnosticID: req.body.payload.diagnosticID,
+                      });
+                      re.save()
+                        .then((x) => {
+                          res
+                            .status(200)
+                            .send("added draft to patient profile");
+                        })
+                        .catch((error) => {
+                          res.status(500).send(error.message);
+                        });
+                    }
+                  }
+                );
+              })
+              .catch((error) => {
+                res.status(500).send(error.message);
+              });
+          })
+          .catch((error) => {
+            res.status(500).send(error.message);
+          });
+      }
     })
-    .catch((error) => {
-      res.status(500).send(error.message);
-    });
+    .catch((e) => res.status(500).send(e.message));
 });
 
 module.exports = router;
