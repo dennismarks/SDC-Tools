@@ -1,6 +1,27 @@
 import React, { Component } from "react";
 import SDCSection from "../components/SDCSection";
 import axios from "axios";
+import styled from "styled-components/macro";
+
+const MainTitle = styled.div`
+  margin-bottom: 20px;
+  h1 {
+    /* font-family: Arial; */
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 55px;
+    color: #ffffff;
+  }
+  h7 {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #ffffff;
+    margin-top: 5px;
+  }
+`;
 
 export default class DraftPage extends Component {
   constructor(props) {
@@ -115,12 +136,8 @@ export default class DraftPage extends Component {
     });
 
     const formStyle = {
-      marginTop: "80px",
-      marginLeft: "5%",
-      marginRight: "5%",
-      maringBottom: "30px",
-      backgroundColor: "#282c34",
-      width: "90%",
+      width: "1200px",
+      margin: "200px auto",
     };
 
     const saveButtonStyle = {
@@ -141,10 +158,10 @@ export default class DraftPage extends Component {
       <div className="draft-page">
         <div className="App-header">
           <div style={formStyle}>
-            <div style={{ textAlign: "center", marginBottom: "30px" }}>
-              <h2>{this.draft.formTitle}</h2>
+            <MainTitle>
+              <h1>{this.draft.formTitle}</h1>
               <h7>Version {this.draft.version}</h7>
-            </div>
+            </MainTitle>
             {sections}
           </div>
           <button style={saveButtonStyle} onClick={this.saveDraft}>
