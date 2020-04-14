@@ -29,7 +29,7 @@ const TableContainer = styled.div`
     color: #ffffff;
     margin-bottom: 16px;
   }
-  input {
+  .searchInput {
     background-image: url(${searchIcon});
     background-position: 8px 10px;
     background-repeat: no-repeat;
@@ -38,6 +38,8 @@ const TableContainer = styled.div`
     font-size: 16px;
     padding: 8px 20px 8px 40px;
     border: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 `;
 
@@ -90,7 +92,7 @@ const Eclipse = styled.img`
   position: fixed;
   right: 0;
   bottom: 0;
-  height: 25%;
+  height: 20%;
   z-index: -9999;
 `;
 
@@ -115,6 +117,8 @@ export default class SDCSelectTable extends Component {
       allPatients: [],
       allForms: [],
     };
+
+    this.fileInput = React.createRef();
   }
 
   componentWillMount() {
@@ -174,6 +178,11 @@ export default class SDCSelectTable extends Component {
     }
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(`Selected file - ${this.fileInput.current.files[0]}`);
+  };
+
   getFillouts() {
     axios({
       method: "get",
@@ -227,11 +236,12 @@ export default class SDCSelectTable extends Component {
     return (
       <TableContainer>
         <h1>Forms</h1>
-        <Form.Control
+        <input
+          className="searchInput"
           value={this.state.formSearch}
           onChange={this.onChangeSearchForm}
           placeholder="Form title.."
-        />
+        ></input>
         <Table>
           <thead>
             <tr>
@@ -265,6 +275,7 @@ export default class SDCSelectTable extends Component {
             ))}
           </tbody>
         </Table>
+        {this.getNewFormUpload()}
       </TableContainer>
     );
   }
@@ -274,6 +285,7 @@ export default class SDCSelectTable extends Component {
       <TableContainer>
         <h1>Patients</h1>
         <input
+          className="searchInput"
           value={this.state.patientSearch}
           onChange={this.onChangeSearchPatientName}
           placeholder="Patient name.."
@@ -316,6 +328,38 @@ export default class SDCSelectTable extends Component {
           </tbody>
         </Table>
       </TableContainer>
+    );
+  };
+
+  getNewFormUpload = () => {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          <h5 style={{ color: "white", fontWeight: "bold", marginTop: "24px" }}>
+            Upload a new form:
+          </h5>
+          <input
+            style={{ fontSize: "12px", color: "white" }}
+            type="file"
+            ref={this.fileInput}
+          />
+        </label>
+        <br />
+        <button
+          style={{
+            fontSize: "14px",
+            width: "82px",
+            backgroundColor: "#e59c63",
+            border: "none",
+            color: "white",
+            fontWeight: "bold",
+            borderRadius: "4px",
+          }}
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
     );
   };
 
