@@ -18,6 +18,7 @@ router.route("/import").post((req, res) => {
       parser
         .xmlParse(file)
         .then((data) => {
+          // res.status(200).json(data);
           // upload to Atlas
           form.collection
             .insertOne(data)

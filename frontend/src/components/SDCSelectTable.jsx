@@ -119,7 +119,7 @@ export default class SDCSelectTable extends Component {
 
   getFormTableRows() {
     return (
-      <Table style={{color:"white"}}>
+      <Table style={{ color: "white" }}>
         <thead>
           <tr>
             <th>ID</th>
@@ -156,7 +156,7 @@ export default class SDCSelectTable extends Component {
 
   getPatientTableRows() {
     return (
-      <Table style={{color:"white"}}>
+      <Table style={{ color: "white" }}>
         <thead>
           <tr>
             <th>ID</th>
@@ -201,6 +201,7 @@ export default class SDCSelectTable extends Component {
         <Button onClick={this.handleCreateDraft}>get drafted boy</Button>
         {this.getFormTableRows()}
         {this.getPatientTableRows()}
+        <Button onClick={this.handleCreateDraft}>get drafted boy</Button>
       </div>
     );
   }
