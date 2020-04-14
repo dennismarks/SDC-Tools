@@ -180,23 +180,24 @@ export default class SDCSelectTable extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`Selected file - ${this.fileInput.current.files[0]}`);
-  };
+    const file = new FormData();
 
-  getFillouts() {
+    file.set("xml", this.fileInput.current.files[0]);
+
     axios({
-      method: "get",
-      url: "http://localhost:3001/api/v1/form",
-      responseType: "application/json",
-    }).then((response) => {
-      console.log(response.data);
-
-      this.setState({
-        allForms: response.data.allForms,
+      method: "post",
+      url: `http://localhost:3001/api/v1/form/import`,
+      data: file,
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then((response) => {
+        this.retrieveAllForms();
+        alert("Successfully imported form");
+      })
+      .catch((error) => {
+        alert(error.message);
       });
-      console.log(this.state.allFormsTitle);
-    });
-  }
+  };
 
   handleFormClick(formID) {
     this.setState({
@@ -342,6 +343,7 @@ export default class SDCSelectTable extends Component {
             style={{ fontSize: "12px", color: "white" }}
             type="file"
             ref={this.fileInput}
+            accept="text/xml"
           />
         </label>
         <br />
