@@ -1,20 +1,17 @@
-# SDCTools
-
 ![SDCTools Banner](docs/banner.png)
 
 **SDCTools** is a react-enabled app to assist and reinforce accuracy and correctness for practitioners to record patient data through an easy-to-use and intuitive process. The application serves as a middleman to redesign "pen and paper" structure of the SDC form for versatility and minimization of human errors. We utilize and redesigned information from SDC standards that medical practitioners often refer to when they start their diagnosis, and syndicate this information in a way that is **mobile**, **flexible** and **modern**.
 
 ![badge](https://github.com/csc302-spring-2020/proj-FakeBirds/workflows/Node.js%20CI/badge.svg)
 
-- [SDCTools](#sdctools)
-  - [Documents](#documents)
-  - [Contributing Guide](#contributing-guide)
-  - [Instructions](#instructions)
-    - [Getting Started](#getting-started)
-      - [Form Not Found](#form-not-found)
-    - [Filling out data](#filling-out-data)
-    - [Getting saved draft](#getting-saved-draft)
-  - [Motivation](#motivation)
+- [Documents](#documents)
+- [Contributing Guide](#contributing-guide)
+- [Instructions](#instructions)
+  - [Getting Started](#getting-started)
+    - [Form Not Found](#form-not-found)
+  - [Filling out data](#filling-out-data)
+  - [Getting saved draft](#getting-saved-draft)
+- [Motivation](#motivation)
 
 ## Documents
 
