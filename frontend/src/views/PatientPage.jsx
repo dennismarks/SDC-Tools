@@ -26,6 +26,8 @@ export default class PatientPage extends Component {
     retrieveAllPatients = (event) => {
         event.preventDefault();
         this.setState({
+            showTr_1: false,
+            showTr_2: false,
             showAlert: false
         })
         axios.get(`http://localhost:3001/api/v1/patient/search/${this.state.patientName}`).then(res => {
@@ -79,10 +81,9 @@ export default class PatientPage extends Component {
 
     render() {
         const goBackStyling = {
-            width: 70,
-            height: 70,
-            marginTop: 30,
-            marginRight:30,
+            width: 50,
+            height: 50,
+            marginRight: 0,
             display : this.state.showTr_2 ? 'block':'none',
             cursor: 'pointer'
         }
@@ -97,6 +98,17 @@ export default class PatientPage extends Component {
             marginLeft:27,
             width:400,
             display : this.state.showAlert ? 'block':'none',
+        }
+
+        const dividerStyling = {
+            float: 'left',
+            borderLeftWidth: 6,
+            borderLeftStyle: 'solid', 
+            borderLeftColor: '#719feb', 
+            height: 300,
+            position: 'absolute',
+            left:120,
+            marginButton: 40
         }
         return (
             <div>
@@ -129,75 +141,87 @@ export default class PatientPage extends Component {
                         </Form.Row>     
                     </Form>
                     </div>
-                    <div style={alertBoxStyling}>
-                        <Image src={alertIcon} style={alertStyling}/>
-                        <p style={{fontSize: 18, fontFamily: 'Arial'}}> We can't find such patient </p>
+
+                    <div>
+                        <div style={{float: 'left', height:70, width:70}}>
+                            <div style={{position:'absolute', left:50}}><Image src={goBack} style={goBackStyling} onClick={this.goBackToPreviousTable}/></div>
+                        </div>
+
+                        <div style={dividerStyling}> </div>
+                        
+                        <div style={{float: 'left'}}>
+
+                            <div style={alertBoxStyling}>
+                            <Image src={alertIcon} style={alertStyling}/>
+                            <p style={{fontSize: 18, fontFamily: 'Arial'}}> We can't find such patient </p>
+                            </div>
+
+                            <div> 
+                                <Table
+                                striped
+                                bordered
+                                hover
+                                variant="dark"
+                                style={{ maxWidth: "max-content" }}>
+                                    <div style={{display : this.state.showTr_1 ? 'block':'none'}}>
+                                    <thead >
+                                        <tr >
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone #</th>
+                                        <th>Choose</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        {this.state.allPatients.map(patient => (
+                                            <tr>
+                                            <td>{patient.name}</td>
+                                            <td>{patient.email}</td>
+                                            <td>{patient.phone}</td>
+                                            <td>
+                                                <Button onClick={() => this.retireveAllRelatedForms(patient.patientID)}>Choose</Button>
+                                            </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                    </div>
+                                </Table>
+
+                                <Table
+                                striped
+                                bordered
+                                hover
+                                variant="dark"
+                                style={{ maxWidth: "max-content" }}>
+                                    <div style={{display : this.state.showTr_2 ? 'block':'none'}}>
+                                    <thead>
+                                        <tr>
+                                        <th>filler</th>
+                                        <th>link</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {this.state.relatedForms.map(formObject => (
+                                            <tr>
+                                            <td>{formObject.filler}</td>
+                                            <td>
+                                                <Button>Link</Button>
+                                            </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                    </div>
+                                </Table>
+                            </div>
+                        </div>
                     </div>
                     
                     <div>
                     
-                        <div style={{float: 'left'}}><Image src={goBack} style={goBackStyling} onClick={this.goBackToPreviousTable}/></div>
+                        
 
-                        <div style={{float: 'left'}}>
-                            
-                            
-                            <Table
-                            striped
-                            bordered
-                            hover
-                            variant="dark"
-                            style={{ maxWidth: "max-content" }}>
-                                <div style={{display : this.state.showTr_1 ? 'block':'none'}}>
-                                <thead >
-                                    <tr >
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone #</th>
-                                    <th>Choose</th>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody>
-                                    {this.state.allPatients.map(patient => (
-                                        <tr>
-                                        <td>{patient.name}</td>
-                                        <td>{patient.email}</td>
-                                        <td>{patient.phone}</td>
-                                        <td>
-                                            <Button onClick={() => this.retireveAllRelatedForms(patient.patientID)}>Choose</Button>
-                                        </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                                </div>
-                            </Table>
-
-                            <Table
-                            striped
-                            bordered
-                            hover
-                            variant="dark"
-                            style={{ maxWidth: "max-content" }}>
-                                <div style={{display : this.state.showTr_2 ? 'block':'none'}}>
-                                <thead>
-                                    <tr>
-                                    <th>filler</th>
-                                    <th>link</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.state.relatedForms.map(formObject => (
-                                        <tr>
-                                        <td>{formObject.filler}</td>
-                                        <td>
-                                            <Button>Link</Button>
-                                        </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                                </div>
-                            </Table>
-                        </div>
+                        
                     </div>
                 </div>                     
             </div>
