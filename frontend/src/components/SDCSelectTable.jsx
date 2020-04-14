@@ -192,7 +192,7 @@ export default class SDCSelectTable extends Component {
     })
       .then((response) => {
         this.retrieveAllForms();
-        alert("Successfully imported form");
+        alert(response.data);
       })
       .catch((error) => {
         alert(error.message);
