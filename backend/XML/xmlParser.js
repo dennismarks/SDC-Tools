@@ -53,7 +53,7 @@ function extractQuestions(sectionInput) {
     let qs = ListQuestions.map((q) => parsingQuestion(q));
 
     reQuestions.push(...qs);
-  } 
+  }
   // else if (ListSections) {
   //   reQuestions.push(extractQuestions(ListSections));
   // }
@@ -90,15 +90,17 @@ function parsingQuestion(questionInput) {
     let options = question.ListField[0].List[0].ListItem.map((item) => ({
       optionID: item.$.ID,
       value: item.$.title,
+      moreInfo: item.ListItemResponseField ? true : false,
+      ResponseField: null,
     }));
     if (question.ListField[0].$) {
       if (question.ListField[0].$.maxSelections) {
         questionBody = { is_radio: false, is_checkbox: true, options: options };
         answerType = 3;
+      } else {
+        questionBody = { is_radio: true, is_checkbox: false, options: options };
+        answerType = 2;
       }
-    } else {
-      questionBody = { is_radio: true, is_checkbox: false, options: options };
-      answerType = 2;
     }
   } else if (question.ResponseField) {
     questionBody = null;
