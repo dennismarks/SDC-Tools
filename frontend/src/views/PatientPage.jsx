@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Col, Table, Image} from "react-bootstrap";
 import goBack from "../img/go-back-button.png";
+import alertIcon from "../img/alert-patient-page.png";
 import axios from "axios";
 
 
@@ -13,7 +14,8 @@ export default class PatientPage extends Component {
         allPatients: [],
         relatedForms: [],
         showTr_1: false,
-        showTr_2: false
+        showTr_2: false, 
+        showAlert: false
       }
 
       this.retireveAllRelatedForms = this.retireveAllRelatedForms.bind(this);
@@ -23,11 +25,23 @@ export default class PatientPage extends Component {
 
     retrieveAllPatients = (event) => {
         event.preventDefault();
+        this.setState({
+            showAlert: false
+        })
         axios.get(`http://localhost:3001/api/v1/patient/search/${this.state.patientName}`).then(res => {
-            this.setState({
-                allPatients: res.data,
-                showTr_1: true
-            })
+            const patientsData = res.data
+            if(patientsData.length != 0){
+                this.setState({
+                    allPatients: patientsData,
+                    showTr_1: true
+                })
+            }else{
+                this.setState({
+                    showAlert: true
+                })
+                
+            }
+            
             
         })
     }
@@ -72,6 +86,18 @@ export default class PatientPage extends Component {
             display : this.state.showTr_2 ? 'block':'none',
             cursor: 'pointer'
         }
+        const alertStyling = {
+            width: 30,
+            height: 30,
+            float: 'left',
+            marginRight:5
+        }
+
+        const alertBoxStyling = {
+            marginLeft:27,
+            width:400,
+            display : this.state.showAlert ? 'block':'none',
+        }
         return (
             <div>
                 <div className="App-header">
@@ -79,7 +105,7 @@ export default class PatientPage extends Component {
 
                     <div>
                     <h1>Enter Patient Name:</h1>
-                    <Form onSubmit={this.retrieveAllPatients}>
+                    <Form onSubmit={this.retrieveAllPatients} >
                         <Form.Row>
                             <Col>
                             <Form.Group>
@@ -94,19 +120,27 @@ export default class PatientPage extends Component {
                             <Button
                             variant="primary"
                             type="submit"
-                            style={{ marginTop: "32px", marginLeft: "6px" }}
+                            style={{ marginTop: "32px", marginLeft: "6px", float: 'left'}}
                             >
                             Submit
                             </Button>
+                            
                             </Col>
                         </Form.Row>     
                     </Form>
                     </div>
-
+                    <div style={alertBoxStyling}>
+                        <Image src={alertIcon} style={alertStyling}/>
+                        <p style={{fontSize: 18, fontFamily: 'Arial'}}> We can't find such patient </p>
+                    </div>
+                    
                     <div>
+                    
                         <div style={{float: 'left'}}><Image src={goBack} style={goBackStyling} onClick={this.goBackToPreviousTable}/></div>
 
                         <div style={{float: 'left'}}>
+                            
+                            
                             <Table
                             striped
                             bordered
