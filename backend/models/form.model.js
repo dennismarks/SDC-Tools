@@ -3,56 +3,84 @@ const Schema = mongoose.Schema;
 
 const AnswerSchema = new Schema({
   questionID: {
-    type: Number,
+    type: String,
     required: true,
-    unique: true
   },
-  answer: String // All strings can be convert to option.
+  answer: Schema.Types.Mixed, // For multiple choice, this would be the chosen option id as a string
+});
+
+const MultipleChoiceOption = new Schema({
+  optionID: {
+    type: String,
+    required: true,
+  },
+  value: Schema.Types.Mixed,
+  moreInfo: Boolean,
+  responseField: String,
+});
+
+const MultipleChoiceBodySchema = new Schema({
+  is_radio: { type: Boolean, default: false },
+  is_checkbox: { type: Boolean, default: false },
+  options: [MultipleChoiceOption],
 });
 
 const QuestionSchema = new Schema({
   questionID: {
-    type: Number,
+    type: String,
     required: true,
-    unique: true
   },
   questionTitle: String,
-  enableState: Boolean,
+  questionText: String,
   dependentQuestions: [this],
+  // Since currently only multiple choice needs an extra schema for the question
+  // body, we do not need to create a schema collection or use a discriminator
+  questionBody: MultipleChoiceBodySchema,
   answerType: {
-    type: Number // 0 - Text (or Integer); 1 - MultipleChoice; 2 - T/F
+    type: Number, // 0 - Text; 1 - Integer; 2 - MultipleChoiceRadio; 3 - MultipleChoiceCheckbox; 4 - T/F
   },
-  answerObject: AnswerSchema
+  answerObject: AnswerSchema,
 });
 
 const SectionSchema = new Schema({
   sectionID: {
-    type: Number,
+    type: String,
     required: true,
-    unique: true
   },
   sectionTitle: {
     type: String,
-    required: true
+    required: true,
   },
-  questions: [QuestionSchema]
+  subSections: [this],
+  questions: [QuestionSchema],
 });
 
 const FormSchema = new Schema(
   {
     formID: {
-      type: Number,
+      type: String,
       required: true,
-      unique: true
+      unique: true,
     },
-    diagnostic_id: {
-      type: Number,
+    formTitle: {
+      type: String,
       required: true,
-      unique: true
     },
-    sections: [SectionSchema]
+    diagnosticID: {
+      type: String,
+    },
+    version: String,
+    originalFile: {
+      type: String,
+      required: true,
+    },
+    property: [new Schema({ name: String, value: String })],
+    note: String,
+    sections: [SectionSchema],
+    comment: QuestionSchema,
+    copyrightFooter: String,
   },
-  { collection: "fillouts" }
+  { collection: "fillables" }
 );
 
-module.exports = mongoose.model("form", FormSchema);
+module.exports = mongoose.model("fillables", FormSchema);

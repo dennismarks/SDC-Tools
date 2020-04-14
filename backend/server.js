@@ -5,12 +5,16 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const bodyParser = require("body-parser");
+var multer = require("multer");
+var upload = multer({ dest: "uploads/" });
 
 const { mongoose } = require("./db/mongoose");
 
 const expressApp = express();
 
-expressApp.use(function(req, res, next) {
+expressApp.use(upload.single("xml"));
+
+expressApp.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
 
   res.header(
@@ -80,3 +84,5 @@ app.on("activate", () => {
     createWindow();
   }
 });
+
+module.exports = expressApp;
