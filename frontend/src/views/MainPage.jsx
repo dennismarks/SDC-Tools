@@ -5,7 +5,6 @@ import logo from "../img/home-page-img.svg";
 import eclipse from "../img/ellipse.svg";
 
 const Container = styled.div`
-  /* background-color: #5495c9; */
   background-image: linear-gradient(to bottom right, #4189c3, #7badd5);
   height: 100vh;
   margin: 0;
@@ -27,24 +26,23 @@ const GridV3 = styled.div`
   max-height: 280px;
   align-items: center;
   h1 {
-    margin-top: 150px;
-    font-family: Arial;
+    margin-top: 90px;
     font-style: normal;
     font-weight: bold;
-    font-size: 64px;
+    font-size: 100px;
     line-height: 74px;
     color: #fff;
   }
   p {
-    font-family: Arial;
-    font-size: 28px;
+    margin-top: 12px;
+    font-size: 26px;
     line-height: 32px;
     color: #e7eff6;
   }
   button {
     width: 180px;
     height: 50px;
-    margin-top: 24px;
+    margin-top: 64px;
     background: #e59c63;
     border-radius: 8px;
     font-weight: 800;
@@ -81,8 +79,8 @@ export default class MainPage extends Component {
               A modern infrastructure to facilitate health care providers
               entering structured clinical notes
             </p>
-            <Link to="/forms">
-              <button>GO TO FORMS</button>
+            <Link to="/draft">
+              <button>GO TO DRAFTS</button>
             </Link>
           </GridV3>
           <Logo src={logo} alt="" />
