@@ -102,9 +102,9 @@ export default class PatientPage extends Component {
 
         const dividerStyling = {
             float: 'left',
-            borderLeftWidth: 6,
+            borderLeftWidth: 2,
             borderLeftStyle: 'solid', 
-            borderLeftColor: '#719feb', 
+            borderLeftColor: '#3c547d', 
             height: 300,
             position: 'absolute',
             left:120,
