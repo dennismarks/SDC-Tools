@@ -30,7 +30,7 @@ export default class PatientPage extends Component {
         })
         axios.get(`http://localhost:3001/api/v1/patient/search/${this.state.patientName}`).then(res => {
             const patientsData = res.data
-            if(patientsData.length != 0){
+            if(patientsData.length !== 0){
                 this.setState({
                     allPatients: patientsData,
                     showTr_1: true
