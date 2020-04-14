@@ -252,6 +252,7 @@ export default class SDCSelectTable extends Component {
                 ) : (
                   <td>
                     <Button
+                      style={{ backgroundColor: "#005988", border: "none" }}
                       onClick={() => {
                         this.handleFormClick(form.formID);
                       }}
@@ -301,6 +302,7 @@ export default class SDCSelectTable extends Component {
                 ) : (
                   <td>
                     <Button
+                      style={{ backgroundColor: "#005988", border: "none" }}
                       onClick={() => {
                         this.handlePatientClick(patient.patientID);
                       }}
