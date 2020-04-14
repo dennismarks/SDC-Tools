@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Form, Button, Col, Table } from "react-bootstrap";
+import { Form, Button, Col, Table, Image} from "react-bootstrap";
+import goBack from "../img/go-back-button.png";
 import axios from "axios";
 
 
@@ -17,6 +18,7 @@ export default class PatientPage extends Component {
 
       this.retireveAllRelatedForms = this.retireveAllRelatedForms.bind(this);
       this.renderAPage = this.renderAPage.bind(this);
+      this.goBackToPreviousTable = this.goBackToPreviousTable.bind(this);
     }
 
     retrieveAllPatients = (event) => {
@@ -36,11 +38,11 @@ export default class PatientPage extends Component {
             if (this.state.allPatients[i].patientID === pID){
                 this.setState({
                     relatedForms: this.state.allPatients[i].relatedForms,
-                    showTr_2: true
+                    showTr_2: true,
+                    showTr_1: false
                 })
             }
-            }
-
+        }
     }
 
     enterPatientName = (event) => {
@@ -50,14 +52,32 @@ export default class PatientPage extends Component {
      }
     
 
+    goBackToPreviousTable = () => {
+        this.setState({
+            showTr_1: true,
+            showTr_2: false
+        })
+    }
+
     renderAPage = (dID) =>{
         window.open(`/draft/get/:diagnosticID `)
     }
 
     render() {
+        const goBackStyling = {
+            width: 70,
+            height: 70,
+            marginTop: 30,
+            marginRight:30,
+            display : this.state.showTr_2 ? 'block':'none',
+            cursor: 'pointer'
+        }
         return (
             <div>
                 <div className="App-header">
+
+
+                <div>
                 <h1>Enter Patient Name:</h1>
                 <Form onSubmit={this.retrieveAllPatients}>
                     <Form.Row>
@@ -81,64 +101,79 @@ export default class PatientPage extends Component {
                         </Col>
                     </Form.Row>     
                 </Form>
+                </div>
 
-                <Table
-                striped
-                bordered
-                hover
-                variant="dark"
-                style={{ maxWidth: "max-content" }}>
-                    <div style={{display : this.state.showTr_1 ? 'block':'none'}}>
-                    <thead >
-                        <tr >
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone #</th>
-                        <th>Choose</th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody>
-                        {this.state.allPatients.map(patient => (
-                            <tr>
-                            <td>{patient.name}</td>
-                            <td>{patient.email}</td>
-                            <td>{patient.phone}</td>
-                            <td>
-                                <Button onClick={() => this.retireveAllRelatedForms(patient.patientID)}>Choose</Button>
-                            </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                    </div>
-                </Table>
+                <div>
+                <div style={{float: 'left'}}><Image src={goBack} style={goBackStyling} onClick={this.goBackToPreviousTable}/></div>
 
-                <Table
-                striped
-                bordered
-                hover
-                variant="dark"
-                style={{ maxWidth: "max-content" }}>
-                    <div style={{display : this.state.showTr_2 ? 'block':'none'}}>
-                    <thead>
-                        <tr>
-                        <th>filler</th>
-                        <th>link</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.relatedForms.map(formObject => (
-                            <tr>
-                            <td>{formObject.filler}</td>
-                            <td>
-                                <Button>Link</Button>
-                            </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                    </div>
-                </Table>
-                </div>           
+<div style={{float: 'left'}}>
+<Table
+striped
+bordered
+hover
+variant="dark"
+style={{ maxWidth: "max-content" }}>
+    <div style={{display : this.state.showTr_1 ? 'block':'none'}}>
+    <thead >
+        <tr >
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone #</th>
+        <th>Choose</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        {this.state.allPatients.map(patient => (
+            <tr>
+            <td>{patient.name}</td>
+            <td>{patient.email}</td>
+            <td>{patient.phone}</td>
+            <td>
+                <Button onClick={() => this.retireveAllRelatedForms(patient.patientID)}>Choose</Button>
+            </td>
+            </tr>
+        ))}
+    </tbody>
+    </div>
+</Table>
+
+<Table
+striped
+bordered
+hover
+variant="dark"
+style={{ maxWidth: "max-content" }}>
+    <div style={{display : this.state.showTr_2 ? 'block':'none'}}>
+    <thead>
+        <tr>
+        <th>filler</th>
+        <th>link</th>
+        </tr>
+    </thead>
+    <tbody>
+        {this.state.relatedForms.map(formObject => (
+            <tr>
+            <td>{formObject.filler}</td>
+            <td>
+                <Button>Link</Button>
+            </td>
+            </tr>
+        ))}
+    </tbody>
+    </div>
+</Table>
+</div>
+
+                </div>
+
+                
+                
+
+
+
+                
+                </div>                     
             </div>
         );
     }
