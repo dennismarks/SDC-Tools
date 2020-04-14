@@ -28,7 +28,7 @@ export default class Main extends Component {
         >
           <Link to="/">
             <img
-              style={{ width: "50px", marginLeft: "50px", paddingTop: "10px" }}
+              style={{ width: "50px", marginLeft: "50px", paddingTop: "2px" }}
               src={icon}
               alt=""
             />
