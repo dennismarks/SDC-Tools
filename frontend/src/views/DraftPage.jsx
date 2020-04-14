@@ -4,12 +4,10 @@ import axios from "axios";
 import styled from "styled-components/macro";
 
 const MainTitle = styled.div`
-  margin-bottom: 20px;
   h1 {
-    /* font-family: Arial; */
     font-style: normal;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 52px;
     line-height: 55px;
     color: #ffffff;
   }
@@ -18,7 +16,7 @@ const MainTitle = styled.div`
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    color: #ffffff;
+    color: #e7eff6;
     margin-top: 5px;
   }
 `;
@@ -137,21 +135,23 @@ export default class DraftPage extends Component {
 
     const formStyle = {
       width: "1200px",
-      margin: "200px auto",
+      margin: "100px auto 200px auto",
     };
 
     const saveButtonStyle = {
       position: "fixed",
       bottom: "38px",
       right: "5%",
-      marginRight: "17px",
-      width: "8%",
-      minWidth: "60px",
-      borderRadius: "5px",
-      borderWidth: "5px",
-      backgroundColor: "#e8b91e",
+      width: "125px",
+      height: "50px",
+      borderColor: "#E59C63",
+      borderRadius: "8px",
+      backgroundColor: "#E59C63",
       outline: "none",
-      fontWeight: "500",
+      fontWeight: "bold",
+      fontSize: "20px",
+      color: "white",
+      textTransform: "uppercase",
     };
 
     return (
