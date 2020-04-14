@@ -15,6 +15,8 @@ const MultipleChoiceOption = new Schema({
     required: true,
   },
   value: Schema.Types.Mixed,
+  moreInfo: Boolean,
+  responseField: String,
 });
 
 const MultipleChoiceBodySchema = new Schema({

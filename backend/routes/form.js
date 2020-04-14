@@ -18,6 +18,7 @@ router.route("/import").post((req, res) => {
       parser
         .xmlParse(file)
         .then((data) => {
+          // res.status(200).json(data);
           // upload to Atlas
           form.collection
             .insertOne(data)
@@ -54,6 +55,23 @@ router.route("/remove/:formID").delete((req, res) => {
   });
 });
 
+router.route("/search/:title").get((req, res) => {
+  admin
+    .findOne()
+    .then((data) => {
+      const withTitle = data["allForms"].filter((form) =>
+        form.formTitle.includes(req.params.title)
+      );
+
+      res.json({
+        allForms: withTitle,
+      });
+    })
+    .catch((error) => {
+      res.status(404).send(error.message);
+    });
+});
+
 // Get all available fillout forms
 router.route("/").get((req, res) => {
   admin
@@ -88,7 +106,9 @@ function cryptDe(encrypted) {
 // Get draft form specifically @formID @patientID
 router.route("/get/:formID/:patientID").get((req, res) => {
   form.findOne({ formID: req.params.formID }).then((data) => {
-    cryptEn(req.params.formID.concat(data.version, req.params.patientID))
+    cryptEn(
+      req.params.formID.concat(" ", data.version, " ", req.params.patientID)
+    )
       .then((diag) => {
         const newDraft = data.toObject();
         newDraft.diagnosticID = diag; // Generating diagnosticID for new Draft
