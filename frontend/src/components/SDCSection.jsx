@@ -24,6 +24,7 @@ export default class SDCSection extends Component {
       marginTop: "50px",
       width: "100%",
       backgroundColor: "#3B4856",
+      boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.4)",
     };
 
     let questionComponents = [];
