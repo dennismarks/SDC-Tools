@@ -4,9 +4,8 @@ import { Navbar, Nav } from "react-bootstrap";
 import icon from "../img/main-icon.png";
 
 const link = {
-  fontFamily: "Arial",
   fontWeight: "bold",
-  fontSize: "18px",
+  fontSize: "16px",
   lineHeight: "21px",
   color: "#E7EFF6",
   paddingRight: "35px",
@@ -20,13 +19,11 @@ export default class Main extends Component {
         <Navbar
           collapseOnSelect
           expand="lg"
-          bg="dark"
-          variant="dark"
           fixed="top"
           style={{
             width: "100vw",
             height: "50px",
-            paddingTop: "35px",
+            backgroundColor: "#5495C9",
           }}
         >
           <Link to="/">

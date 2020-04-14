@@ -1,6 +1,25 @@
 import React, { Component } from "react";
 import SDCSection from "../components/SDCSection";
 import axios from "axios";
+import styled from "styled-components/macro";
+
+const MainTitle = styled.div`
+  h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 52px;
+    line-height: 55px;
+    color: #ffffff;
+  }
+  h7 {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #e7eff6;
+    margin-top: 5px;
+  }
+`;
 
 export default class DraftPage extends Component {
   constructor(props) {
@@ -12,6 +31,7 @@ export default class DraftPage extends Component {
     this.saveDraft = this.saveDraft.bind(this);
 
     this.initialize = this.initialize.bind(this);
+
     // draft is not in this.state because we don't need the draft component to re-render
     // every time we update the answers - sub components take care of the re-rendering
     this.draft = null;
@@ -20,6 +40,7 @@ export default class DraftPage extends Component {
       fetchError: null,
     };
   }
+
   //TODO: PLEASE REFACTOR THIS OMG
 
   cryptEn(data) {
@@ -170,36 +191,34 @@ export default class DraftPage extends Component {
     });
 
     const formStyle = {
-      marginTop: "80px",
-      marginLeft: "5%",
-      marginRight: "5%",
-      maringBottom: "30px",
-      backgroundColor: "#282c34",
-      width: "90%",
+      width: "1200px",
+      margin: "100px auto 200px auto",
     };
 
     const saveButtonStyle = {
       position: "fixed",
       bottom: "38px",
       right: "5%",
-      marginRight: "17px",
-      width: "8%",
-      minWidth: "60px",
-      borderRadius: "5px",
-      borderWidth: "5px",
-      backgroundColor: "#e8b91e",
+      width: "125px",
+      height: "50px",
+      borderColor: "#E59C63",
+      borderRadius: "8px",
+      backgroundColor: "#E59C63",
       outline: "none",
-      fontWeight: "500",
+      fontWeight: "bold",
+      fontSize: "20px",
+      color: "white",
+      textTransform: "uppercase",
     };
 
     return (
       <div className="draft-page">
         <div className="App-header">
           <div style={formStyle}>
-            <div style={{ textAlign: "center", marginBottom: "30px" }}>
-              <h2>{this.draft.formTitle}</h2>
+            <MainTitle>
+              <h1>{this.draft.formTitle}</h1>
               <h7>Version {this.draft.version}</h7>
-            </div>
+            </MainTitle>
             {sections}
           </div>
           <button style={saveButtonStyle} onClick={this.saveDraft}>
