@@ -91,7 +91,7 @@ export default class DraftPage extends Component {
     }
 
     question.dependentQuestions.forEach((dependentQuestion, i) => {
-      if (this.findQuestion(dependentQuestion, questionID, value)) {
+      if (this.findQuestionAndUpdate(dependentQuestion, questionID, value)) {
         return true;
       }
     });
