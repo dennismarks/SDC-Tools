@@ -65,3 +65,5 @@ To access a previously saved form, we can simply go to the patient's profile and
 ![Get saved draft](docs/savedForm.gif)
 
 ## Motivation
+
+Many of the tools being used in the industry are old and are not flexible. We went out to try and develop a solution that is easy to use and adapt, even for the freshest of practitioners. We also want a good grade. 
