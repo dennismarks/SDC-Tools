@@ -52,6 +52,7 @@ export default class PatientPage extends Component {
         let lengthOfPatients = this.state.allPatients.length
         for(let i = 0; i< lengthOfPatients; i++){
             if (this.state.allPatients[i].patientID === pID){
+                console.log(this.state.allPatients)
                 this.setState({
                     relatedForms: this.state.allPatients[i].relatedForms,
                     showTr_2: true,
@@ -76,7 +77,7 @@ export default class PatientPage extends Component {
     }
 
     renderAPage = (dID) =>{
-        window.open(`/draft/get/:diagnosticID `)
+        window.open(`/draft/${dID}`);
     }
 
     render() {
@@ -206,7 +207,7 @@ export default class PatientPage extends Component {
                                             <tr>
                                             <td>{formObject.filler}</td>
                                             <td>
-                                                <Button>Link</Button>
+                                                <Button onClick={() => this.renderAPage(formObject.diagnosticID)}>Link</Button>
                                             </td>
                                             </tr>
                                         ))}
