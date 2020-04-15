@@ -52,18 +52,26 @@ export default class PatientPage extends Component {
 
     retireveAllRelatedForms = (pID) => {
         let lengthOfPatients = this.state.allPatients.length
+        let flag = true
         for(let i = 0; i< lengthOfPatients; i++){
             if (this.state.allPatients[i].patientID === pID){
-                this.setState({
-                    relatedForms: this.state.allPatients[i].relatedForms,
-                    showTr_2: true,
-                    showTr_1: false
-                })
+                if(this.state.allPatients[i].relatedForms.length !== 0){
+                    this.setState({
+                        relatedForms: this.state.allPatients[i].relatedForms,
+                        showTr_2: true,
+                        showTr_1: false
+                    })
+                    flag = false
+                }
+                break  
             }
         }
-        this.setState({
-            showAlert_2: true
-        })
+        if (flag){
+            this.setState({
+                showAlert_2: true
+            })
+        }
+        
     }
 
     enterPatientName = (event) => {
@@ -194,18 +202,19 @@ export default class PatientPage extends Component {
                                 <Table
                                 
                                 hover
-                                style={{ maxWidth: "max-content", backgroundColor: 'white', borderRadius: 7}}>
+                                style={{ maxWidth: "max-content", backgroundColor: 'white', borderRadius: 7, position: 'absolute', left: 275}}>
                                     <div style={{display : this.state.showTr_2 ? 'block':'none'}}>
-                                    {/* <thead>
+                                    
+                                    <thead >
                                         <tr>
-                                        <th>filler</th>
-                                        <th>link</th>
+                                        <th >Filler</th>
+                                        <th >Form</th>
                                         </tr>
-                                    </thead> */}
+                                    </thead>
                                     <tbody>
                                         {this.state.relatedForms.map(formObject => (
                                             <tr>
-                                            <td style={{minWidth: 100}}>{"filler:  " + formObject.filler}</td>
+                                            <td style={{minWidth: 100}}>{formObject.filler}</td>
                                             <td style={{minWidth: 100}}>
                                                 <Button style={{backgroundColor:'#e59c63'}}onClick={() => this.renderAPage(formObject.diagnosticID)}>Grab Form</Button>
                                             </td>
