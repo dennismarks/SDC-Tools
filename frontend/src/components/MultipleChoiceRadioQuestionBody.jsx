@@ -9,16 +9,18 @@ export default class MultipleChoiceRadioQuestionBody extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleMoreInfoChange = this.handleMoreInfoChange.bind(this);
 
-    this.state = {
-      answer: props.answer,
-      moreInfo: {},
-    };
+    let moreInfo = {};
 
     props.question_options.forEach((option) => {
       if (option.moreInfo) {
-        this.state.moreInfo[option.optionID] = option.ResponseField;
+        moreInfo[option.optionID] = option.ResponseField;
       }
     });
+
+    this.state = {
+      answer: props.answer,
+      moreInfo: moreInfo,
+    };
   }
 
   handleChange(event) {

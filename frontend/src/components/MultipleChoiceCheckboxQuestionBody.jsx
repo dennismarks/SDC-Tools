@@ -9,16 +9,18 @@ export default class MultipleChoiceCheckboxQuestionBody extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleMoreInfoChange = this.handleMoreInfoChange.bind(this);
 
-    this.state = {
-      answer: [],
-      moreInfo: {},
-    };
+    let moreInfo = {};
 
     props.question_options.forEach((option) => {
       if (option.moreInfo) {
-        this.state.moreInfo[option.optionID] = option.ResponseField;
+        moreInfo[option.optionID] = option.ResponseField;
       }
     });
+
+    this.state = {
+      answer: [],
+      moreInfo: moreInfo,
+    };
 
     if (props.answer) {
       this.state.answer = props.answer;
