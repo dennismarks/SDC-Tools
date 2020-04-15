@@ -207,7 +207,7 @@ export default class PatientPage extends Component {
                                             <tr>
                                             <td style={{minWidth: 100}}>{"filler:  " + formObject.filler}</td>
                                             <td style={{minWidth: 100}}>
-                                                <Button style={{wdith:100, backgroundColor:'#e59c63'}}onClick={() => this.renderAPage(formObject.diagnosticID)}>Link</Button>
+                                                <Button style={{backgroundColor:'#e59c63'}}onClick={() => this.renderAPage(formObject.diagnosticID)}>Grab Form</Button>
                                             </td>
                                             </tr>
                                         ))}
