@@ -12,7 +12,6 @@ const CryptoJS = require("crypto-js");
 // Post new XML to be processed
 router.route("/import").post((req, res) => {
   // Take in XML
-
   fs.readFile(req.file.path, { encoding: "utf-8" }, function (e, file) {
     if (!e) {
       parser
