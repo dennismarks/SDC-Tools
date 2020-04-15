@@ -12,7 +12,7 @@
 - [Contributing Guide](#contributing-guide)
 - [Instructions](#instructions)
   - [Getting Started](#getting-started)
-    - [Form Not Found](#form-not-found)
+  - [Form Not Found](#form-not-found)
   - [Filling out data](#filling-out-data)
   - [Getting saved draft](#getting-saved-draft)
 - [Motivation](#motivation)
@@ -46,7 +46,7 @@ From there you can select the form and patient you need.
 
 ![Picking](docs/picking.gif)
 
-#### Form Not Found
+### Form Not Found
 
 In the case of not finding the form that you require, you can directly upload the SDC form in XML type to be saved in database to be used instantly and available for everyone else.
 

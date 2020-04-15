@@ -36,8 +36,8 @@ export default class Main extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto" style={{ paddingRight: "50px" }}>
-              <Link style={link} to="/forms">
-                Forms
+              <Link style={link} to="/Draft">
+                Draft
               </Link>
               <Link style={link} to="/patients">
                 Patients
