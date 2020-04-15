@@ -184,7 +184,7 @@ router.route("/draft/save").post((req, res) => {
                       res.status(500).send(err);
                     } else {
                       re.relatedForms.push({
-                        filler: null,
+                        filler: "Admin",
                         diagnosticID: req.body.payload.diagnosticID,
                       });
                       re.save()
