@@ -150,7 +150,7 @@ export default class PatientPage extends Component {
 
                     <div>
                         <div style={{float: 'left', height:70, width:70}}>
-                            <div style={{position:'absolute', left:50}}><Image src={goBack} style={goBackStyling} onClick={this.goBackToPreviousTable}/></div>
+                            <div style={{position:'absolute', left:450}}><Image src={goBack} style={goBackStyling} onClick={this.goBackToPreviousTable}/></div>
                         </div>
 
                         
