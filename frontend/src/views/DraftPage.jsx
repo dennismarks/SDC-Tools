@@ -28,6 +28,7 @@ export default class DraftPage extends Component {
     this.render = this.render.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.findQuestionAndUpdate = this.findQuestionAndUpdate.bind(this);
+    this.findSectionAndUpdate = this.findSectionAndUpdate.bind(this);
     this.saveDraft = this.saveDraft.bind(this);
 
     this.initialize = this.initialize.bind(this);
@@ -76,12 +77,26 @@ export default class DraftPage extends Component {
     }
 
     this.draft.sections.forEach((section) => {
-      section.questions.forEach((question) => {
-        if (this.findQuestionAndUpdate(question, questionID, value)) {
-          return;
-        }
-      });
+      if (this.findSectionAndUpdate(section, questionID, value)) {
+        return;
+      }
     });
+  }
+
+  findSectionAndUpdate(section, questionID, value) {
+    section.questions.forEach((question) => {
+      if (this.findQuestionAndUpdate(question, questionID, value)) {
+        return true;
+      }
+    });
+
+    section.subSections.forEach((subSection) => {
+      if (this.findSectionAndUpdate(subSection, questionID, value)) {
+        return true;
+      }
+    });
+
+    return false;
   }
 
   findQuestionAndUpdate(question, questionID, value) {
@@ -90,7 +105,7 @@ export default class DraftPage extends Component {
       return true;
     }
 
-    question.dependentQuestions.forEach((dependentQuestion, i) => {
+    question.dependentQuestions.forEach((dependentQuestion) => {
       if (this.findQuestionAndUpdate(dependentQuestion, questionID, value)) {
         return true;
       }
