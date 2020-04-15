@@ -42,11 +42,8 @@ export default class PatientPage extends Component {
             }else{
                 this.setState({
                     showAlert_1: true
-                })
-                
-            }
-            
-            
+                })   
+            }  
         })
     }
 
@@ -202,7 +199,7 @@ export default class PatientPage extends Component {
                                 <Table
                                 
                                 hover
-                                style={{ maxWidth: "max-content", backgroundColor: 'white', borderRadius: 7, position: 'absolute', left: 275}}>
+                                style={{ maxWidth: "max-content", backgroundColor: 'white', borderRadius: 7, position: 'absolute', left: 530}}>
                                     <div style={{display : this.state.showTr_2 ? 'block':'none'}}>
                                     
                                     <thead >
