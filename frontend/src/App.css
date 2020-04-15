@@ -3,12 +3,15 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+*:focus {
+  outline: none;
+}
+
 .App {
   text-align: center;
 }
 
 .App-header {
-  background-color: #5495c9;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,4 +22,8 @@
 
 .App-link {
   color: #61dafb;
+}
+
+body {
+  background-color: #5495c9;
 }

@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "cd backend && mocha --timeout 10s --exit --inline-diffs",
+    "start": "nodemon ./backend/server.js",
     "dev": "cd frontend && react-scripts build && cd .. && nodemon ./backend/server.js",
     "build": "cd frontend && react-scripts build"
   },

@@ -14,7 +14,7 @@ const app = express();
 
 app.use(upload.single("xml"));
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
 
   res.header(
@@ -31,7 +31,8 @@ const formRoutes = require("./routes/form");
 const accountRoutes = require("./routes/account");
 /* Routes from router end */
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 /* Server Resource Routes */
 app.use("/api/v1/patient", patientRoutes);
