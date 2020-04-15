@@ -19,7 +19,7 @@ export default class PatientPage extends Component {
 
     retrieveAllPatients = (event) => {
         event.preventDefault();
-        axios.get(`http://localhost:3001/api/v1/patient/search/${this.state.patientName}`).then(res => {
+        axios.get(`http://localhost:${process.env.PORT}/api/v1/patient/search/${this.state.patientName}`).then(res => {
             this.setState({
                 allPatients: res.data
             })
@@ -180,7 +180,7 @@ export default class PatientPage extends Component {
 //   }
 
 //   getPatients() {
-//     axios.get("http://localhost:3001/api/v1/patient/").then((response) => {
+//     axios.get(`http://localhost:${process.env.PORT}/api/v1/patient/`).then((response) => {
 //       if (response.data.length > 0) {
 //         console.log(response.data);
 
@@ -210,7 +210,7 @@ export default class PatientPage extends Component {
 
 //     console.log(patient);
 //     axios
-//       .post("http://localhost:3001/api/v1/patient/add", patient)
+//       .post(`http://localhost:${process.env.PORT}/api/v1/patient/add`, patient)
 //       .then((res) => {
 //         console.log(res.data);
 //         this.getPatients();

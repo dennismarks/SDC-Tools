@@ -5,7 +5,7 @@ const chaiHttp = require("chai-http");
 const { expect } = chai;
 
 var supertest = require("supertest");
-var request = supertest("localhost:3001");
+var request = supertest(`localhost:${process.env.PORT}`);
 
 chai.use(chaiHttp);
 

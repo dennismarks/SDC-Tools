@@ -43,7 +43,7 @@ export default class HomePage extends Component {
   }
 
   getPatients() {
-    axios.get("http://localhost:3001/api/v1/patient/").then((response) => {
+    axios.get(`http://localhost:${process.env.PORT}/api/v1/patient/`).then((response) => {
       if (response.data.length > 0) {
         console.log(response.data);
 
@@ -55,7 +55,7 @@ export default class HomePage extends Component {
   }
 
   getForms() {
-    axios.get("http://localhost:3001/api/v1/form/").then((response) => {
+    axios.get(`http://localhost:${process.env.PORT}/api/v1/form/`).then((response) => {
       if (response.data.length > 0) {
         console.log(response.data);
 
@@ -84,7 +84,7 @@ export default class HomePage extends Component {
 
     // console.log(patient);
     // axios
-    //   .post("http://localhost:3001/api/v1/patient/add", patient)
+    //   .post(`http://localhost:${process.env.PORT}/api/v1/patient/add`, patient)
     //   .then((res) => {
     //     console.log(res.data);
     //     this.getPatients();

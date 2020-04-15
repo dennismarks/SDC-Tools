@@ -127,7 +127,7 @@ export default class SDCSelectTable extends Component {
   }
 
   retrieveAllPatients() {
-    axios.get(`http://localhost:3001/api/v1/patient/`).then((res) => {
+    axios.get(`http://localhost:${process.env.PORT}/api/v1/patient/`).then((res) => {
       this.setState({
         allPatients: res.data,
       });
@@ -153,7 +153,7 @@ export default class SDCSelectTable extends Component {
   };
 
   retrieveAllForms() {
-    axios.get(`http://localhost:3001/api/v1/form/`).then((res) => {
+    axios.get(`http://localhost:${process.env.PORT}/api/v1/form/`).then((res) => {
       this.setState({
         allForms: res.data.allForms,
       });
@@ -186,7 +186,7 @@ export default class SDCSelectTable extends Component {
 
     axios({
       method: "post",
-      url: `http://localhost:3001/api/v1/form/import`,
+      url: `http://localhost:${process.env.PORT}/api/v1/form/import`,
       data: file,
       headers: { "Content-Type": "multipart/form-data" },
     })
@@ -224,7 +224,7 @@ export default class SDCSelectTable extends Component {
     if (this.state.formID && this.state.patientID) {
       axios({
         method: "get",
-        url: `http://localhost:3001/api/v1/form/get/${this.state.formID}/${this.state.patientID}`,
+        url: `http://localhost:${process.env.PORT}/api/v1/form/get/${this.state.formID}/${this.state.patientID}`,
         responseType: "application/json",
       }).then((response) => {
         const diagnosticID = response.data.diagnosticID;

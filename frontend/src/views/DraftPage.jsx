@@ -122,7 +122,7 @@ export default class DraftPage extends Component {
 
     axios({
       method: "post",
-      url: "http://localhost:3001/api/v1/form/draft/save",
+      url: `http://localhost:${process.env.PORT}/api/v1/form/draft/save`,
       data: { payload: this.draft },
       json: true,
     })
@@ -139,7 +139,7 @@ export default class DraftPage extends Component {
   initialize() {
     axios({
       method: "get",
-      url: `http://localhost:3001/api/v1/form/draft/get/${this.props.match.params.diagnosticID}`,
+      url: `http://localhost:${process.env.PORT}/api/v1/form/draft/get/${this.props.match.params.diagnosticID}`,
       responseType: "application/json",
     })
       .then((response) => {
@@ -148,7 +148,7 @@ export default class DraftPage extends Component {
             .then((decrypted) => {
               axios({
                 method: "get",
-                url: `http://localhost:3001/api/v1/form/get/${decrypted.formID}/${decrypted.patientID}`,
+                url: `http://localhost:${process.env.PORT}/api/v1/form/get/${decrypted.formID}/${decrypted.patientID}`,
                 responseType: "application/json",
               }).then((response) => {
                 response.data.diagnosticID = this.props.match.params.diagnosticID;

@@ -35,12 +35,12 @@ export default class FormPage extends Component {
   getDedicatedFillout(e) {
     axios({
       method: "get",
-      url: `http://localhost:3001/api/v1/form/GET/${this.state.formID}`,
+      url: `http://localhost:${process.env.PORT}/api/v1/form/GET/${this.state.formID}`,
       responseType: "application/json",
     })
       .then((response) => {
         window.open(
-          `http://localhost:3001/api/v1/form/GET/${this.state.formID}`,
+          `http://localhost:${process.env.PORT}/api/v1/form/GET/${this.state.formID}`,
           "_blank"
         );
       })
@@ -52,7 +52,7 @@ export default class FormPage extends Component {
   getFillouts() {
     axios({
       method: "get",
-      url: "http://localhost:3001/api/v1/form",
+      url: `http://localhost:${process.env.PORT}/api/v1/form`,
       responseType: "application/json",
     }).then((response) => {
       console.log(response.data);
