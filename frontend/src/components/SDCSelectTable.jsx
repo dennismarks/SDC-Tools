@@ -127,11 +127,13 @@ export default class SDCSelectTable extends Component {
   }
 
   retrieveAllPatients() {
-    axios.get(`http://localhost:${process.env.PORT}/api/v1/patient/`).then((res) => {
-      this.setState({
-        allPatients: res.data,
+    axios
+      .get(`http://localhost:${process.env.PORT}/api/v1/patient/`)
+      .then((res) => {
+        this.setState({
+          allPatients: res.data,
+        });
       });
-    });
   }
 
   onChangeSearchPatientName = (e) => {
@@ -153,11 +155,13 @@ export default class SDCSelectTable extends Component {
   };
 
   retrieveAllForms() {
-    axios.get(`http://localhost:${process.env.PORT}/api/v1/form/`).then((res) => {
-      this.setState({
-        allForms: res.data.allForms,
+    axios
+      .get(`http://localhost:${process.env.PORT}/api/v1/form/`)
+      .then((res) => {
+        this.setState({
+          allForms: res.data.allForms,
+        });
       });
-    });
   }
 
   onChangeSearchForm = (e) => {
@@ -212,6 +216,7 @@ export default class SDCSelectTable extends Component {
   }
 
   handleCreateDraft() {
+    console.log(process.env.PORT);
     if (!this.state.patientID) {
       alert("Please select patient!");
       return console.log("Please select patient!");
