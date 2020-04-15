@@ -60,7 +60,6 @@ const DraftSchema = new Schema(
     formID: {
       type: String,
       required: true,
-
     },
     formTitle: {
       type: String,
