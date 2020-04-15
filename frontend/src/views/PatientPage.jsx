@@ -15,7 +15,8 @@ export default class PatientPage extends Component {
         relatedForms: [],
         showTr_1: false,
         showTr_2: false, 
-        showAlert: false
+        showAlert_1: false,
+        showAlert_2: false,
       }
 
       this.retireveAllRelatedForms = this.retireveAllRelatedForms.bind(this);
@@ -28,7 +29,8 @@ export default class PatientPage extends Component {
         this.setState({
             showTr_1: false,
             showTr_2: false,
-            showAlert: false
+            showAlert_1: false,
+            showAlert_2: false
         })
         axios.get(`http://localhost:3001/api/v1/patient/search/${this.state.patientName}`).then(res => {
             const patientsData = res.data
@@ -39,7 +41,7 @@ export default class PatientPage extends Component {
                 })
             }else{
                 this.setState({
-                    showAlert: true
+                    showAlert_1: true
                 })
                 
             }
@@ -52,7 +54,6 @@ export default class PatientPage extends Component {
         let lengthOfPatients = this.state.allPatients.length
         for(let i = 0; i< lengthOfPatients; i++){
             if (this.state.allPatients[i].patientID === pID){
-                console.log(this.state.allPatients)
                 this.setState({
                     relatedForms: this.state.allPatients[i].relatedForms,
                     showTr_2: true,
@@ -60,6 +61,9 @@ export default class PatientPage extends Component {
                 })
             }
         }
+        this.setState({
+            showAlert_2: true
+        })
     }
 
     enterPatientName = (event) => {
@@ -95,22 +99,18 @@ export default class PatientPage extends Component {
             marginRight:5
         }
 
-        const alertBoxStyling = {
+        const alertBoxStyling_1 = {
             marginLeft:27,
             width:400,
-            display : this.state.showAlert ? 'block':'none',
+            display : this.state.showAlert_1 ? 'block':'none',
         }
 
-        const dividerStyling = {
-            float: 'left',
-            borderLeftWidth: 2,
-            borderLeftStyle: 'solid', 
-            borderLeftColor: '#3c547d', 
-            height: 300,
-            position: 'absolute',
-            left:120,
-            marginButton: 40
+        const alertBoxStyling_2 = {
+            marginLeft:27,
+            width:400,
+            display : this.state.showAlert_2 ? 'block':'none',
         }
+
         return (
             <div>
                 <div className="App-header">
@@ -133,7 +133,7 @@ export default class PatientPage extends Component {
                             <Button
                             variant="primary"
                             type="submit"
-                            style={{ marginTop: "32px", marginLeft: "6px", float: 'left'}}
+                            style={{ marginTop: "32px", marginLeft: "6px", float: 'left', backgroundColor:'#e59c63'}}
                             >
                             Submit
                             </Button>
@@ -148,40 +148,37 @@ export default class PatientPage extends Component {
                             <div style={{position:'absolute', left:50}}><Image src={goBack} style={goBackStyling} onClick={this.goBackToPreviousTable}/></div>
                         </div>
 
-                        <div style={dividerStyling}> </div>
                         
                         <div style={{float: 'left'}}>
 
-                            <div style={alertBoxStyling}>
+                            <div style={alertBoxStyling_1}>
                             <Image src={alertIcon} style={alertStyling}/>
                             <p style={{fontSize: 18, fontFamily: 'Arial'}}> We can't find such patient </p>
                             </div>
 
                             <div> 
                                 <Table
-                                striped
-                                bordered
+                                
                                 hover
-                                variant="dark"
-                                style={{ maxWidth: "max-content" }}>
+                                style={{ maxWidth: "max-content", backgroundColor: 'white', borderRadius: 7}}>
                                     <div style={{display : this.state.showTr_1 ? 'block':'none'}}>
                                     <thead >
-                                        <tr >
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone #</th>
-                                        <th>Choose</th>
+                                        <tr>
+                                        <th >Name</th>
+                                        <th >Email</th>
+                                        <th >Phone #</th>
+                                        <th >Choose</th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody>
                                         {this.state.allPatients.map(patient => (
                                             <tr>
-                                            <td>{patient.name}</td>
-                                            <td>{patient.email}</td>
-                                            <td>{patient.phone}</td>
-                                            <td>
-                                                <Button onClick={() => this.retireveAllRelatedForms(patient.patientID)}>Choose</Button>
+                                            <td style={{minWidth: 100}}>{patient.name}</td>
+                                            <td style={{minWidth: 100}}>{patient.email}</td>
+                                            <td style={{minWidth: 100}}>{patient.phone}</td>
+                                            <td style={{minWidth: 100}}>
+                                                <Button style={{backgroundColor:'#e59c63'}} onClick={() => this.retireveAllRelatedForms(patient.patientID)}>Choose</Button>
                                             </td>
                                             </tr>
                                         ))}
@@ -189,25 +186,28 @@ export default class PatientPage extends Component {
                                     </div>
                                 </Table>
 
+                                <div style={alertBoxStyling_2}>
+                                <Image src={alertIcon} style={alertStyling}/>
+                                <p style={{fontSize: 18, fontFamily: 'Arial'}}> We can't find the record </p>
+                                </div>
+
                                 <Table
-                                striped
-                                bordered
+                                
                                 hover
-                                variant="dark"
-                                style={{ maxWidth: "max-content" }}>
+                                style={{ maxWidth: "max-content", backgroundColor: 'white', borderRadius: 7}}>
                                     <div style={{display : this.state.showTr_2 ? 'block':'none'}}>
-                                    <thead>
+                                    {/* <thead>
                                         <tr>
                                         <th>filler</th>
                                         <th>link</th>
                                         </tr>
-                                    </thead>
+                                    </thead> */}
                                     <tbody>
                                         {this.state.relatedForms.map(formObject => (
                                             <tr>
-                                            <td>{formObject.filler}</td>
-                                            <td>
-                                                <Button onClick={() => this.renderAPage(formObject.diagnosticID)}>Link</Button>
+                                            <td style={{minWidth: 100}}>{"filler:  " + formObject.filler}</td>
+                                            <td style={{minWidth: 100}}>
+                                                <Button style={{wdith:100, backgroundColor:'#e59c63'}}onClick={() => this.renderAPage(formObject.diagnosticID)}>Link</Button>
                                             </td>
                                             </tr>
                                         ))}
