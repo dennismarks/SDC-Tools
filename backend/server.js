@@ -31,7 +31,8 @@ const formRoutes = require("./routes/form");
 const accountRoutes = require("./routes/account");
 /* Routes from router end */
 
-expressApp.use(bodyParser.json());
+expressApp.use(bodyParser.json({ limit: "50mb" }));
+expressApp.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 /* Server Resource Routes */
 expressApp.use("/api/v1/patient", patientRoutes);

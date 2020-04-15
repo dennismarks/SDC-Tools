@@ -28,7 +28,7 @@ export default class Main extends Component {
         >
           <Link to="/">
             <img
-              style={{ width: "50px", marginLeft: "50px", paddingTop: "10px" }}
+              style={{ width: "50px", marginLeft: "50px", paddingTop: "18px" }}
               src={icon}
               alt=""
             />
@@ -36,8 +36,8 @@ export default class Main extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto" style={{ paddingRight: "50px" }}>
-              <Link style={link} to="/forms">
-                Forms
+              <Link style={link} to="/Draft">
+                Draft
               </Link>
               <Link style={link} to="/patients">
                 Patients

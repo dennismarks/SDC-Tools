@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "cd backend && mocha --timeout 10s --exit --inline-diffs",
+    "start": "node ./backend/server.js",
     "dev": "cd frontend && react-scripts build && cd .. && nodemon ./backend/server.js",
     "build": "cd frontend && react-scripts build --em.main=../backend/server.js",
     "start": "concurrently \"BROWSER=none npm run dev\" \"wait-on http://localhost:3001 && electron .\"",
@@ -61,7 +62,7 @@
     "styled-components": "^5.1.0",
     "supertest": "^4.0.2",
     "typescript": "^3.8.3",
-    "xml2js": "^0.4.23"
+
   },
   "eslintConfig": {
     "extends": "react-app"

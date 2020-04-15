@@ -112,6 +112,7 @@ router.route("/get/:formID/:patientID").get((req, res) => {
       .then((diag) => {
         const newDraft = data.toObject();
         newDraft.diagnosticID = diag; // Generating diagnosticID for new Draft
+        delete newDraft["_id"];
         res.json(newDraft);
       })
       .catch((error) => {
@@ -184,7 +185,7 @@ router.route("/draft/save").post((req, res) => {
                       res.status(500).send(err);
                     } else {
                       re.relatedForms.push({
-                        filler: null,
+                        filler: "Admin",
                         diagnosticID: req.body.payload.diagnosticID,
                       });
                       re.save()

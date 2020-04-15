@@ -28,6 +28,7 @@ export default class DraftPage extends Component {
     this.render = this.render.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.findQuestionAndUpdate = this.findQuestionAndUpdate.bind(this);
+    this.findSectionAndUpdate = this.findSectionAndUpdate.bind(this);
     this.saveDraft = this.saveDraft.bind(this);
 
     this.initialize = this.initialize.bind(this);
@@ -70,33 +71,42 @@ export default class DraftPage extends Component {
     });
   }
 
-  handleChange(value, questionID) {
+  handleChange(value, questionID, moreInfo = null) {
     if (this.draft === null) {
       return;
     }
 
     this.draft.sections.forEach((section) => {
-      section.questions.forEach((question) => {
-        if (this.findQuestionAndUpdate(question, questionID, value)) {
-          return;
-        }
-      });
+      this.findSectionAndUpdate(section, questionID, value, moreInfo);
     });
   }
 
-  findQuestionAndUpdate(question, questionID, value) {
-    if (question.questionID === questionID) {
-      question.answerObject.answer = value;
-      return true;
-    }
-
-    question.dependentQuestions.forEach((dependentQuestion, i) => {
-      if (this.findQuestion(dependentQuestion, questionID, value)) {
-        return true;
-      }
+  findSectionAndUpdate(section, questionID, value, moreInfo) {
+    section.questions.forEach((question) => {
+      this.findQuestionAndUpdate(question, questionID, value, moreInfo);
     });
 
-    return false;
+    section.subSections.forEach((subSection) => {
+      this.findSectionAndUpdate(subSection, questionID, value, moreInfo);
+    });
+  }
+
+  findQuestionAndUpdate(question, questionID, value, moreInfo) {
+    if (question.questionID === questionID) {
+      question.answerObject.answer = value;
+
+      if (moreInfo && question.questionBody) {
+        question.questionBody.options.forEach((option) => {
+          if ((option.optionID in moreInfo) && option.moreInfo) {
+            option.ResponseField = moreInfo[option.optionID];
+          }
+        });
+      }
+    }
+
+    question.dependentQuestions.forEach((dependentQuestion) => {
+      this.findQuestionAndUpdate(dependentQuestion, questionID, value, moreInfo);
+    });
   }
 
   saveDraft() {
@@ -149,7 +159,6 @@ export default class DraftPage extends Component {
             });
         } else {
           this.draft = response.data;
-          console.log(this.draft);
           this.forceUpdate(); // Force render so that the form is displayed
         }
       })
