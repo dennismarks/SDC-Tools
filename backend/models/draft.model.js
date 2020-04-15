@@ -60,7 +60,7 @@ const DraftSchema = new Schema(
     formID: {
       type: String,
       required: true,
-      unique: true,
+
     },
     formTitle: {
       type: String,
@@ -68,6 +68,8 @@ const DraftSchema = new Schema(
     },
     diagnosticID: {
       type: String,
+      required: true,
+      unique: true,
     },
     version: String,
     originalFile: {
