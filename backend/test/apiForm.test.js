@@ -5,7 +5,6 @@ const chaiHttp = require("chai-http");
 const { expect } = chai;
 
 var supertest = require("supertest");
-var request = supertest(`localhost:${process.env.PORT}`);
 
 chai.use(chaiHttp);
 
@@ -21,7 +20,8 @@ describe("apiForm Testing", () => {
   });
 
   it("attempting to post a duplicate xml", function (done) {
-    request
+    chai
+      .request(app)
       .post("/api/v1/form/import")
       .set("content-type", "multipart/form-data")
       .attach("xml", __dirname.concat("/2.xml"))
