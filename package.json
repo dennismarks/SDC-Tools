@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "cd backend && mocha --timeout 10s --exit --inline-diffs",
-    "start": "nodemon ./backend/server.js",
+    "start": "node ./backend/server.js",
     "dev": "cd frontend && react-scripts build && cd .. && nodemon ./backend/server.js",
     "build": "cd frontend && react-scripts build"
   },
@@ -37,9 +37,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "xml2js": "^0.4.23",
-    "styled-components": "^5.1.0"
-  },
-  "devDependencies": {
+    "styled-components": "^5.1.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "mocha": "^7.1.1",
