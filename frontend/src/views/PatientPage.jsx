@@ -4,6 +4,8 @@ import goBack from "../img/go-back-button.svg";
 import styled from "styled-components/macro";
 import alertIcon from "../img/alert-patient-page.png";
 import axios from "axios";
+import Tippy from '@tippy.js/react';
+import 'tippy.js/dist/tippy.css';
 
 const TableContainer = styled.div`
     margin: 24px;
@@ -59,6 +61,8 @@ const SubmitButton = styled.button`
     background: #ce8c59;
   }
 `;
+
+
 
 
 
@@ -193,6 +197,7 @@ export default class PatientPage extends Component {
             boxShadow: "0px 1px 8px rgba(0, 0, 0, 0.2)"
         }
 
+
         return (
             <div>
                 <div className="App-header">
@@ -255,7 +260,9 @@ export default class PatientPage extends Component {
                         </div>
                         
                         <div style={alertBoxStyling_1}>
-                            <Image src={alertIcon} style={alertStyling}/>
+                            <Tippy content={<span style={{color: 'red'}}>We can't find such patient</span>}>
+                                <Image src={alertIcon} style={alertStyling}/>
+                            </Tippy>
                         </div> 
 
                     </div>
