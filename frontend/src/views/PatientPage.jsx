@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Col, Image} from "react-bootstrap";
+import { Button, Image} from "react-bootstrap";
 import goBack from "../img/go-back-button.svg";
 import styled from "styled-components/macro";
 import alertIcon from "../img/alert-patient-page.png";
@@ -172,85 +172,85 @@ export default class PatientPage extends Component {
         }
 
         const alertBoxStyling_1 = {
-            float:'left',
-            marginLeft:20,
-            display : this.state.showAlert_1 ? 'block':'none',
+            width:40,
+            display: this.state.showAlert_1 ? 'block':'none',
+            position: 'absolute',
+            transform: 'translateY(-50%)',
+            top:'50%'
         }
 
         const alertBoxStyling_2 = {
             display : this.state.showAlert_2 ? 'block':'none',
+            left:'50%',
+            position: 'absolute',
+            transform: 'translateX(-50%)',
         }
 
         const inputStyle = {
             width: 300,
             fontSize: '20px',
-            fontWeight: 'normal',
             fontFamily: 'Arial',
-            height: 50,
-            borderRadius: 8,
-            borderColor: '#e59c63',
-            borderWidth: this.state.inputBorderWidth,
-            caretColor: 'transparent',
-            borderStyle: 'solid',
+            caretColor: 'transparent',        
             color: '#e59c63',
             fontWeight: this.state.inputFontWeight,
-            boxShadow: "0px 1px 8px rgba(0, 0, 0, 0.2)"
+            boxSizing: 'border-box',
+            height:40,
+            border:'none',
+            textAlign:'center'
+        }
+
+        const borderStyle={
+            borderWidth: this.state.inputBorderWidth,
+            borderStyle: 'solid',
+            borderColor: '#e59c63',
+            borderRadius: 8,
+            boxShadow: "0px 1px 8px rgba(0, 0, 0, 0.2)",
+            height: 40,
+            boxSizing: 'content-box',
+            transition: 'border-width 0.5s linear'
         }
 
 
         return (
             <div>
                 <div className="App-header">
-
-
-                    {/* <div>
-                    <h1>Enter Patient Name:</h1>
-                    <Form onSubmit={this.retrieveAllPatients} >
-                        <Form.Row>
-                            <Col>
-                            <Form.Group>
-                            <Form.Label>Patient Name:</Form.Label>
-                            <Form.Control
-                            value={this.state.name}
-                            onChange={this.enterPatientName}
-                            />
-                            </Form.Group>
-                            </Col>
-                            <Col>
-                            <Button
-                            variant="primary"
-                            type="submit"
-                            style={{ marginTop: "32px", marginLeft: "6px", float: 'left', backgroundColor:'#e59c63'}}
-                            >
-                            Submit
-                            </Button>
-                            
-                            </Col>
-                        </Form.Row>     
-                    </Form>
-                    </div> */}
-
-                    <div style={{top: '20%', left:400, position: 'absolute'}}> 
+                    <div style={{top: '20%', position: 'absolute'}}> 
                         <div style={{float: 'left', paddingRight: 30}}>
-                            <input 
-                            type="text" 
-                            placeholder=" Patient Name " 
-                            value={this.state.patientName}
-                            onChange={this.enterPatientName}
-                            onFocus={(e) => {
-                                e.target.placeholder = "";
-                                this.setState({
-                                    inputBorderWidth: 8,
-                                    inputFontWeight: "bold"
-                                })}} 
-                            onBlur={(e) => {
-                                e.target.placeholder = " Patient Name ";
-                                this.setState({
-                                    inputBorderWidth: 5,
-                                    inputFontWeight: "normal"
-                                })
-                            }}
-                            style={inputStyle} />
+                            <div style={borderStyle}>
+                                <div style={{height: '100%', float: 'left', boxSizing:'border-box'}}>
+                                    <input 
+                                    type="text" 
+                                    placeholder=" Patient Name " 
+                                    value={this.state.patientName}
+                                    onChange={this.enterPatientName}
+                                    onFocus={(e) => {
+                                        e.target.placeholder = "";
+                                        this.setState({
+                                            inputBorderWidth: 8,
+                                            inputFontWeight: "bold"
+                                        })}} 
+                                    onBlur={(e) => {
+                                        e.target.placeholder = "      Patient Name";
+                                        this.setState({
+                                            inputBorderWidth: 5,
+                                            inputFontWeight: "normal"
+                                        })
+                                    }}
+                                    style={inputStyle} />
+                                </div>
+                                <div style={{width:40, float:'left', height:'100%', boxSizing:'border-box', backgroundColor:'white', pisition: 'relative'}}>
+                                    <div style={alertBoxStyling_1}>
+                                        <Tippy content={<span style={{color: 'red'}}>We can't find such patient</span>}>
+                                            <Image src={alertIcon} style={alertStyling}/>
+                                        </Tippy>
+                                    </div> 
+                                </div>
+                                
+                            </div>
+                            
+                            
+
+                           
                         </div>
                         
                         <div style={{float: 'left'}}>
@@ -259,11 +259,7 @@ export default class PatientPage extends Component {
                             </SubmitButton>
                         </div>
                         
-                        <div style={alertBoxStyling_1}>
-                            <Tippy content={<span style={{color: 'red'}}>We can't find such patient</span>}>
-                                <Image src={alertIcon} style={alertStyling}/>
-                            </Tippy>
-                        </div> 
+                        
 
                     </div>
 
@@ -273,7 +269,7 @@ export default class PatientPage extends Component {
                                 <Image src={goBack} style={goBackStyling} onClick={this.goBackToPreviousTable}/>
                         </div>
 
-                        <div style={{float: 'left'}}> 
+                        <div style={{float: 'left', position:'relative'}}> 
                             <TableContainer style={{display : this.state.showTr_1 ? 'block':'none'}}>
                                 <Table>
                                     <div>
@@ -305,7 +301,11 @@ export default class PatientPage extends Component {
 
                             
                             <div style={alertBoxStyling_2}>
-                                <Image src={alertIcon} style={alertStyling}/>
+                                <Image src={alertIcon} style={{width: 30,
+                                                               height: 30,
+                                                               MarginRight: 5,
+                                                               float:'left'}}/>
+                                <p style={{float: 'left', marginLeft: 10}}>There is no such record</p>
                             </div>
                                             
 
